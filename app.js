@@ -7,39 +7,22 @@ function moeda(valor) {
   });
 }
 
-function fotoValida(url) {
-
-  if (url === null || url === undefined) {
-    return "";
-  }
-
-  // força virar string
-  url = String(url);
-
-  if (url.trim() === "") {
-    return "";
-  }
-
-  return url;
-}
-
 async function carregarRanking() {
 
   try {
 
-    const response = await fetch(API);
+    const response = await fetch(API + "?t=" + Date.now());
+
     const dados = await response.json();
 
-    console.log("DADOS API:", dados);
-    console.log("1º FOTO:", dados[0]?.foto);
-    console.log("TIPO FOTO:", typeof dados[0]?.foto);
+    console.log("API:", dados);
 
     renderPodium(dados);
     renderTabela(dados);
 
   } catch (erro) {
 
-    console.error("Erro ao carregar ranking:", erro);
+    console.error("Erro:", erro);
 
   }
 
@@ -54,7 +37,7 @@ function renderPodium(dados) {
   const terceiro = dados[2];
 
   document.getElementById("firstPlace").innerHTML = `
-    <img src="${fotoValida(primeiro.foto)}">
+    <img src="${primeiro.foto}">
     <div class="podium-base">
       <h2>🥇</h2>
       <p>${primeiro.consultor}</p>
@@ -63,7 +46,7 @@ function renderPodium(dados) {
   `;
 
   document.getElementById("secondPlace").innerHTML = `
-    <img src="${fotoValida(segundo.foto)}">
+    <img src="${segundo.foto || ''}">
     <div class="podium-base">
       <h2>🥈</h2>
       <p>${segundo.consultor}</p>
@@ -72,7 +55,7 @@ function renderPodium(dados) {
   `;
 
   document.getElementById("thirdPlace").innerHTML = `
-    <img src="${fotoValida(terceiro.foto)}">
+    <img src="${terceiro.foto}">
     <div class="podium-base">
       <h2>🥉</h2>
       <p>${terceiro.consultor}</p>
