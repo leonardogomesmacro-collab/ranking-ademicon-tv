@@ -44,9 +44,14 @@ function renderPodium(dados) {
   const segundo = dados[1];
   const terceiro = dados[2];
 
-  console.log("1º", primeiro);
-  console.log("2º", segundo);
-  console.log("3º", terceiro);
+  console.log("PRIMEIRO COMPLETO");
+  console.log(JSON.stringify(primeiro, null, 2));
+  
+  console.log("SEGUNDO COMPLETO");
+  console.log(JSON.stringify(segundo, null, 2));
+
+  console.log("TERCEIRO COMPLETO");
+  console.log(JSON.stringify(terceiro, null, 2));
 
   document.getElementById("firstPlace").innerHTML = `
     <img
