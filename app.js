@@ -7,6 +7,15 @@ function moeda(valor) {
   });
 }
 
+function fotoValida(url) {
+
+  if (!url || url.trim() === "") {
+    return "https://via.placeholder.com/180?text=SEM+FOTO";
+  }
+
+  return url;
+}
+
 async function carregarRanking() {
 
   try {
@@ -29,7 +38,7 @@ async function carregarRanking() {
 
 function renderPodium(dados) {
 
-  if (dados.length < 3) return;
+  if (!dados || dados.length < 3) return;
 
   const primeiro = dados[0];
   const segundo = dados[1];
@@ -40,8 +49,10 @@ function renderPodium(dados) {
   console.log("3º", terceiro);
 
   document.getElementById("firstPlace").innerHTML = `
-    <img src="${primeiro.foto}" 
-         onerror="this.src='https://via.placeholder.com/180?text=SEM+FOTO'">
+    <img
+      src="${fotoValida(primeiro.foto)}"
+      alt="${primeiro.consultor}"
+      onerror="this.src='https://via.placeholder.com/180?text=SEM+FOTO'">
 
     <div class="podium-base">
       <h2>🥇</h2>
@@ -51,8 +62,10 @@ function renderPodium(dados) {
   `;
 
   document.getElementById("secondPlace").innerHTML = `
-    <img src="${segundo.foto}" 
-         onerror="this.src='https://via.placeholder.com/180?text=SEM+FOTO'">
+    <img
+      src="${fotoValida(segundo.foto)}"
+      alt="${segundo.consultor}"
+      onerror="this.src='https://via.placeholder.com/180?text=SEM+FOTO'">
 
     <div class="podium-base">
       <h2>🥈</h2>
@@ -62,8 +75,10 @@ function renderPodium(dados) {
   `;
 
   document.getElementById("thirdPlace").innerHTML = `
-    <img src="${terceiro.foto}" 
-         onerror="this.src='https://via.placeholder.com/180?text=SEM+FOTO'">
+    <img
+      src="${fotoValida(terceiro.foto)}"
+      alt="${terceiro.consultor}"
+      onerror="this.src='https://via.placeholder.com/180?text=SEM+FOTO'">
 
     <div class="podium-base">
       <h2>🥉</h2>
@@ -71,6 +86,7 @@ function renderPodium(dados) {
       <h3>${moeda(terceiro.producao)}</h3>
     </div>
   `;
+
 }
 
 function renderTabela(dados) {
