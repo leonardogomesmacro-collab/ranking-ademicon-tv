@@ -27,6 +27,8 @@ renderTabela(dados);
 
 function renderPodium(dados){
 
+  console.log(dados);
+  
 const primeiro = dados[0];
 const segundo = dados[1];
 const terceiro = dados[2];
