@@ -1,4 +1,4 @@
-const API = "https://script.google.com/macros/s/AKfycbzKzm7xjNdPLjCfKLro39FCy6S1f9UEmR-t2sXFPdlo4GWysUawT1VtF7ahQfjUytVl/exec";
+const API = "https://script.google.com/macros/s/AKfycbwaalJAsUK8H6pVkXTc6mctclYW97_z73xW9ge6GkQvYz_IMv5X3jMEG6ECqEzZGfes/exec";
 
 async function carregarRanking() {
 
