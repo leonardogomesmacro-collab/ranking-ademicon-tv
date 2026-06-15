@@ -34,7 +34,7 @@ const segundo = dados[1];
 const terceiro = dados[2];
 
 document.getElementById("firstPlace").innerHTML = `
-<img src="${primeiro.foto}">
+<img src="${primeiro.foto || 'https://via.placeholder.com/180'}">
 <div class="podium-base">
 <h2>🥇</h2>
 <p>${primeiro.consultor}</p>
@@ -43,7 +43,7 @@ document.getElementById("firstPlace").innerHTML = `
 `;
 
 document.getElementById("secondPlace").innerHTML = `
-<img src="${segundo.foto}">
+<img src="${segundo.foto || 'https://via.placeholder.com/180'}">
 <div class="podium-base">
 <h2>🥈</h2>
 <p>${segundo.consultor}</p>
@@ -52,7 +52,7 @@ document.getElementById("secondPlace").innerHTML = `
 `;
 
 document.getElementById("thirdPlace").innerHTML = `
-<img src="${terceiro.foto}">
+<img src="${terceiro.foto || 'https://via.placeholder.com/180'}">
 <div class="podium-base">
 <h2>🥉</h2>
 <p>${terceiro.consultor}</p>
