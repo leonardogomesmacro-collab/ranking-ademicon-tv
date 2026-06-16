@@ -135,7 +135,7 @@ function renderTabela(dados){
 
   tabela.innerHTML = "";
 
-  dados.forEach(item=>{
+  dados.slice(0,10).forEach(item=>{
 
     tabela.innerHTML += `
       <tr>
