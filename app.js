@@ -38,7 +38,7 @@ function renderPodium(dados){
   document.getElementById("firstPlace").innerHTML = `
     <img src="${primeiro.foto}" />
     <div class="podium-base">
-      <h2>🥇</h2>
+      <div class="medal medal-gold">1º</div>
       <p>${primeiro.consultor}</p>
       <h3>${moeda(primeiro.producao)}</h3>
     </div>
@@ -47,7 +47,7 @@ function renderPodium(dados){
   document.getElementById("secondPlace").innerHTML = `
     <img src="${segundo.foto || ''}" />
     <div class="podium-base">
-      <h2>🥈</h2>
+      <div class="medal medal-silver">2º</div>
       <p>${segundo.consultor}</p>
       <h3>${moeda(segundo.producao)}</h3>
     </div>
@@ -56,7 +56,7 @@ function renderPodium(dados){
   document.getElementById("thirdPlace").innerHTML = `
     <img src="${terceiro.foto}" />
     <div class="podium-base">
-      <h2>🥉</h2>
+      <div class="medal medal-bronze">3º</div>
       <p>${terceiro.consultor}</p>
       <h3>${moeda(terceiro.producao)}</h3>
     </div>
