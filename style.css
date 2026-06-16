@@ -15,12 +15,12 @@ body{
         radial-gradient(
             circle at top left,
             rgba(120,0,0,.35),
-            transparent 30%
+            transparent 35%
         ),
         linear-gradient(
             90deg,
             #050505 0%,
-            #000000 50%,
+            #000000 45%,
             #000000 100%
         );
 }
@@ -31,53 +31,51 @@ body{
     height:100vh;
 }
 
-/* ==========================
-   COLUNA ESQUERDA
-========================== */
+/* =====================================
+   LADO ESQUERDO
+===================================== */
 
 .left{
     width:42%;
-    padding:10px 15px;
+    padding:20px;
 
     display:flex;
     flex-direction:column;
     align-items:center;
 
     border-right:1px solid rgba(255,0,0,.15);
-
-    overflow:hidden;
 }
 
 .logo-area{
     text-align:center;
-    margin-top:5px;
+    margin-top:10px;
 }
 
 .logo-ademicon{
-    width:180px;
+    width:260px;
     height:auto;
 
     filter:
         brightness(0)
         invert(1);
 
-    margin-bottom:5px;
+    margin-bottom:15px;
 }
 
 .logo-area h2{
-    font-size:22px;
+    font-size:40px;
     font-weight:800;
 
     color:#ff2a2a;
 
     text-transform:uppercase;
 
-    margin-top:5px;
+    margin-top:10px;
 }
 
-/* ==========================
+/* =====================================
    PODIUM
-========================== */
+===================================== */
 
 .podium{
     flex:1;
@@ -88,22 +86,19 @@ body{
     justify-content:center;
     align-items:flex-end;
 
-    gap:12px;
+    gap:8px;
 
-    padding-bottom:20px;
+    padding-bottom:90px;
 }
 
 .winner{
-    width:140px;
-
+    width:180px;
     text-align:center;
-
-    overflow:hidden;
 }
 
 .first{
     order:2;
-    transform:translateY(-15px);
+    transform:translateY(-30px);
 }
 
 .second{
@@ -115,35 +110,35 @@ body{
 }
 
 .first img{
-    width:170px;
-    height:170px;
+    width:220px;
+    height:220px;
 
     object-fit:cover;
 
-    border-radius:16px;
+    border-radius:18px;
 
     border:2px solid rgba(255,0,0,.35);
 
     box-shadow:
-        0 0 12px rgba(255,0,0,.15);
+        0 0 15px rgba(255,0,0,.20);
 }
 
 .second img,
 .third img{
-    width:105px;
-    height:105px;
+    width:140px;
+    height:140px;
 
     object-fit:cover;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    border:1px solid rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.15);
 }
 
 .medal{
-    margin-top:8px;
+    margin-top:10px;
 
-    font-size:32px;
+    font-size:48px;
     font-weight:900;
 
     color:#fff;
@@ -156,37 +151,37 @@ body{
 }
 
 .podium-base{
-    margin-top:5px;
+    margin-top:8px;
 }
 
 .podium-base p{
-    font-size:10px;
+    margin-top:8px;
+
+    font-size:14px;
     font-weight:800;
 
     line-height:1.1;
 
     text-transform:uppercase;
-
-    word-break:break-word;
 }
 
 .podium-base h3{
-    margin-top:8px;
+    margin-top:10px;
 
-    font-size:14px;
+    font-size:20px;
 
     font-weight:900;
 
     color:#ff2a2a;
 }
 
-/* ==========================
-   COLUNA DIREITA
-========================== */
+/* =====================================
+   LADO DIREITO
+===================================== */
 
 .right{
     width:58%;
-    padding:12px;
+    padding:15px;
 }
 
 .top-panel{
@@ -194,7 +189,7 @@ body{
 
     border:1px solid #ff2a2a;
 
-    padding:20px;
+    padding:25px;
 
     background:
         linear-gradient(
@@ -207,18 +202,18 @@ body{
 .top-title{
     color:#ff2a2a;
 
-    font-size:40px;
+    font-size:58px;
 
     font-weight:900;
 
-    margin-bottom:20px;
+    margin-bottom:25px;
 
     text-align:left;
 }
 
-/* ==========================
+/* =====================================
    TABELA
-========================== */
+===================================== */
 
 table{
     width:100%;
@@ -232,17 +227,17 @@ thead{
 th{
     color:#fff;
 
-    padding:15px;
+    padding:18px;
 
-    font-size:18px;
+    font-size:22px;
 
     font-weight:800;
 }
 
 td{
-    padding:15px 12px;
+    padding:22px 16px;
 
-    font-size:16px;
+    font-size:20px;
 
     border-bottom:
         1px solid rgba(255,255,255,.08);
@@ -253,11 +248,11 @@ tbody tr:nth-child(even){
 }
 
 td:first-child{
-    width:60px;
+    width:70px;
 
     text-align:center;
 
-    font-size:18px;
+    font-size:22px;
 
     font-weight:900;
 }
@@ -275,9 +270,9 @@ td:last-child{
     font-weight:900;
 }
 
-/* ==========================
+/* =====================================
    RODAPÉ
-========================== */
+===================================== */
 
 .footer-dashboard,
 .footer-bottom{
