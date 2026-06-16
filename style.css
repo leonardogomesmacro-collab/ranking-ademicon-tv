@@ -32,7 +32,7 @@ body{
 }
 
 /* =====================================
-   ESQUERDA
+   LADO ESQUERDO
 ===================================== */
 
 .left{
@@ -76,7 +76,6 @@ body{
 
 .podium{
     flex:1;
-
     width:100%;
 
     display:flex;
@@ -91,6 +90,10 @@ body{
 .winner{
     width:180px;
     text-align:center;
+}
+
+.winner img{
+    transition:all .3s ease;
 }
 
 .first{
@@ -120,6 +123,8 @@ body{
 
     box-shadow:
         0 0 15px rgba(255,0,0,.20);
+
+    transform:scale(1.08);
 }
 
 .second img,
@@ -174,8 +179,12 @@ body{
     color:#ff2a2a;
 }
 
+.first .podium-base h3{
+    margin-top:15px;
+}
+
 /* =====================================
-   DIREITA
+   LADO DIREITO
 ===================================== */
 
 .right{
@@ -240,6 +249,8 @@ td{
 
     border-bottom:
         1px solid rgba(255,255,255,.08);
+
+    transition:all .4s ease;
 }
 
 tbody tr:nth-child(even){
