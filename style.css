@@ -6,9 +6,26 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#000;
 color:white;
 overflow:hidden;
+
+background:
+radial-gradient(circle at top left,
+rgba(255,0,0,0.25),
+transparent 35%),
+
+radial-gradient(circle at top right,
+rgba(255,0,0,0.18),
+transparent 40%),
+
+linear-gradient(
+180deg,
+#040404,
+#000000,
+#050505
+);
+
+font-family:Arial,sans-serif;
 }
 
 .container{
@@ -32,12 +49,8 @@ filter:brightness(0) invert(1);
 .left{
 width:50%;
 padding:20px;
-background:
-linear-gradient(
-180deg,
-#000000,
-#0a0a0a
-);
+position:relative;
+border-right:2px solid rgba(255,0,0,.15);
 }
 
 .right{
@@ -87,15 +100,19 @@ width:220px;
 }
 
 .winner img{
-width:180px;
-height:180px;
+width:210px;
+height:210px;
 border-radius:50%;
 object-fit:cover;
 border:5px solid #fff;
 }
 
 .first img{
-border-color:gold;
+border:6px solid gold;
+
+box-shadow:
+0 0 25px gold,
+0 0 45px rgba(255,215,0,.6);
 }
 
 .second img{
@@ -133,19 +150,35 @@ height:140px;
 table{
 width:100%;
 border-collapse:collapse;
-margin-top:30px;
+
+border:2px solid #ff0000;
+
+box-shadow:
+0 0 15px rgba(255,0,0,.4);
+
+background:#060606;
 }
 
 th{
 background:#ff0000;
-padding:15px;
-font-size:22px;
+
+padding:18px;
+
+font-size:24px;
+
+font-weight:900;
+
+text-transform:uppercase;
 }
 
 td{
-padding:15px;
-border:1px solid #ff0000;
-font-size:18px;
+padding:18px;
+
+border:1px solid rgba(255,0,0,.5);
+
+font-size:22px;
+
+font-weight:600;
 }
 
 tr:nth-child(even){
@@ -154,8 +187,13 @@ background:#111;
 
 .top-title{
 text-align:center;
-font-size:50px;
+font-size:58px;
+font-weight:900;
 color:#ff0000;
-margin-top:20px;
-font-weight:bold;
+
+text-shadow:
+0 0 8px #ff0000,
+0 0 20px #ff0000;
+
+margin-bottom:20px;
 }
