@@ -1,15 +1,25 @@
 const API = "https://script.google.com/macros/s/AKfycbwaalJAsUK8H6pVkXTc6mctclYW97_z73xW9ge6GkQvYz_IMv5X3jMEG6ECqEzZGfes/exec";
 
 function moeda(valor){
-  return Number(valor).toLocaleString("pt-BR",{
-    style:"currency",
-    currency:"BRL"
-  });
+
+  return Number(valor).toLocaleString(
+    "pt-BR",
+    {
+      style:"currency",
+      currency:"BRL"
+    }
+  );
+
 }
 
-/* =====================================
-   NOME CURTO PARA O PÓDIO
-===================================== */
+function atualizarHorario(){
+
+  const agora = new Date();
+
+  document.getElementById("lastUpdate").innerHTML =
+    agora.toLocaleString("pt-BR");
+
+}
 
 function nomeCurto(nome){
 
@@ -33,48 +43,58 @@ function nomeCurto(nome){
 
 }
 
-/* =====================================
-   CARREGAR DADOS
-===================================== */
-
 async function carregarRanking(){
 
   try{
 
-    const response = await fetch(
-      API + "?nocache=" + Date.now()
-    );
+    const response =
+      await fetch(
+        API + "?nocache=" + Date.now()
+      );
 
-    const dados = await response.json();
-
-    console.clear();
-    console.log("DADOS NOVOS:", dados);
+    const dados =
+      await response.json();
 
     renderPodium(dados);
     renderTabela(dados);
+    renderVolumeTotal(dados);
 
-  }catch(e){
+    atualizarHorario();
 
-    console.error("ERRO:", e);
+  }
+  catch(e){
+
+    console.error(e);
 
   }
 
 }
 
-/* =====================================
-   PÓDIO
-===================================== */
+function renderVolumeTotal(dados){
+
+  const total =
+    dados.reduce(
+      (acc,item)=>
+        acc + Number(item.producao),
+      0
+    );
+
+  document.getElementById(
+    "unitTotal"
+  ).innerHTML = moeda(total);
+
+}
 
 function renderPodium(dados){
-
-  if(!dados || dados.length < 3) return;
 
   const primeiro = dados[0];
   const segundo = dados[1];
   const terceiro = dados[2];
 
-  document.getElementById("firstPlace").innerHTML = `
-    <img src="${primeiro.foto}" alt="">
+  document.getElementById(
+    "firstPlace"
+  ).innerHTML = `
+    <img src="${primeiro.foto}" />
     <div class="podium-base">
       <div class="medal medal-gold">1º</div>
       <p>${nomeCurto(primeiro.consultor)}</p>
@@ -82,8 +102,10 @@ function renderPodium(dados){
     </div>
   `;
 
-  document.getElementById("secondPlace").innerHTML = `
-    <img src="${segundo.foto || ''}" alt="">
+  document.getElementById(
+    "secondPlace"
+  ).innerHTML = `
+    <img src="${segundo.foto || ''}" />
     <div class="podium-base">
       <div class="medal medal-silver">2º</div>
       <p>${nomeCurto(segundo.consultor)}</p>
@@ -91,8 +113,10 @@ function renderPodium(dados){
     </div>
   `;
 
-  document.getElementById("thirdPlace").innerHTML = `
-    <img src="${terceiro.foto}" alt="">
+  document.getElementById(
+    "thirdPlace"
+  ).innerHTML = `
+    <img src="${terceiro.foto}" />
     <div class="podium-base">
       <div class="medal medal-bronze">3º</div>
       <p>${nomeCurto(terceiro.consultor)}</p>
@@ -102,14 +126,12 @@ function renderPodium(dados){
 
 }
 
-/* =====================================
-   TABELA TOP 10
-===================================== */
-
 function renderTabela(dados){
 
   const tabela =
-    document.getElementById("rankingTable");
+    document.getElementById(
+      "rankingTable"
+    );
 
   tabela.innerHTML = "";
 
@@ -127,11 +149,11 @@ function renderTabela(dados){
 
 }
 
-/* =====================================
-   INICIALIZAÇÃO
-===================================== */
-
 carregarRanking();
 
-/* Atualiza a cada 10 segundos */
-setInterval(carregarRanking,10000);
+/* Atualização a cada 30 segundos */
+
+setInterval(
+  carregarRanking,
+  30000
+);
