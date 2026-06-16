@@ -59,7 +59,8 @@ body{
     filter:
         brightness(0)
         invert(1)
-        contrast(200%);
+        contrast(300%)
+        saturate(0);
 
     opacity:1;
 }
