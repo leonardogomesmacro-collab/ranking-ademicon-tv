@@ -93,7 +93,10 @@ body{
 .first{
     order:2;
     position:relative;
-    transform:translateY(-60px);
+
+    transform:
+        translateX(-35px)
+        translateY(-60px);
 }
 
 .second{
