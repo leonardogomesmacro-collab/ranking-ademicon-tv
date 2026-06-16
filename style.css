@@ -54,9 +54,14 @@ body{
 .logo-ademicon{
     width:220px;
     height:auto;
-    margin-bottom:15px;
+    margin-bottom:10px;
 
-    filter: brightness(1.4);
+    filter:
+        brightness(0)
+        invert(1)
+        contrast(200%);
+
+    opacity:1;
 }
 
 .logo-area h2{
