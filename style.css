@@ -1,343 +1,258 @@
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    color:#fff;
 
-height:100vh;
+    background:
+    radial-gradient(circle at top left,
+    rgba(255,0,0,.25),
+    transparent 35%),
 
-overflow:hidden;
+    radial-gradient(circle at top right,
+    rgba(255,0,0,.15),
+    transparent 40%),
 
-background:
-radial-gradient(circle at top left,
-rgba(255,0,0,.25),
-transparent 30%),
-
-radial-gradient(circle at top right,
-rgba(255,0,0,.15),
-transparent 40%),
-
-linear-gradient(
-180deg,
-#020202,
-#000000,
-#050505);
-
-color:#fff;
+    linear-gradient(
+    180deg,
+    #050505,
+    #000000,
+    #050505);
 }
 
 .container{
-display:flex;
-height:100vh;
+    display:flex;
+    width:100%;
+    height:100vh;
 }
+
+/* ===========================
+   LADO ESQUERDO
+=========================== */
 
 .left{
+    width:50%;
+    padding:20px;
+    border-right:1px solid rgba(255,0,0,.25);
 
-width:50%;
-
-padding:20px;
-
-position:relative;
-
-border-right:2px solid rgba(255,0,0,.15);
-}
-
-.right{
-
-width:50%;
-
-padding:20px;
+    display:flex;
+    flex-direction:column;
 }
 
 .logo-area{
-
-text-align:center;
-
-margin-top:10px;
+    text-align:center;
+    margin-top:10px;
 }
 
 .logo-ademicon{
-width:220px;
-height:auto;
-filter:brightness(0) invert(1);
-margin-bottom:10px;
+    width:180px;
+    height:auto;
+    margin-bottom:15px;
 }
 
 .logo-area h2{
-font-size:48px;
+    font-size:58px;
+    font-weight:900;
+    color:#ff0000;
 
-font-weight:900;
+    text-transform:uppercase;
 
-color:#ff0000;
-
-text-transform:uppercase;
-
-text-shadow:
-0 0 10px #ff0000,
-0 0 25px rgba(255,0,0,.5);
+    text-shadow:
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 35px rgba(255,0,0,.5);
 }
+
+/* ===========================
+   PODIUM
+=========================== */
 
 .podium{
-display:flex;
-justify-content:center;
-align-items:flex-end;
-gap:20px;
-height:52vh;
-margin-top:30px;
+    flex:1;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+
+    gap:40px;
+
+    padding-bottom:30px;
+}
+
+.winner{
+    text-align:center;
+    width:220px;
 }
 
 .winner img{
-width:150px;
-height:150px;
+    width:170px;
+    height:170px;
 
-.winner img{
+    object-fit:cover;
 
-width:210px;
+    border-radius:12px;
 
-height:210px;
-
-object-fit:cover;
-
-border-radius:50%;
+    box-shadow:
+    0 0 20px rgba(255,255,255,.2);
 }
+
+/* tamanhos */
 
 .first img{
-
-border:6px solid gold;
-
-box-shadow:
-0 0 25px gold,
-0 0 45px rgba(255,215,0,.5);
+    width:190px;
+    height:190px;
 }
 
 .second img{
-
-border:6px solid silver;
-
-box-shadow:
-0 0 15px silver;
+    width:150px;
+    height:150px;
 }
 
 .third img{
+    width:150px;
+    height:150px;
+}
 
-border:6px solid #cd7f32;
+.first{
+    order:2;
+}
 
-box-shadow:
-0 0 15px #cd7f32;
+.second{
+    order:1;
+}
+
+.third{
+    order:3;
 }
 
 .podium-base{
-
-padding:15px;
-
-border-radius:12px;
-
-font-weight:bold;
-
-margin-top:12px;
-}
-
-.first .podium-base{
-
-background:gold;
-
-color:#000;
-
-height:170px;
-}
-
-.second .podium-base{
-
-background:silver;
-
-color:#000;
-
-height:130px;
-}
-
-.third .podium-base{
-
-background:#cd7f32;
-
-color:#fff;
-
-height:110px;
+    margin-top:10px;
 }
 
 .medal{
-
-width:55px;
-
-height:55px;
-
-border-radius:50%;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-margin:0 auto 10px;
-
-font-size:22px;
-
-font-weight:900;
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:5px;
 }
 
-.medal-gold{
-background:gold;
-color:#000;
-}
-
-.medal-silver{
-background:silver;
-color:#000;
-}
-
+.medal-gold,
+.medal-silver,
 .medal-bronze{
-background:#cd7f32;
-color:#fff;
+    background:none;
+}
+
+.podium-base p{
+    font-size:24px;
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:8px;
+}
+
+.podium-base h3{
+    font-size:30px;
+    color:#ffffff;
+}
+
+/* ===========================
+   LADO DIREITO
+=========================== */
+
+.right{
+    width:50%;
+    padding:20px;
 }
 
 .top-panel{
+    height:100%;
 
-border:2px solid #ff0000;
+    border:2px solid #ff0000;
 
-padding:20px;
+    padding:20px;
 
-box-shadow:
-0 0 20px rgba(255,0,0,.4);
+    background:
+    linear-gradient(
+    180deg,
+    rgba(20,0,0,.8),
+    rgba(0,0,0,.9));
+
+    box-shadow:
+    0 0 25px rgba(255,0,0,.4);
 }
 
 .top-title{
+    text-align:center;
 
-text-align:center;
+    font-size:48px;
+    font-weight:900;
 
-font-size:42px;
+    margin-bottom:20px;
 
-font-weight:900;
+    color:#ff0000;
 
-margin-bottom:25px;
-
-color:#ff0000;
-
-text-shadow:
-0 0 10px #ff0000,
-0 0 20px #ff0000;
+    text-shadow:
+    0 0 10px #ff0000,
+    0 0 20px #ff0000;
 }
 
 table{
+    width:100%;
+    border-collapse:collapse;
+}
 
-width:100%;
-
-border-collapse:collapse;
-
-background:#050505;
+thead{
+    background:#ff0000;
 }
 
 th{
-
-background:#ff0000;
-
-padding:18px;
-
-font-size:24px;
+    padding:15px;
+    font-size:22px;
+    color:#fff;
 }
 
 td{
+    padding:14px;
+    font-size:20px;
 
-padding:16px;
-
-border:1px solid rgba(255,0,0,.4);
-
-font-size:20px;
+    border-bottom:
+    1px solid rgba(255,255,255,.1);
 }
 
-tr:nth-child(even){
-
-background:#0c0c0c;
+tbody tr:nth-child(even){
+    background:rgba(255,255,255,.03);
 }
 
-.footer-dashboard{
-
-position:absolute;
-
-bottom:50px;
-
-width:100%;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:0 60px;
+tbody tr:hover{
+    background:rgba(255,0,0,.15);
 }
 
-.footer-left{
+/* ===========================
+   POSIÇÕES
+=========================== */
 
-display:flex;
-
-gap:40px;
+td:first-child{
+    width:70px;
+    text-align:center;
+    font-weight:900;
 }
 
-.footer-item{
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-font-size:18px;
-
-font-weight:bold;
+td:last-child{
+    text-align:right;
+    font-weight:900;
+    color:#ffd700;
 }
 
-.footer-item span{
-
-font-size:14px;
-
-letter-spacing:1px;
-}
-
-.footer-right{
-
-font-size:30px;
-
-font-weight:900;
-
-text-align:right;
-
-color:#ff0000;
-
-text-shadow:
-0 0 10px #ff0000;
-}
-
-.footer-bottom{
-
-position:absolute;
-
-bottom:12px;
-
-width:100%;
-
-text-align:center;
-
-letter-spacing:8px;
-
-font-size:14px;
-
-color:#c0c0c0;
-}
+/* ===========================
+   FOOTER
+=========================== */
 
 .footer-dashboard,
 .footer-bottom{
-display:none;
+    display:none;
 }
