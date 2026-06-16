@@ -32,7 +32,7 @@ body{
 }
 
 /* =====================================
-   LADO ESQUERDO
+   ESQUERDA
 ===================================== */
 
 .left{
@@ -86,13 +86,13 @@ body{
     justify-content:center;
     align-items:flex-end;
 
-    gap:8px;
+    gap:25px;
 
     padding-bottom:90px;
 }
 
 .winner{
-    width:180px;
+    width:170px;
     text-align:center;
 }
 
@@ -110,8 +110,8 @@ body{
 }
 
 .first img{
-    width:220px;
-    height:220px;
+    width:200px;
+    height:200px;
 
     object-fit:cover;
 
@@ -138,7 +138,7 @@ body{
 .medal{
     margin-top:10px;
 
-    font-size:48px;
+    font-size:58px;
     font-weight:900;
 
     color:#fff;
@@ -157,7 +157,7 @@ body{
 .podium-base p{
     margin-top:8px;
 
-    font-size:14px;
+    font-size:18px;
     font-weight:800;
 
     line-height:1.1;
@@ -168,7 +168,7 @@ body{
 .podium-base h3{
     margin-top:10px;
 
-    font-size:20px;
+    font-size:28px;
 
     font-weight:900;
 
@@ -176,7 +176,7 @@ body{
 }
 
 /* =====================================
-   LADO DIREITO
+   DIREITA
 ===================================== */
 
 .right{
@@ -202,7 +202,7 @@ body{
 .top-title{
     color:#ff2a2a;
 
-    font-size:58px;
+    font-size:68px;
 
     font-weight:900;
 
@@ -229,7 +229,7 @@ th{
 
     padding:18px;
 
-    font-size:22px;
+    font-size:24px;
 
     font-weight:800;
 }
@@ -237,7 +237,7 @@ th{
 td{
     padding:22px 16px;
 
-    font-size:20px;
+    font-size:24px;
 
     border-bottom:
         1px solid rgba(255,255,255,.08);
@@ -252,20 +252,25 @@ td:first-child{
 
     text-align:center;
 
-    font-size:22px;
+    font-size:24px;
 
     font-weight:900;
 }
 
 td:nth-child(2){
     white-space:nowrap;
-    font-weight:600;
+
+    font-size:26px;
+
+    font-weight:700;
 }
 
 td:last-child{
     text-align:right;
 
     color:#ffd21f;
+
+    font-size:24px;
 
     font-weight:900;
 }
