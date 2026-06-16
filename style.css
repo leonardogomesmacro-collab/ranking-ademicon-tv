@@ -52,22 +52,20 @@ body{
 }
 
 .logo-ademicon{
-    width:260px;
+    width:240px;
     height:auto;
 
-    filter:
-        brightness(0)
-        invert(1);
+    filter:brightness(0) invert(1);
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 .logo-area h2{
-    font-size:40px;
+    font-size:32px;
     font-weight:800;
     color:#ff2a2a;
     text-transform:uppercase;
-    margin-top:10px;
+    margin-top:5px;
 }
 
 /* =====================================
@@ -76,44 +74,60 @@ body{
 
 .podium{
     flex:1;
+
     width:100%;
 
     display:flex;
     justify-content:center;
     align-items:flex-end;
 
-    gap:35px;
+    gap:30px;
 
-    padding-bottom:180px;
+    padding-bottom:150px;
 }
 
 .winner{
-    width:180px;
+    width:160px;
     text-align:center;
-}
-
-.winner img{
-    transition:all .3s ease;
 }
 
 .first{
     order:2;
-    transform:translateY(-50px);
+    position:relative;
+    transform:translateY(-40px);
 }
 
 .second{
     order:1;
-    margin-right:15px;
 }
 
 .third{
     order:3;
-    margin-left:15px;
+}
+
+.first::before{
+    content:"🏆";
+
+    position:absolute;
+
+    top:-65px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:100px;
+
+    opacity:.18;
+
+    z-index:0;
 }
 
 .first img{
-    width:200px;
-    height:200px;
+    position:relative;
+    z-index:2;
+
+    width:180px;
+    height:180px;
 
     object-fit:cover;
 
@@ -123,18 +137,16 @@ body{
 
     box-shadow:
         0 0 15px rgba(255,0,0,.20);
-
-    transform:scale(1.08);
 }
 
 .second img,
 .third img{
-    width:140px;
-    height:140px;
+    width:120px;
+    height:120px;
 
     object-fit:cover;
 
-    border-radius:14px;
+    border-radius:12px;
 
     border:1px solid rgba(255,255,255,.15);
 }
@@ -142,45 +154,29 @@ body{
 .medal{
     margin-top:10px;
 
-    font-size:72px;
+    font-size:60px;
     font-weight:900;
 
     color:#fff;
 }
 
-.medal-gold,
-.medal-silver,
-.medal-bronze{
-    background:none;
-}
-
-.podium-base{
-    margin-top:8px;
-}
-
 .podium-base p{
-    margin-top:8px;
+    margin-top:5px;
 
-    font-size:24px;
+    font-size:18px;
     font-weight:900;
-
-    line-height:1.1;
 
     text-transform:uppercase;
 }
 
 .podium-base h3{
-    margin-top:10px;
+    margin-top:8px;
 
-    font-size:34px;
-
-    font-weight:900;
+    font-size:24px;
 
     color:#ff2a2a;
-}
 
-.first .podium-base h3{
-    margin-top:15px;
+    font-weight:900;
 }
 
 /* =====================================
@@ -189,7 +185,7 @@ body{
 
 .right{
     width:58%;
-    padding:15px;
+    padding:10px;
 }
 
 .top-panel{
@@ -197,7 +193,7 @@ body{
 
     border:1px solid #ff2a2a;
 
-    padding:25px;
+    padding:15px;
 
     background:
         linear-gradient(
@@ -207,16 +203,67 @@ body{
         );
 }
 
+/* =====================================
+   TITULO
+===================================== */
+
 .top-title{
     color:#ff2a2a;
 
-    font-size:80px;
+    font-size:56px;
 
     font-weight:900;
 
-    margin-bottom:25px;
+    margin-bottom:8px;
+}
 
-    text-align:left;
+/* =====================================
+   ULTIMA ATUALIZAÇÃO
+===================================== */
+
+.last-update{
+
+    color:#999;
+
+    font-size:13px;
+
+    margin-bottom:10px;
+}
+
+/* =====================================
+   VOLUME TOTAL
+===================================== */
+
+.unit-total{
+
+    margin-bottom:15px;
+
+    padding:8px 12px;
+
+    border:1px solid rgba(255,0,0,.20);
+
+    background:
+    rgba(255,0,0,.05);
+
+    border-radius:8px;
+}
+
+.unit-total-label{
+
+    font-size:12px;
+
+    color:#aaa;
+
+    font-weight:700;
+}
+
+.unit-total-value{
+
+    font-size:26px;
+
+    color:#ffd21f;
+
+    font-weight:900;
 }
 
 /* =====================================
@@ -235,22 +282,20 @@ thead{
 th{
     color:#fff;
 
-    padding:18px;
+    padding:12px;
 
-    font-size:30px;
+    font-size:22px;
 
     font-weight:800;
 }
 
 td{
-    padding:22px 16px;
+    padding:10px 12px;
 
-    font-size:28px;
+    font-size:20px;
 
     border-bottom:
         1px solid rgba(255,255,255,.08);
-
-    transition:all .4s ease;
 }
 
 tbody tr:nth-child(even){
@@ -258,21 +303,21 @@ tbody tr:nth-child(even){
 }
 
 td:first-child{
-    width:70px;
+    width:60px;
 
     text-align:center;
 
-    font-size:28px;
+    font-size:20px;
 
     font-weight:900;
 }
 
 td:nth-child(2){
-    white-space:nowrap;
-
-    font-size:30px;
+    font-size:18px;
 
     font-weight:700;
+
+    white-space:nowrap;
 }
 
 td:last-child{
@@ -280,7 +325,7 @@ td:last-child{
 
     color:#ffd21f;
 
-    font-size:30px;
+    font-size:18px;
 
     font-weight:900;
 }
@@ -292,96 +337,4 @@ td:last-child{
 .footer-dashboard,
 .footer-bottom{
     display:none;
-}
-
-/* =====================================
-   ÚLTIMA ATUALIZAÇÃO
-===================================== */
-
-.last-update{
-
-    color:#999;
-
-    font-size:16px;
-
-    margin-top:-10px;
-
-    margin-bottom:20px;
-
-    font-weight:600;
-}
-
-/* =====================================
-   VOLUME TOTAL
-===================================== */
-
-.unit-total{
-
-    margin-bottom:25px;
-
-    padding:12px;
-
-    border:1px solid rgba(255,0,0,.20);
-
-    background:
-    rgba(255,0,0,.05);
-
-    border-radius:10px;
-}
-
-.unit-total-label{
-
-    font-size:16px;
-
-    color:#aaa;
-
-    font-weight:700;
-
-    margin-bottom:5px;
-}
-
-.unit-total-value{
-
-    font-size:34px;
-
-    color:#ffd21f;
-
-    font-weight:900;
-}
-
-/* =====================================
-   TROFÉU CAMPEÃO
-===================================== */
-
-.first{
-
-    position:relative;
-}
-
-.first::before{
-
-    content:"🏆";
-
-    position:absolute;
-
-    top:-70px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    font-size:120px;
-
-    opacity:.18;
-
-    z-index:0;
-
-    pointer-events:none;
-}
-
-.first img{
-
-    position:relative;
-
-    z-index:2;
 }
