@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ranking Ademicon</title>
 
-  <link rel="stylesheet" href="style.css">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ranking Ademicon</title>
+
+<link rel="stylesheet" href="estilo.css">
 
 </head>
 
@@ -13,61 +16,101 @@
 
 <div class="container">
 
-  <div class="left">
+    <div class="left">
 
-   <div class="logo-area">
+        <div class="logo-area">
 
-  <img
-    src="logo-ademicon.png.png"
-    class="logo-ademicon"
-    alt="Ademicon"
-  >
+            <img
+                src="logo-ademicon.png.png"
+                class="logo-ademicon"
+                alt="Ademicon">
 
-  <h2>RANKING DE VENDAS</h2>
+            <h2>RANKING DE VENDAS</h2>
 
-  </div>
+        </div>
 
-    <div class="podium">
+        <div class="podium">
 
-      <div class="winner second" id="secondPlace"></div>
+            <div class="winner second" id="secondPlace"></div>
 
-      <div class="winner first" id="firstPlace"></div>
+            <div class="winner first" id="firstPlace"></div>
 
-      <div class="winner third" id="thirdPlace"></div>
+            <div class="winner third" id="thirdPlace"></div>
+
+        </div>
 
     </div>
 
-  </div>
+    <div class="right">
 
-  <div class="right">
+        <div class="top-panel">
 
-    <div class="top-title">
-      TOP 10
+            <div class="top-title">
+                TOP 10
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>POS.</th>
+                        <th>CONSULTOR</th>
+                        <th>VOLUME</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="rankingTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
     </div>
 
-    <table>
+</div>
 
-      <thead>
+<div class="footer-dashboard">
 
-      <tr>
-        <th>POS.</th>
-        <th>CONSULTOR</th>
-        <th>VOLUME</th>
-      </tr>
+    <div class="footer-left">
 
-      </thead>
+        <div class="footer-item">
+            🎯
+            <span>FOCO NO OBJETIVO</span>
+        </div>
 
-      <tbody id="rankingTable">
+        <div class="footer-item">
+            🏆
+            <span>DISCIPLINA TODO DIA</span>
+        </div>
 
-      </tbody>
+        <div class="footer-item">
+            🚀
+            <span>RESULTADOS EXTRAORDINÁRIOS</span>
+        </div>
 
-    </table>
+    </div>
 
-  </div>
+    <div class="footer-right">
+
+        JUNTOS,<br>
+        SOMOS IMPARÁVEIS!
+
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+
+    PLANEJE • CONQUISTE • REALIZE
 
 </div>
 
 <script src="app.js"></script>
 
 </body>
+
 </html>
