@@ -80,13 +80,13 @@ body{
     justify-content:center;
     align-items:flex-end;
 
-    gap:20px;
+    gap:45px;
 
-    padding-bottom:140px;
+    padding-bottom:200px;
 }
 
 .winner{
-    width:200px;
+    width:160px;
     text-align:center;
 }
 
@@ -99,12 +99,16 @@ body{
 
 .second{
     order:1;
-    transform:translateX(20px);
+
+    transform:
+        translate(-10px,-10px);
 }
 
 .third{
     order:3;
-    transform:translateX(-20px);
+
+    transform:
+        translate(10px,-10px);
 }
 
 .first::before{
@@ -165,7 +169,8 @@ body{
 .podium-base p{
     margin-top:8px;
 
-    font-size:26px;
+    font-size:18px;
+
     font-weight:900;
 
     text-align:center;
@@ -174,15 +179,15 @@ body{
 }
 
 .podium-base h3{
-    margin-top:10px;
+    margin-top:8px;
 
-    font-size:36px;
+    font-size:26px;
+
+    font-weight:900;
 
     text-align:center;
 
     color:#ff2a2a;
-
-    font-weight:900;
 }
 
 /* =========================
@@ -209,10 +214,6 @@ body{
         );
 }
 
-/* =========================
-   TITULO
-========================= */
-
 .top-title{
     color:#ff2a2a;
 
@@ -223,10 +224,6 @@ body{
     margin-bottom:8px;
 }
 
-/* =========================
-   ULTIMA ATUALIZAÇÃO
-========================= */
-
 .last-update{
     color:#999;
 
@@ -234,10 +231,6 @@ body{
 
     margin-bottom:10px;
 }
-
-/* =========================
-   VOLUME TOTAL
-========================= */
 
 .unit-total{
 
