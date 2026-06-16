@@ -39,7 +39,7 @@ function renderPodium(dados){
     <img src="${primeiro.foto}" />
     <div class="podium-base">
       <div class="medal medal-gold">1º</div>
-      <p>${primeiro.consultor}</p>
+      <p>${primeiro.consultor.toUpperCase()}</p>
       <h3>${moeda(primeiro.producao)}</h3>
     </div>
   `;
