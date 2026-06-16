@@ -165,21 +165,21 @@ body{
 }
 
 .podium-base p{
-    margin-top:8px;
-    font-size:16px;
+    font-size:20px;
     font-weight:900;
     text-align:center;
     text-transform:uppercase;
 }
-
 .podium-base h3{
-    margin-top:8px;
-    font-size:22px;
+    margin-top:10px;
+    font-size:32px;
     font-weight:900;
     text-align:center;
     color:#ff2a2a;
-}
 
+    text-shadow:
+        0 0 10px rgba(255,0,0,.25);
+}
 /* =========================
    DIREITA
 ========================= */
