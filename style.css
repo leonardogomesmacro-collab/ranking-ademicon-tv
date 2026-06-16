@@ -49,7 +49,7 @@ border-right:2px solid rgba(255,0,0,.15);
 
 width:50%;
 
-padding:30px;
+padding:20px;
 }
 
 .logo-area{
@@ -60,19 +60,14 @@ margin-top:10px;
 }
 
 .logo-ademicon{
-
-width:320px;
-
+width:220px;
 height:auto;
-
 filter:brightness(0) invert(1);
-
-margin-bottom:20px;
+margin-bottom:10px;
 }
 
 .logo-area h2{
-
-font-size:64px;
+font-size:48px;
 
 font-weight:900;
 
@@ -86,24 +81,17 @@ text-shadow:
 }
 
 .podium{
-
 display:flex;
-
 justify-content:center;
-
 align-items:flex-end;
-
-gap:15px;
-
-height:65vh;
+gap:20px;
+height:52vh;
+margin-top:30px;
 }
 
-.winner{
-
-width:220px;
-
-text-align:center;
-}
+.winner img{
+width:150px;
+height:150px;
 
 .winner img{
 
@@ -229,7 +217,7 @@ box-shadow:
 
 text-align:center;
 
-font-size:56px;
+font-size:42px;
 
 font-weight:900;
 
@@ -347,4 +335,9 @@ letter-spacing:8px;
 font-size:14px;
 
 color:#c0c0c0;
+}
+
+.footer-dashboard,
+.footer-bottom{
+display:none;
 }
