@@ -42,6 +42,16 @@ color:white;
 font-size:50px;
 }
 
+.unidade{
+color:#c0c0c0;
+font-size:22px;
+font-weight:600;
+letter-spacing:6px;
+margin-top:5px;
+margin-bottom:15px;
+text-transform:uppercase;
+}
+
 .logo-area h2{
 color:#ff0000;
 font-size:70px;
