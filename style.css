@@ -52,22 +52,18 @@ body{
 }
 
 .logo-ademicon{
-    width:180px;
+    width:220px;
     height:auto;
     margin-bottom:15px;
+
+    filter: brightness(1.4);
 }
 
 .logo-area h2{
-    font-size:58px;
-    font-weight:900;
-    color:#ff0000;
-
-    text-transform:uppercase;
+    color:#d71920;
 
     text-shadow:
-    0 0 10px #ff0000,
-    0 0 20px #ff0000,
-    0 0 35px rgba(255,0,0,.5);
+    0 0 8px rgba(215,25,32,.25);
 }
 
 /* ===========================
@@ -187,18 +183,8 @@ body{
 }
 
 .top-title{
-    text-align:center;
-
-    font-size:48px;
-    font-weight:900;
-
-    margin-bottom:20px;
-
     color:#ff0000;
-
-    text-shadow:
-    0 0 10px #ff0000,
-    0 0 20px #ff0000;
+    text-shadow:none;
 }
 
 table{
