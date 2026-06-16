@@ -12,15 +12,17 @@ body{
     color:#fff;
 
     background:
-    radial-gradient(circle at top left,
-    rgba(120,0,0,.55),
-    transparent 35%),
-
+    radial-gradient(
+        circle at top left,
+        rgba(120,0,0,.45),
+        transparent 35%
+    ),
     linear-gradient(
-    90deg,
-    #040404 0%,
-    #000000 40%,
-    #000000 100%);
+        90deg,
+        #050505 0%,
+        #000000 50%,
+        #000000 100%
+    );
 }
 
 .container{
@@ -29,13 +31,13 @@ body{
     height:100vh;
 }
 
-/* ===========================
-   LADO ESQUERDO
-=========================== */
+/* =================================
+   ESQUERDA
+================================= */
 
 .left{
-    width:48%;
-    padding:20px 30px;
+    width:45%;
+    padding:15px 25px;
 
     display:flex;
     flex-direction:column;
@@ -46,38 +48,36 @@ body{
 
 .logo-area{
     text-align:center;
-    margin-top:10px;
+    margin-top:5px;
 }
 
 .logo-ademicon{
-    width:280px;
+    width:220px;
     height:auto;
 
     filter:
-    brightness(0)
-    invert(1);
+        brightness(0)
+        invert(1);
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 .logo-area h2{
-    font-size:34px;
+    font-size:28px;
     font-weight:800;
 
     color:#ff2020;
 
     text-transform:uppercase;
 
-    margin-top:10px;
-
     letter-spacing:1px;
 
-    text-shadow:none;
+    margin-top:5px;
 }
 
-/* ===========================
+/* =================================
    PODIUM
-=========================== */
+================================= */
 
 .podium{
     flex:1;
@@ -88,25 +88,31 @@ body{
     justify-content:center;
     align-items:flex-end;
 
-    gap:35px;
+    gap:25px;
 
-    padding-bottom:60px;
+    padding-bottom:40px;
 }
 
 .winner{
     text-align:center;
 }
 
-/* PRIMEIRO */
-
 .first{
     order:2;
-    transform:translateY(-45px);
+    transform:translateY(-20px);
+}
+
+.second{
+    order:1;
+}
+
+.third{
+    order:3;
 }
 
 .first img{
-    width:240px;
-    height:240px;
+    width:190px;
+    height:190px;
 
     object-fit:cover;
 
@@ -115,50 +121,25 @@ body{
     border:2px solid rgba(255,0,0,.35);
 
     box-shadow:
-    0 0 25px rgba(255,0,0,.25);
+        0 0 15px rgba(255,0,0,.20);
 }
 
-/* SEGUNDO */
-
-.second{
-    order:1;
-}
-
-.second img{
-    width:170px;
-    height:170px;
-
-    object-fit:cover;
-
-    border-radius:16px;
-
-    border:1px solid rgba(255,255,255,.10);
-}
-
-/* TERCEIRO */
-
-.third{
-    order:3;
-}
-
+.second img,
 .third img{
-    width:170px;
-    height:170px;
+    width:130px;
+    height:130px;
 
     object-fit:cover;
 
-    border-radius:16px;
+    border-radius:14px;
 
     border:1px solid rgba(255,255,255,.10);
 }
-
-/* TEXTOS */
 
 .medal{
-    margin-top:15px;
+    margin-top:12px;
 
-    font-size:58px;
-
+    font-size:42px;
     font-weight:900;
 
     color:#fff;
@@ -171,13 +152,13 @@ body{
 }
 
 .podium-base{
-    margin-top:12px;
+    margin-top:8px;
 }
 
 .podium-base p{
-    margin-top:10px;
+    margin-top:8px;
 
-    font-size:18px;
+    font-size:12px;
 
     font-weight:800;
 
@@ -185,25 +166,25 @@ body{
 
     text-transform:uppercase;
 
-    max-width:260px;
+    max-width:200px;
 }
 
 .podium-base h3{
-    margin-top:15px;
+    margin-top:10px;
 
-    font-size:24px;
+    font-size:18px;
 
     font-weight:900;
 
     color:#ff2020;
 }
 
-/* ===========================
-   LADO DIREITO
-=========================== */
+/* =================================
+   DIREITA
+================================= */
 
 .right{
-    width:52%;
+    width:55%;
     padding:15px;
 }
 
@@ -212,34 +193,31 @@ body{
 
     border:1px solid #ff2020;
 
-    padding:28px;
+    padding:25px;
 
     background:
-    linear-gradient(
-    180deg,
-    rgba(25,0,0,.35),
-    rgba(0,0,0,.90));
-
-    box-shadow:none;
+        linear-gradient(
+            180deg,
+            rgba(20,0,0,.20),
+            rgba(0,0,0,.90)
+        );
 }
 
 .top-title{
     color:#ff2020;
 
-    font-size:58px;
+    font-size:42px;
 
     font-weight:900;
 
-    margin-bottom:30px;
+    margin-bottom:25px;
 
     text-align:left;
-
-    text-shadow:none;
 }
 
-/* ===========================
+/* =================================
    TABELA
-=========================== */
+================================= */
 
 table{
     width:100%;
@@ -253,20 +231,20 @@ thead{
 th{
     color:#fff;
 
-    padding:20px;
+    padding:16px;
 
-    font-size:22px;
+    font-size:20px;
 
     font-weight:800;
 }
 
 td{
-    padding:34px 20px;
+    padding:18px 15px;
 
     font-size:18px;
 
     border-bottom:
-    1px solid rgba(255,255,255,.08);
+        1px solid rgba(255,255,255,.08);
 }
 
 tbody tr{
@@ -278,16 +256,17 @@ tbody tr:nth-child(even){
 }
 
 td:first-child{
-    width:90px;
+    width:70px;
 
     text-align:center;
 
-    font-size:22px;
+    font-size:18px;
 
     font-weight:900;
 }
 
 td:nth-child(2){
+    white-space:nowrap;
     font-size:18px;
     font-weight:600;
 }
@@ -302,9 +281,9 @@ td:last-child{
     color:#ffd21f;
 }
 
-/* ===========================
+/* =================================
    RODAPÉ
-=========================== */
+================================= */
 
 .footer-dashboard,
 .footer-bottom{
