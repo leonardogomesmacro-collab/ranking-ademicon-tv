@@ -109,7 +109,6 @@ border:5px solid #fff;
 
 .first img{
 border:6px solid gold;
-
 box-shadow:
 0 0 25px gold,
 0 0 45px rgba(255,215,0,.6);
@@ -150,34 +149,24 @@ height:140px;
 table{
 width:100%;
 border-collapse:collapse;
-
 border:2px solid #ff0000;
-
 box-shadow:
 0 0 15px rgba(255,0,0,.4);
-
 background:#060606;
 }
 
 th{
 background:#ff0000;
-
 padding:18px;
-
 font-size:24px;
-
 font-weight:900;
-
 text-transform:uppercase;
 }
 
 td{
 padding:18px;
-
 border:1px solid rgba(255,0,0,.5);
-
 font-size:22px;
-
 font-weight:600;
 }
 
