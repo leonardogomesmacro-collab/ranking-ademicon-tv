@@ -293,3 +293,95 @@ td:last-child{
 .footer-bottom{
     display:none;
 }
+
+/* =====================================
+   ÚLTIMA ATUALIZAÇÃO
+===================================== */
+
+.last-update{
+
+    color:#999;
+
+    font-size:16px;
+
+    margin-top:-10px;
+
+    margin-bottom:20px;
+
+    font-weight:600;
+}
+
+/* =====================================
+   VOLUME TOTAL
+===================================== */
+
+.unit-total{
+
+    margin-bottom:25px;
+
+    padding:12px;
+
+    border:1px solid rgba(255,0,0,.20);
+
+    background:
+    rgba(255,0,0,.05);
+
+    border-radius:10px;
+}
+
+.unit-total-label{
+
+    font-size:16px;
+
+    color:#aaa;
+
+    font-weight:700;
+
+    margin-bottom:5px;
+}
+
+.unit-total-value{
+
+    font-size:34px;
+
+    color:#ffd21f;
+
+    font-weight:900;
+}
+
+/* =====================================
+   TROFÉU CAMPEÃO
+===================================== */
+
+.first{
+
+    position:relative;
+}
+
+.first::before{
+
+    content:"🏆";
+
+    position:absolute;
+
+    top:-70px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:120px;
+
+    opacity:.18;
+
+    z-index:0;
+
+    pointer-events:none;
+}
+
+.first img{
+
+    position:relative;
+
+    z-index:2;
+}
