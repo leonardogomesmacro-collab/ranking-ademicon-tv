@@ -101,12 +101,12 @@ body{
 
 .second{
     order:1;
-    transform:translate(-5px,-10px);
+    transform:translate(-0px,-10px);
 }
 
 .third{
     order:3;
-    transform:translate(15px,-10px);
+    transform:translate(20px,-10px);
 }
 
 .first::before{
