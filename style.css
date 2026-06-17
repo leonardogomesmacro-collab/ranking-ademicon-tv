@@ -82,7 +82,7 @@ body{
 
     gap:45px;
 
-    padding-bottom:120px;
+    padding-bottom:100px;
 
     margin-top:20px;
 }
@@ -116,13 +116,13 @@ body{
 
     position:absolute;
 
-    top:-210px;
+    top:-180px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    font-size:150px;
+    font-size:80px;
 
     opacity:.15;
 
