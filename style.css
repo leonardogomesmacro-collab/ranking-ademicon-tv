@@ -327,6 +327,7 @@ td:last-child{
 .ranking-table tbody tr{
 
     height:52px;
+    animation: fadeRanking .6s ease;
 }
 
 .ranking-table td{
@@ -499,4 +500,127 @@ body{
 
     overflow:hidden;
 
+}
+
+/* ==========================================
+   ANIMAÇÕES
+========================================== */
+
+@keyframes fadeRanking{
+
+    from{
+
+        opacity:0.6;
+        transform:translateY(8px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes podiumEntry{
+
+    from{
+
+        opacity:0;
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes trophyGlow{
+
+    0%{
+        opacity:.8;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:.8;
+    }
+
+}
+
+/* =====================================
+   ANIMAÇÕES
+===================================== */
+
+@keyframes podiumEntry{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.first,
+.second,
+.third{
+
+    animation:
+        podiumEntry .8s ease;
+}
+
+
+@keyframes fadeRanking{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+#rankingTable tr{
+
+    animation:
+        fadeRanking .6s ease;
+}
+
+@keyframes trophyGlow{
+
+    0%{
+        opacity:.15;
+    }
+
+    50%{
+        opacity:.35;
+    }
+
+    100%{
+        opacity:.15;
+    }
+
+}
+
+.first::before{
+
+    animation:
+        trophyGlow 3s infinite;
 }
