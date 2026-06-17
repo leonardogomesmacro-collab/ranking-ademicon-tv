@@ -116,7 +116,7 @@ body{
 
     position:absolute;
 
-    top:-145px;
+    top:-100px;
 
     left:50%;
 
@@ -150,8 +150,8 @@ body{
 
 .second img,
 .third img{
-    width:100px;
-    height:100px;
+    width:150px;
+    height:150px;
 
     object-fit:cover;
 
