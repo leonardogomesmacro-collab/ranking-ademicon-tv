@@ -82,7 +82,8 @@ body{
 
     gap:45px;
 
-    padding-bottom:200px;
+    padding-bottom:120px; /* antes 200px */
+    margin-top:80px;      /* novo */
 }
 
 .winner{
@@ -95,10 +96,9 @@ body{
     position:relative;
 
     transform:
-        translateX(-20px)
-        translateY(-60px);
+        translateX(0px)
+        translateY(-20px);
 }
-
 .second{
     order:1;
     transform:translate(-0px,-10px);
@@ -114,7 +114,7 @@ body{
 
     position:absolute;
 
-    top:-70px;
+    top:-95px;
     left:50%;
 
     transform:translateX(-50%);
