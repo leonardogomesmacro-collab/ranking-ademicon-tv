@@ -356,3 +356,17 @@ setInterval(() => {
     location.reload();
 
 }, 1800000);
+
+No final do app.js:
+
+document.addEventListener(
+    "click",
+    () => {
+
+        document.documentElement
+        .requestFullscreen()
+        .catch(()=>{});
+
+    },
+    { once:true }
+);
