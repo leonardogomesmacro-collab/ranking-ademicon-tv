@@ -16,7 +16,9 @@ function atualizarHorario(){
 
   const agora = new Date();
 
-  document.getElementById("lastUpdate").innerHTML =
+  document.getElementById(
+    "lastUpdate"
+  ).innerHTML =
     agora.toLocaleString("pt-BR");
 
 }
@@ -33,15 +35,24 @@ function nomeCurto(nome){
 
   for(const item of especiais){
 
-    if(nome.toUpperCase().includes(item)){
+    if(
+      nome.toUpperCase()
+      .includes(item)
+    ){
       return item;
     }
 
   }
 
-  return nome.split(" ")[0].toUpperCase();
+  return nome
+    .split(" ")[0]
+    .toUpperCase();
 
 }
+
+/* ==========================
+   CARREGAR DADOS
+========================== */
 
 async function carregarRanking(){
 
@@ -49,52 +60,153 @@ async function carregarRanking(){
 
     const response =
       await fetch(
-        API + "?nocache=" + Date.now()
+        API +
+        "?nocache=" +
+        Date.now()
       );
 
-    const dados =
+    const retorno =
       await response.json();
 
-    renderPodium(dados);
-    renderTabela(dados);
-    renderVolumeTotal(dados);
+    const ranking =
+      retorno.ranking || [];
+
+    const config =
+      retorno.config || {};
+
+    renderPodium(ranking);
+    renderTabela(ranking);
+    renderVolumeTotal(ranking);
+    renderMeta(ranking, config);
 
     atualizarHorario();
 
   }
   catch(e){
 
-    console.error(e);
+    console.error(
+      "Erro ao carregar ranking:",
+      e
+    );
 
   }
 
 }
 
-function renderVolumeTotal(dados){
+/* ==========================
+   VOLUME TOTAL
+========================== */
+
+function renderVolumeTotal(ranking){
 
   const total =
-    dados.reduce(
+    ranking.reduce(
       (acc,item)=>
-        acc + Number(item.producao),
+        acc +
+        Number(item.producao),
       0
     );
 
   document.getElementById(
     "unitTotal"
-  ).innerHTML = moeda(total);
+  ).innerHTML =
+    moeda(total);
 
 }
 
-function renderPodium(dados){
+/* ==========================
+   META DO MÊS
+========================== */
 
-  const primeiro = dados[0];
-  const segundo = dados[1];
-  const terceiro = dados[2];
+function renderMeta(
+  ranking,
+  config
+){
+
+  const volumeTotal =
+    ranking.reduce(
+      (acc,item)=>
+        acc +
+        Number(item.producao),
+      0
+    );
+
+  const metaMes =
+    Number(
+      config.metaMes || 0
+    );
+
+  const percentual =
+    metaMes > 0
+      ? (
+          volumeTotal /
+          metaMes
+        ) * 100
+      : 0;
+
+  const faltante =
+    Math.max(
+      metaMes -
+      volumeTotal,
+      0
+    );
+
+  document.getElementById(
+    "metaAtual"
+  ).innerHTML =
+    moeda(volumeTotal);
+
+  document.getElementById(
+    "metaMes"
+  ).innerHTML =
+    moeda(metaMes);
+
+  document.getElementById(
+    "percentualMeta"
+  ).innerHTML =
+    percentual.toFixed(1) +
+    "%";
+
+  document.getElementById(
+    "faltanteMeta"
+  ).innerHTML =
+    "Faltam " +
+    moeda(faltante);
+
+  document.getElementById(
+    "progressFill"
+  ).style.width =
+    Math.min(
+      percentual,
+      100
+    ) + "%";
+
+}
+
+/* ==========================
+   PODIUM
+========================== */
+
+function renderPodium(ranking){
+
+  if(
+    !ranking ||
+    ranking.length < 3
+  ) return;
+
+  const primeiro =
+    ranking[0];
+
+  const segundo =
+    ranking[1];
+
+  const terceiro =
+    ranking[2];
 
   document.getElementById(
     "firstPlace"
   ).innerHTML = `
-    <img src="${primeiro.foto}" />
+    <img src="${primeiro.foto}" alt="">
     <div class="podium-base">
       <div class="medal medal-gold">1º</div>
       <p>${nomeCurto(primeiro.consultor)}</p>
@@ -105,7 +217,7 @@ function renderPodium(dados){
   document.getElementById(
     "secondPlace"
   ).innerHTML = `
-    <img src="${segundo.foto || ''}" />
+    <img src="${segundo.foto}" alt="">
     <div class="podium-base">
       <div class="medal medal-silver">2º</div>
       <p>${nomeCurto(segundo.consultor)}</p>
@@ -116,7 +228,7 @@ function renderPodium(dados){
   document.getElementById(
     "thirdPlace"
   ).innerHTML = `
-    <img src="${terceiro.foto}" />
+    <img src="${terceiro.foto}" alt="">
     <div class="podium-base">
       <div class="medal medal-bronze">3º</div>
       <p>${nomeCurto(terceiro.consultor)}</p>
@@ -126,7 +238,13 @@ function renderPodium(dados){
 
 }
 
-function renderTabela(dados){
+/* ==========================
+   TABELA TOP 10
+========================== */
+
+function renderTabela(
+  ranking
+){
 
   const tabela =
     document.getElementById(
@@ -135,23 +253,29 @@ function renderTabela(dados){
 
   tabela.innerHTML = "";
 
-  dados.slice(0,10).forEach(item=>{
+  ranking
+    .slice(0,10)
+    .forEach(item=>{
 
-    tabela.innerHTML += `
-      <tr>
-        <td>${item.posicao}</td>
-        <td>${item.consultor.toUpperCase()}</td>
-        <td>${moeda(item.producao)}</td>
-      </tr>
-    `;
+      tabela.innerHTML += `
+        <tr>
+          <td>${item.posicao}</td>
+          <td>${item.consultor.toUpperCase()}</td>
+          <td>${moeda(item.producao)}</td>
+        </tr>
+      `;
 
-  });
+    });
 
 }
 
+/* ==========================
+   INICIALIZAÇÃO
+========================== */
+
 carregarRanking();
 
-/* Atualização a cada 30 segundos */
+/* Atualiza a cada 30 segundos */
 
 setInterval(
   carregarRanking,
