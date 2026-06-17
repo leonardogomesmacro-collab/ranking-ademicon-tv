@@ -82,8 +82,9 @@ body{
 
     gap:45px;
 
-    padding-bottom:120px; /* antes 200px */
-    margin-top:80px;      /* novo */
+    padding-bottom:200px;
+
+    margin-top:20px;
 }
 
 .winner{
@@ -96,9 +97,10 @@ body{
     position:relative;
 
     transform:
-        translateX(0px)
-        translateY(-20px);
+        translateX(-20px)
+        translateY(-60px);
 }
+
 .second{
     order:1;
     transform:translate(-0px,-10px);
@@ -114,16 +116,19 @@ body{
 
     position:absolute;
 
-    top:-95px;
+    top:-115px;
+
     left:50%;
 
     transform:translateX(-50%);
 
-    font-size:110px;
+    font-size:130px;
 
-    opacity:.18;
+    opacity:.20;
 
     z-index:0;
+
+    pointer-events:none;
 }
 
 .first img{
