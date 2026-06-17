@@ -98,7 +98,7 @@ body{
 
     transform:
         translateX(-20px)
-        translateY(-60px);
+        translateY(-35px);
 }
 
 .second{
@@ -116,15 +116,15 @@ body{
 
     position:absolute;
 
-    top:-115px;
+    top:-145px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    font-size:130px;
+    font-size:150px;
 
-    opacity:.20;
+    opacity:.15;
 
     z-index:0;
 
