@@ -425,3 +425,34 @@ td:last-child{
 #faltanteMeta{
     color:#ccc;
 }
+
+
+/* =========================
+   META DIÁRIA
+========================= */
+
+#progressDiaFill{
+
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00c853,
+            #00ff88
+        );
+
+    transition:1s;
+}
+
+#percentualDia{
+    color:#00ff88;
+    font-weight:900;
+}
+
+#statusDia{
+    color:#ffffff;
+    font-weight:700;
+}
