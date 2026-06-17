@@ -341,21 +341,6 @@ function renderTabela(
 
 }
 
-/* ==========================
-   AUTO REFRESH
-========================== */
-
-setInterval(() => {
-
-    carregarRanking();
-
-}, 60000);
-
-setInterval(() => {
-
-    location.reload();
-
-}, 1800000);
 
 document.addEventListener(
     "click",
@@ -368,3 +353,24 @@ document.addEventListener(
     },
     { once:true }
 );
+
+/* ==========================
+   AUTO REFRESH
+========================== */
+
+// CARREGA IMEDIATAMENTE
+carregarRanking();
+
+// Atualiza a cada 60 segundos
+setInterval(() => {
+
+    carregarRanking();
+
+}, 60000);
+
+// Recarrega a página a cada 30 minutos
+setInterval(() => {
+
+    location.reload();
+
+}, 1800000);
