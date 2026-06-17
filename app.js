@@ -357,8 +357,6 @@ setInterval(() => {
 
 }, 1800000);
 
-No final do app.js:
-
 document.addEventListener(
     "click",
     () => {
