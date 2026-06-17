@@ -74,12 +74,14 @@ async function carregarRanking(){
     const config =
       retorno.config || {};
 
-    renderPodium(ranking);
-    renderTabela(ranking);
-    renderVolumeTotal(ranking);
-    renderMeta(ranking, config);
+renderPodium(ranking);
+renderTabela(ranking);
+renderVolumeTotal(ranking);
 
-    atualizarHorario();
+renderMeta(ranking, config);
+renderMetaDia(ranking, config);
+
+atualizarHorario();
 
   }
   catch(e){
@@ -175,6 +177,76 @@ function renderMeta(
 
   document.getElementById(
     "progressFill"
+  ).style.width =
+    Math.min(
+      percentual,
+      100
+    ) + "%";
+
+}
+
+/* ==========================
+   META DIÁRIA
+========================== */
+
+function renderMetaDia(
+  ranking,
+  config
+){
+
+  const volumeTotal =
+    ranking.reduce(
+      (acc,item)=>
+        acc +
+        Number(item.producao),
+      0
+    );
+
+  const metaDia =
+    Number(
+      config.metaDia || 0
+    );
+
+  const percentual =
+    metaDia > 0
+      ? (
+          volumeTotal /
+          metaDia
+        ) * 100
+      : 0;
+
+  const faltante =
+    Math.max(
+      metaDia -
+      volumeTotal,
+      0
+    );
+
+  document.getElementById(
+    "metaDiaAtual"
+  ).innerHTML =
+    moeda(volumeTotal);
+
+  document.getElementById(
+    "metaDia"
+  ).innerHTML =
+    moeda(metaDia);
+
+  document.getElementById(
+    "percentualDia"
+  ).innerHTML =
+    percentual.toFixed(1) + "%";
+
+  document.getElementById(
+    "statusDia"
+  ).innerHTML =
+    percentual >= 100
+      ? "META DIÁRIA ATINGIDA ✅"
+      : "Faltam " +
+        moeda(faltante);
+
+  document.getElementById(
+    "progressDiaFill"
   ).style.width =
     Math.min(
       percentual,
