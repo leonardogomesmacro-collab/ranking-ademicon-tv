@@ -116,13 +116,13 @@ body{
 
     position:absolute;
 
-    top:-250px;
+    top:-150px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    font-size:80px;
+    font-size:90px;
 
     opacity:.15;
 
