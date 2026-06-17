@@ -342,14 +342,17 @@ function renderTabela(
 }
 
 /* ==========================
-   INICIALIZAÇÃO
+   AUTO REFRESH
 ========================== */
 
-carregarRanking();
+setInterval(() => {
 
-/* Atualiza a cada 30 segundos */
+    carregarRanking();
 
-setInterval(
-  carregarRanking,
-  30000
-);
+}, 60000);
+
+setInterval(() => {
+
+    location.reload();
+
+}, 1800000);
