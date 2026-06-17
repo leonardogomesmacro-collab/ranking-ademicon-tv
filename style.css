@@ -483,3 +483,20 @@ td:last-child{
     color:#ffffff;
     font-weight:700;
 }
+
+*{
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+    -moz-user-select:none;
+
+}
+
+html,
+body{
+
+    overflow:hidden;
+
+}
