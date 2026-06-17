@@ -342,7 +342,7 @@ function renderTabela(
 }
 
 
-document.addEventListener(
+/*document.addEventListener(
     "click",
     () => {
 
@@ -352,7 +352,7 @@ document.addEventListener(
 
     },
     { once:true }
-);
+);*/
 
 /* ==========================
    AUTO REFRESH
@@ -366,11 +366,11 @@ setInterval(() => {
 
     carregarRanking();
 
-}, 60000);
+}, 10000);
 
-// Recarrega a página a cada 30 minutos
+/*// Recarrega a página a cada 30 minutos
 setInterval(() => {
 
     location.reload();
 
-}, 1800000);
+}, 1800000);*/
