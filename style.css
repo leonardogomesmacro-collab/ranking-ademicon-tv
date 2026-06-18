@@ -345,9 +345,66 @@ td:last-child{
    RODAPÉ
 ========================= */
 
-.footer-dashboard,
+.footer-dashboard{
+    display:flex;
+}
+
 .footer-bottom{
-    display:none;
+    display:flex;
+}
+
+/* =========================
+   FOOTER MOTIVACIONAL
+========================= */
+
+.footer-dashboard{
+
+    width:100%;
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+.footer-left{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:35px;
+
+    width:100%;
+}
+
+.footer-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#ffffff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    opacity:.85;
+}
+
+.footer-item span{
+
+    color:#cccccc;
+
+    font-size:14px;
+
+    font-weight:700;
 }
 
 /* =========================
