@@ -713,3 +713,42 @@ body{
     animation:
         trophyGlow 3s infinite;
 }
+
+.footer-dashboard{
+
+    display:flex !important;
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:20px;
+
+    width:42%;
+
+    justify-content:center;
+
+    z-index:9999;
+
+    border:1px solid yellow;
+}
+
+.footer-left{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+}
+
+.footer-item{
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:700;
+}
