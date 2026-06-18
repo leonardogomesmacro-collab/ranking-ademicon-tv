@@ -346,11 +346,38 @@ td:last-child{
 ========================= */
 
 .footer-dashboard{
+
+    width:100%;
+
     display:flex;
+
+    justify-content:center;
+
+    margin-top:-80px;
+
+    z-index:20;
 }
 
-.footer-bottom{
+.footer-left{
+
     display:flex;
+
+    gap:30px;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+}
+
+.footer-item{
+
+    color:#ff2a2a;
+
+    font-size:14px;
+
+    font-weight:700;
 }
 
 /* =========================
