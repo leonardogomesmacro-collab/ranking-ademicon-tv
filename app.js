@@ -366,7 +366,7 @@ setInterval(() => {
 
     carregarRanking();
 
-}, 10000);
+}, 60000);
 
 // Recarrega a página a cada 30 minutos
 setInterval(() => {
