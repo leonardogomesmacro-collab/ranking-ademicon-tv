@@ -341,43 +341,10 @@ td:last-child{
     font-size:15px;
 }
 
-/* =========================
-   RODAPÉ
-========================= */
+.first::before{
 
-.footer-dashboard{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    margin-top:-80px;
-
-    z-index:20;
-}
-
-.footer-left{
-
-    display:flex;
-
-    gap:30px;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-wrap:wrap;
-}
-
-.footer-item{
-
-    color:#ff2a2a;
-
-    font-size:14px;
-
-    font-weight:700;
+    animation:
+        trophyGlow 3s infinite;
 }
 
 /* =========================
@@ -386,15 +353,19 @@ td:last-child{
 
 .footer-dashboard{
 
-    width:100%;
-
-    margin-top:30px;
-
     display:flex;
+
+    position:absolute;
+
+    bottom:18px;
+
+    left:0;
+
+    width:42%;
 
     justify-content:center;
 
-    align-items:center;
+    z-index:9999;
 }
 
 .footer-left{
@@ -403,9 +374,11 @@ td:last-child{
 
     justify-content:center;
 
-    gap:35px;
+    align-items:center;
 
-    width:100%;
+    gap:28px;
+
+    flex-wrap:wrap;
 }
 
 .footer-item{
@@ -414,26 +387,25 @@ td:last-child{
 
     align-items:center;
 
-    gap:8px;
+    gap:6px;
 
     color:#ffffff;
 
-    font-size:14px;
+    font-size:17px;
 
     font-weight:700;
 
-    opacity:.85;
+    opacity:.90;
 }
 
 .footer-item span{
 
-    color:#cccccc;
+    color:#d0d0d0;
 
-    font-size:14px;
+    font-size:17px;
 
     font-weight:700;
 }
-
 /* =========================
    META DO MÊS
 ========================= */
@@ -730,7 +702,6 @@ body{
 
     z-index:9999;
 
-    border:1px solid yellow;
 }
 
 .footer-left{
