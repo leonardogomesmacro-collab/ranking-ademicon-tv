@@ -79,7 +79,6 @@ renderTabela(ranking);
 renderVolumeTotal(ranking);
 
 renderMeta(ranking, config);
-renderMetaDia(ranking, config);
 
 atualizarHorario();
 
