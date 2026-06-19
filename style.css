@@ -516,53 +516,6 @@ td:last-child{
 }
 
 
-/* =========================
-   META DIÁRIA
-========================= */
-
-#progressDiaFill{
-
-    width:0%;
-
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #00c853,
-            #00ff88
-        );
-
-    transition:1s;
-}
-
-#percentualDia{
-    color:#00ff88;
-    font-weight:900;
-}
-
-#statusDia{
-    color:#ffffff;
-    font-weight:700;
-}
-
-*{
-
-    user-select:none;
-
-    -webkit-user-select:none;
-
-    -moz-user-select:none;
-
-}
-
-html,
-body{
-
-    overflow:hidden;
-
-}
-
 /* ==========================================
    ANIMAÇÕES
 ========================================== */
