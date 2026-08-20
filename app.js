@@ -1,6 +1,11 @@
 // =========================================================
 // RANKING ADEMICON
-// APP.JS
+// APP.JS — VERSÃO COMPLETA
+// =========================================================
+
+
+// =========================================================
+// CONFIGURAÇÃO DA API
 // =========================================================
 
 const API_URL =
@@ -11,7 +16,7 @@ const API_URL =
 // INICIALIZAÇÃO
 // =========================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     console.log("=================================");
     console.log("RANKING ADEMICON");
@@ -24,37 +29,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =========================================================
-// BUSCAR API
+// BUSCAR DADOS DA API
 // =========================================================
 
 async function carregarRanking() {
 
     try {
 
-        atualizarStatus("Conectando...", false);
+        atualizarStatus(
+            "Conectando...",
+            false
+        );
 
         console.log("Chamando API...");
 
-        const resposta = await fetch(API_URL + "?t=" + Date.now(), {
-            method: "GET",
-            cache: "no-store"
-        });
 
-        console.log("Status API:", resposta.status);
+        const resposta = await fetch(
+            API_URL,
+            {
+                method: "GET",
+                cache: "no-cache"
+            }
+        );
+
+
+        console.log(
+            "Status API:",
+            resposta.status
+        );
+
 
         if (!resposta.ok) {
 
             throw new Error(
-                "Erro HTTP: " + resposta.status
+                "Erro HTTP: " +
+                resposta.status
             );
 
         }
 
-        const dados = await resposta.json();
+
+        const dados =
+            await resposta.json();
+
+
+        // =================================================
+        // MOSTRAR RESPOSTA COMPLETA NO CONSOLE
+        // =================================================
 
         console.log("=================================");
         console.log("DADOS RECEBIDOS DA API");
         console.log(dados);
+        console.log(
+            JSON.stringify(
+                dados,
+                null,
+                2
+            )
+        );
         console.log("=================================");
 
 
@@ -81,12 +113,16 @@ async function carregarRanking() {
         // METAS
         // =================================================
 
-        console.log(
-            "OBJETO METAS:",
-            dados.metas
-        );
-
         if (dados.metas) {
+
+            console.log(
+                "OBJETO METAS RECEBIDO:"
+            );
+
+            console.log(
+                dados.metas
+            );
+
 
             atualizarMetas(
                 dados.metas
@@ -94,8 +130,8 @@ async function carregarRanking() {
 
         } else {
 
-            console.error(
-                "ERRO: objeto 'metas' não encontrado na API."
+            console.warn(
+                "ATENÇÃO: dados.metas não encontrado."
             );
 
         }
@@ -112,51 +148,26 @@ async function carregarRanking() {
         ) {
 
             console.log(
-                "RANKING GERAL:",
+                "Ranking recebido:",
                 dados.ranking
             );
+
 
             atualizarRanking(
                 dados.ranking
             );
 
-        }
+        } else {
 
-
-        // =================================================
-        // RANKING SEMANA
-        // =================================================
-
-        if (
-            dados.rankingSemana
-        ) {
-
-            console.log(
-                "RANKING SEMANA:",
-                dados.rankingSemana
+            console.warn(
+                "Ranking não encontrado ou formato inválido."
             );
 
         }
 
 
         // =================================================
-        // RANKING CONTRATOS
-        // =================================================
-
-        if (
-            dados.rankingContratos
-        ) {
-
-            console.log(
-                "RANKING CONTRATOS:",
-                dados.rankingContratos
-            );
-
-        }
-
-
-        // =================================================
-        // DATA
+        // DATA DE ATUALIZAÇÃO
         // =================================================
 
         if (
@@ -179,9 +190,21 @@ async function carregarRanking() {
     catch (erro) {
 
         console.error(
-            "ERRO AO CARREGAR API:",
+            "================================="
+        );
+
+        console.error(
+            "ERRO AO CARREGAR API:"
+        );
+
+        console.error(
             erro
         );
+
+        console.error(
+            "================================="
+        );
+
 
         atualizarStatus(
             "Erro na conexão",
@@ -207,6 +230,7 @@ function atualizarStatus(
             "status"
         );
 
+
     if (elemento) {
 
         elemento.textContent =
@@ -220,25 +244,27 @@ function atualizarStatus(
             ".status-dot"
         );
 
-    if (bolinha) {
 
-        if (conectado) {
+    if (!bolinha) {
+        return;
+    }
 
-            bolinha.style.background =
-                "#00ff66";
 
-            bolinha.style.boxShadow =
-                "0 0 10px #00ff66";
+    if (conectado) {
 
-        } else {
+        bolinha.style.background =
+            "#00ff66";
 
-            bolinha.style.background =
-                "#ff0000";
+        bolinha.style.boxShadow =
+            "0 0 10px #00ff66";
 
-            bolinha.style.boxShadow =
-                "0 0 10px #ff0000";
+    } else {
 
-        }
+        bolinha.style.background =
+            "#ff0000";
+
+        bolinha.style.boxShadow =
+            "0 0 10px #ff0000";
 
     }
 
@@ -253,43 +279,15 @@ function atualizarMetas(
     metas
 ) {
 
-    console.log(
-        "========== METAS =========="
-    );
-
-    console.log(
-        "metaMes:",
-        metas.metaMes
-    );
-
-    console.log(
-        "metaSemana:",
-        metas.metaSemana
-    );
-
-    console.log(
-        "metaDia:",
-        metas.metaDia
-    );
-
-    console.log(
-        "vendidoMes:",
-        metas.vendidoMes
-    );
-
-    console.log(
-        "vendidoSemana:",
-        metas.vendidoSemana
-    );
-
-    console.log(
-        "vendidoDia:",
-        metas.vendidoDia
-    );
+    console.log("=================================");
+    console.log("LENDO METAS");
+    console.log("OBJETO METAS:");
+    console.log(metas);
+    console.log("=================================");
 
 
     // =====================================================
-    // VALORES
+    // META DO MÊS
     // =====================================================
 
     const metaMes =
@@ -297,25 +295,54 @@ function atualizarMetas(
             metas.metaMes
         );
 
+
+    // =====================================================
+    // META DA SEMANA
+    // =====================================================
+
     const metaSemana =
         numero(
             metas.metaSemana
         );
+
+
+    // =====================================================
+    // META DO DIA
+    // =====================================================
 
     const metaDia =
         numero(
             metas.metaDia
         );
 
+
+    // =====================================================
+    // VENDIDO NO MÊS
+    // =====================================================
+
     const vendidoMes =
         numero(
             metas.vendidoMes
         );
 
+
+    // =====================================================
+    // VENDIDO NA SEMANA
+    // =====================================================
+
     const vendidoSemana =
         numero(
             metas.vendidoSemana
         );
+
+
+    // =====================================================
+    // VENDIDO NO DIA
+    //
+    // IMPORTANTE:
+    // O Apps Script deve buscar este valor
+    // EXCLUSIVAMENTE da célula I3.
+    // =====================================================
 
     const vendidoDia =
         numero(
@@ -324,12 +351,55 @@ function atualizarMetas(
 
 
     // =====================================================
+    // LOG DOS VALORES
+    // =====================================================
+
+    console.log("=================================");
+    console.log("VALORES DAS METAS");
+    console.log("=================================");
+
+    console.log(
+        "Meta mês:",
+        metaMes
+    );
+
+    console.log(
+        "Meta semana:",
+        metaSemana
+    );
+
+    console.log(
+        "Meta dia:",
+        metaDia
+    );
+
+    console.log(
+        "Vendido mês:",
+        vendidoMes
+    );
+
+    console.log(
+        "Vendido semana:",
+        vendidoSemana
+    );
+
+    console.log(
+        "Vendido dia - I3:",
+        vendidoDia
+    );
+
+    console.log("=================================");
+
+
+    // =====================================================
     // VOLUME TOTAL DA UNIDADE
     // =====================================================
 
     colocarTexto(
         "volumeTotal",
-        moeda(vendidoMes)
+        moeda(
+            vendidoMes
+        )
     );
 
 
@@ -339,7 +409,9 @@ function atualizarMetas(
 
     colocarTexto(
         "metaMes",
-        moeda(metaMes)
+        moeda(
+            metaMes
+        )
     );
 
 
@@ -349,12 +421,17 @@ function atualizarMetas(
 
     colocarTexto(
         "metaDia",
-        moeda(metaDia)
+        moeda(
+            metaDia
+        )
     );
+
 
     colocarTexto(
         "vendidoDia",
-        moeda(vendidoDia)
+        moeda(
+            vendidoDia
+        )
     );
 
 
@@ -372,12 +449,17 @@ function atualizarMetas(
 
     colocarTexto(
         "metaSemana",
-        moeda(metaSemana)
+        moeda(
+            metaSemana
+        )
     );
+
 
     colocarTexto(
         "vendidoSemana",
-        moeda(vendidoSemana)
+        moeda(
+            vendidoSemana
+        )
     );
 
 
@@ -395,12 +477,17 @@ function atualizarMetas(
 
     colocarTexto(
         "metaMes2",
-        moeda(metaMes)
+        moeda(
+            metaMes
+        )
     );
+
 
     colocarTexto(
         "vendidoMes",
-        moeda(vendidoMes)
+        moeda(
+            vendidoMes
+        )
     );
 
 
@@ -409,6 +496,11 @@ function atualizarMetas(
         "percentMes",
         vendidoMes,
         metaMes
+    );
+
+
+    console.log(
+        "METAS APLICADAS NO DASHBOARD."
     );
 
 }
@@ -423,45 +515,38 @@ function atualizarRanking(
 ) {
 
     // =====================================================
-    // VOLUME TOTAL
-    // =====================================================
-
-    const volumeGeral =
-        ranking.reduce(
-            (total, item) => {
-
-                return total +
-                    numero(
-                        item.producao
-                    );
-
-            },
-            0
-        );
-
-
-    colocarTexto(
-        "volumeTotal",
-        moeda(volumeGeral)
-    );
-
-
-    // =====================================================
-    // FILTRAR SOMENTE PRODUÇÃO > 0
+    // SOMENTE CONSULTORES COM PRODUÇÃO > 0
     // =====================================================
 
     const rankingValido =
         ranking
             .filter(
-                item =>
-                    numero(
-                        item.producao
-                    ) > 0
+                function (item) {
+
+                    const producao =
+                        numero(
+                            item.producao
+                        );
+
+                    return (
+                        producao > 0
+                    );
+
+                }
             )
             .sort(
-                (a, b) =>
-                    numero(b.producao) -
-                    numero(a.producao)
+                function (a, b) {
+
+                    return (
+                        numero(
+                            b.producao
+                        ) -
+                        numero(
+                            a.producao
+                        )
+                    );
+
+                }
             )
             .slice(
                 0,
@@ -472,6 +557,39 @@ function atualizarRanking(
     console.log(
         "RANKING VÁLIDO:",
         rankingValido
+    );
+
+
+    // =====================================================
+    // VOLUME GERAL
+    //
+    // Soma TODOS os consultores.
+    // =====================================================
+
+    const volumeGeral =
+        ranking.reduce(
+            function (
+                total,
+                item
+            ) {
+
+                return (
+                    total +
+                    numero(
+                        item.producao
+                    )
+                );
+
+            },
+            0
+        );
+
+
+    colocarTexto(
+        "volumeTotal",
+        moeda(
+            volumeGeral
+        )
     );
 
 
@@ -503,19 +621,31 @@ function atualizarPodium(
     ranking
 ) {
 
+    const primeiro =
+        ranking[0];
+
+    const segundo =
+        ranking[1];
+
+    const terceiro =
+        ranking[2];
+
+
     preencherPodium(
         1,
-        ranking[0]
+        primeiro
     );
+
 
     preencherPodium(
         2,
-        ranking[1]
+        segundo
     );
+
 
     preencherPodium(
         3,
-        ranking[2]
+        terceiro
     );
 
 }
@@ -535,10 +665,12 @@ function preencherPodium(
             "nome" + posicao
         );
 
+
     const valor =
         document.getElementById(
             "valor" + posicao
         );
+
 
     const foto =
         document.getElementById(
@@ -546,15 +678,27 @@ function preencherPodium(
         );
 
 
+    // =====================================================
+    // CASO NÃO EXISTA CONSULTOR
+    // =====================================================
+
     if (!pessoa) {
 
         if (nome) {
-            nome.textContent = "-";
+
+            nome.textContent =
+                "-";
+
         }
 
+
         if (valor) {
-            valor.textContent = "R$ -";
+
+            valor.textContent =
+                "R$ -";
+
         }
+
 
         if (foto) {
 
@@ -562,9 +706,24 @@ function preencherPodium(
                 "src"
             );
 
+            foto.style.display =
+                "none";
+
         }
 
         return;
+
+    }
+
+
+    // =====================================================
+    // MOSTRAR FOTO
+    // =====================================================
+
+    if (foto) {
+
+        foto.style.display =
+            "block";
 
     }
 
@@ -576,13 +735,14 @@ function preencherPodium(
     if (nome) {
 
         nome.textContent =
-            pessoa.nome || "-";
+            pessoa.nome ||
+            "-";
 
     }
 
 
     // =====================================================
-    // VALOR
+    // PRODUÇÃO
     // =====================================================
 
     if (valor) {
@@ -601,24 +761,40 @@ function preencherPodium(
 
     if (foto) {
 
-        const url =
+        const urlFoto =
             converterFotoDrive(
                 pessoa.foto
             );
 
-        if (url) {
 
-            foto.style.display =
-                "block";
+        if (urlFoto) {
 
             foto.src =
-                url;
+                urlFoto;
+
+
+            foto.onerror =
+                function () {
+
+                    console.warn(
+                        "Erro ao carregar foto:",
+                        pessoa.foto
+                    );
+
+                    this.style.display =
+                        "none";
+
+                };
+
 
         } else {
 
             foto.removeAttribute(
                 "src"
             );
+
+            foto.style.display =
+                "none";
 
         }
 
@@ -644,7 +820,7 @@ function atualizarTabela(
     if (!lista) {
 
         console.error(
-            "#rankingList não encontrado."
+            "Elemento #rankingList não encontrado."
         );
 
         return;
@@ -652,72 +828,124 @@ function atualizarTabela(
     }
 
 
-    lista.innerHTML = "";
+    // =====================================================
+    // LIMPAR
+    // =====================================================
 
+    lista.innerHTML =
+        "";
+
+
+    // =====================================================
+    // CRIAR LINHAS
+    // =====================================================
 
     ranking.forEach(
-        (item, index) => {
+        function (
+            item,
+            index
+        ) {
+
+            // ---------------------------------------------
+            // SEGURANÇA:
+            // NÃO CRIAR LINHA COM PRODUÇÃO ZERO
+            // ---------------------------------------------
+
+            const producao =
+                numero(
+                    item.producao
+                );
+
+
+            if (
+                producao <= 0
+            ) {
+
+                return;
+
+            }
+
 
             const linha =
                 document.createElement(
                     "div"
                 );
 
+
             linha.className =
                 "ranking-row";
 
 
+            // ---------------------------------------------
             // POSIÇÃO
+            // ---------------------------------------------
 
             const posicao =
                 document.createElement(
                     "span"
                 );
 
+
             posicao.className =
                 "position";
+
 
             posicao.textContent =
                 index + 1;
 
 
+            // ---------------------------------------------
             // NOME
+            // ---------------------------------------------
 
             const nome =
                 document.createElement(
                     "span"
                 );
 
+
             nome.className =
                 "ranking-name";
 
+
             nome.textContent =
-                item.nome || "-";
+                item.nome ||
+                "-";
 
 
+            // ---------------------------------------------
             // VALOR
+            // ---------------------------------------------
 
             const valor =
                 document.createElement(
                     "span"
                 );
 
+
             valor.className =
                 "ranking-value";
 
+
             valor.textContent =
                 moeda(
-                    item.producao
+                    producao
                 );
 
+
+            // ---------------------------------------------
+            // MONTAR LINHA
+            // ---------------------------------------------
 
             linha.appendChild(
                 posicao
             );
 
+
             linha.appendChild(
                 nome
             );
+
 
             linha.appendChild(
                 valor
@@ -735,7 +963,7 @@ function atualizarTabela(
 
 
 // =========================================================
-// FOTO GOOGLE DRIVE
+// GOOGLE DRIVE — CONVERTER FOTO
 // =========================================================
 
 function converterFotoDrive(
@@ -743,15 +971,21 @@ function converterFotoDrive(
 ) {
 
     if (!url) {
+
         return "";
+
     }
 
 
     url =
-        String(url).trim();
+        String(
+            url
+        ).trim();
 
 
-    // Já é thumbnail
+    // =====================================================
+    // JÁ É THUMBNAIL
+    // =====================================================
 
     if (
         url.includes(
@@ -764,8 +998,11 @@ function converterFotoDrive(
     }
 
 
-    // URL:
-    // drive.google.com/file/d/ID/view
+    // =====================================================
+    // FORMATO:
+    //
+    // https://drive.google.com/file/d/ID/view
+    // =====================================================
 
     const match =
         url.match(
@@ -778,10 +1015,14 @@ function converterFotoDrive(
         match[1]
     ) {
 
+        const id =
+            match[1];
+
+
         return (
             "https://drive.google.com/thumbnail?id=" +
             encodeURIComponent(
-                match[1]
+                id
             ) +
             "&sz=w600"
         );
@@ -789,7 +1030,11 @@ function converterFotoDrive(
     }
 
 
-    // URL com ?id=ID
+    // =====================================================
+    // FORMATO:
+    //
+    // ?id=ID
+    // =====================================================
 
     const idMatch =
         url.match(
@@ -813,13 +1058,17 @@ function converterFotoDrive(
     }
 
 
+    // =====================================================
+    // RETORNAR URL ORIGINAL
+    // =====================================================
+
     return url;
 
 }
 
 
 // =========================================================
-// PROGRESSO
+// PROGRESSO DAS METAS
 // =========================================================
 
 function atualizarProgresso(
@@ -834,27 +1083,35 @@ function atualizarProgresso(
             barraId
         );
 
+
     const percentual =
         document.getElementById(
             percentualId
         );
 
 
-    let porcentagem = 0;
+    let porcentagem =
+        0;
 
 
     if (
-        meta > 0
+        meta > 0 &&
+        realizado >= 0
     ) {
 
         porcentagem =
             (
                 realizado /
                 meta
-            ) * 100;
+            ) *
+            100;
 
     }
 
+
+    // =====================================================
+    // LIMITAR BARRA A 100%
+    // =====================================================
 
     const largura =
         Math.min(
@@ -887,16 +1144,20 @@ function atualizarProgresso(
 
 
 // =========================================================
-// MOEDA
+// FORMATAÇÃO DE MOEDA
 // =========================================================
 
 function moeda(
     valor
 ) {
 
-    return numero(
-        valor
-    ).toLocaleString(
+    valor =
+        numero(
+            valor
+        );
+
+
+    return valor.toLocaleString(
         "pt-BR",
         {
             style: "currency",
@@ -908,12 +1169,16 @@ function moeda(
 
 
 // =========================================================
-// NÚMERO
+// CONVERTER PARA NÚMERO
 // =========================================================
 
 function numero(
     valor
 ) {
+
+    // =====================================================
+    // VAZIO
+    // =====================================================
 
     if (
         valor === null ||
@@ -926,54 +1191,74 @@ function numero(
     }
 
 
-    // Número nativo
+    // =====================================================
+    // JÁ É NÚMERO
+    // =====================================================
 
     if (
         typeof valor ===
         "number"
     ) {
 
-        return isNaN(valor)
+        return isNaN(
+            valor
+        )
             ? 0
             : valor;
 
     }
 
 
+    // =====================================================
+    // CONVERTER TEXTO
+    // =====================================================
+
     let texto =
-        String(valor)
-            .trim();
+        String(
+            valor
+        ).trim();
 
 
-    // Remove R$
+    // =====================================================
+    // REMOVER R$
+    // =====================================================
 
     texto =
         texto.replace(
             /R\$/gi,
             ""
-        )
-        .trim();
+        ).trim();
 
 
-    // Número brasileiro
+    // =====================================================
+    // FORMATO BRASILEIRO
+    //
+    // 1.234.567,89
+    // =====================================================
 
     if (
         texto.includes(",")
     ) {
 
         texto =
-            texto
-                .replace(
-                    /\./g,
-                    ""
-                )
-                .replace(
-                    ",",
-                    "."
-                );
+            texto.replace(
+                /\./g,
+                ""
+            );
+
+
+        texto =
+            texto.replace(
+                ",",
+                "."
+            );
 
     }
 
+
+    // =====================================================
+    // REMOVER CARACTERES INVÁLIDOS
+    // =====================================================
 
     texto =
         texto.replace(
@@ -1017,7 +1302,7 @@ function formatarPercentual(
 
 
 // =========================================================
-// INSERIR TEXTO
+// COLOCAR TEXTO NA PÁGINA
 // =========================================================
 
 function colocarTexto(
@@ -1049,7 +1334,7 @@ function colocarTexto(
 
 
 // =========================================================
-// DATA
+// DATA DE ATUALIZAÇÃO
 // =========================================================
 
 function atualizarData(
@@ -1063,51 +1348,71 @@ function atualizarData(
 
 
     if (!elemento) {
+
         return;
+
     }
 
 
-    const dataObj =
-        new Date(data);
+    try {
+
+        const dataObj =
+            new Date(
+                data
+            );
 
 
-    if (
-        isNaN(
-            dataObj.getTime()
-        )
-    ) {
+        if (
+            isNaN(
+                dataObj.getTime()
+            )
+        ) {
+
+            elemento.textContent =
+                "Última atualização: " +
+                data;
+
+            return;
+
+        }
+
+
+        const dataFormatada =
+            dataObj.toLocaleString(
+                "pt-BR",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
 
         elemento.textContent =
             "Última atualização: " +
-            data;
-
-        return;
+            dataFormatada;
 
     }
 
+    catch (erro) {
 
-    const dataFormatada =
-        dataObj.toLocaleString(
-            "pt-BR",
-            {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit"
-            }
+        console.warn(
+            "Erro ao formatar data:",
+            erro
         );
 
-
-    elemento.textContent =
-        "Última atualização: " +
-        dataFormatada;
+    }
 
 }
 
 
 // =========================================================
 // ATUALIZAÇÃO AUTOMÁTICA
+// =========================================================
+//
+// Atualiza a cada 60 segundos.
 // =========================================================
 
 setInterval(
