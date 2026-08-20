@@ -29,7 +29,7 @@ document.addEventListener(
         );
 
         console.log(
-            "APP TELA 2 CARREGADO"
+            "TELA 2 CARREGADA"
         );
 
         console.log(
@@ -44,7 +44,7 @@ document.addEventListener(
 
 
 // =========================================================
-// BUSCAR DADOS
+// BUSCAR DADOS DA API
 // =========================================================
 
 async function carregarTela2() {
@@ -97,7 +97,7 @@ async function carregarTela2() {
         );
 
         console.log(
-            "DADOS RECEBIDOS"
+            "DADOS RECEBIDOS DA API"
         );
 
         console.log(
@@ -137,10 +137,7 @@ async function carregarTela2() {
         ) {
 
             console.log(
-                "RANKING SEMANA:"
-            );
-
-            console.log(
+                "RANKING SEMANA:",
                 dados.rankingSemana
             );
 
@@ -167,10 +164,7 @@ async function carregarTela2() {
         ) {
 
             console.log(
-                "RANKING CONTRATOS:"
-            );
-
-            console.log(
+                "RANKING CONTRATOS:",
                 dados.rankingContratos
             );
 
@@ -237,7 +231,7 @@ function atualizarRankingSemana(
 
 
     // =====================================================
-    // NOME
+    // NOME — RANKINGSEMANA!A2
     // =====================================================
 
     colocarTexto(
@@ -247,7 +241,7 @@ function atualizarRankingSemana(
 
 
     // =====================================================
-    // CRÉDITO
+    // CRÉDITO — RANKINGSEMANA!G2
     // =====================================================
 
     colocarTexto(
@@ -259,7 +253,7 @@ function atualizarRankingSemana(
 
 
     // =====================================================
-    // FOTO
+    // FOTO — RANKINGSEMANA!L2
     // =====================================================
 
     const foto =
@@ -293,7 +287,7 @@ function atualizarRankingSemana(
             function () {
 
                 console.warn(
-                    "Não foi possível carregar a foto do Ranking Semana:",
+                    "Erro ao carregar foto do Ranking Semana:",
                     dados.foto
                 );
 
@@ -328,7 +322,7 @@ function atualizarRankingContratos(
 
 
     // =====================================================
-    // NOME
+    // NOME — RANKINGCONTRATOS!A2
     // =====================================================
 
     colocarTexto(
@@ -338,7 +332,7 @@ function atualizarRankingContratos(
 
 
     // =====================================================
-    // QUANTIDADE
+    // QUANTIDADE — RANKINGCONTRATOS!J2
     // =====================================================
 
     const quantidade =
@@ -359,7 +353,7 @@ function atualizarRankingContratos(
 
 
     // =====================================================
-    // FOTO
+    // FOTO — RANKINGCONTRATOS!L2
     // =====================================================
 
     const foto =
@@ -393,7 +387,7 @@ function atualizarRankingContratos(
             function () {
 
                 console.warn(
-                    "Não foi possível carregar a foto do Ranking Contratos:",
+                    "Erro ao carregar foto do Ranking Contratos:",
                     dados.foto
                 );
 
@@ -415,7 +409,7 @@ function atualizarRankingContratos(
 
 
 // =========================================================
-// STATUS
+// STATUS DA API
 // =========================================================
 
 function atualizarStatus(
@@ -493,7 +487,7 @@ function converterFotoDrive(
 
 
     // =====================================================
-    // THUMBNAIL
+    // JÁ É THUMBNAIL
     // =====================================================
 
     if (
@@ -508,8 +502,8 @@ function converterFotoDrive(
 
 
     // =====================================================
-    // FORMATO:
-    // drive.google.com/file/d/ID/view
+    // DRIVE:
+    // /file/d/ID/view
     // =====================================================
 
     const match =
@@ -537,7 +531,7 @@ function converterFotoDrive(
 
 
     // =====================================================
-    // FORMATO:
+    // DRIVE:
     // ?id=ID
     // =====================================================
 
@@ -573,7 +567,7 @@ function converterFotoDrive(
 
 
 // =========================================================
-// NÚMERO
+// CONVERTER PARA NÚMERO
 // =========================================================
 
 function numero(
@@ -590,6 +584,10 @@ function numero(
 
     }
 
+
+    // =====================================================
+    // JÁ É NUMBER
+    // =====================================================
 
     if (
         typeof valor ===
@@ -611,7 +609,9 @@ function numero(
         ).trim();
 
 
-    // Remover R$
+    // =====================================================
+    // REMOVER R$
+    // =====================================================
 
     texto =
         texto.replace(
@@ -620,7 +620,10 @@ function numero(
         ).trim();
 
 
-    // Formato brasileiro
+    // =====================================================
+    // FORMATO BRASILEIRO
+    // 1.234.567,89
+    // =====================================================
 
     if (
         texto.includes(",")
@@ -641,6 +644,10 @@ function numero(
 
     }
 
+
+    // =====================================================
+    // REMOVER CARACTERES
+    // =====================================================
 
     texto =
         texto.replace(
@@ -665,7 +672,7 @@ function numero(
 
 
 // =========================================================
-// MOEDA
+// FORMATAÇÃO DE MOEDA
 // =========================================================
 
 function moeda(
@@ -719,9 +726,6 @@ function colocarTexto(
 
 // =========================================================
 // ATUALIZAÇÃO AUTOMÁTICA
-// =========================================================
-//
-// Atualiza a cada 60 segundos.
 // =========================================================
 
 setInterval(
