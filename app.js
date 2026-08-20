@@ -1,550 +1,705 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbwhrz4NYBkZhO11hxauYPyiEtAHMprAwh5yLff4Jx3rP4Fc5HRZ8X7suAtH-SMwVPvj_w/exec";
 
+console.log("APP.JS CARREGADO");
 
-// =====================================================
-// INICIAR
-// =====================================================
 
-async function carregarDashboard() {
+/* =========================================================
+   FORMATAÇÃO DE MOEDA
+   ========================================================= */
+
+function formatarMoeda(valor) {
+
+    const numero = Number(valor) || 0;
+
+    return numero.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+
+/* =========================================================
+   FORMATAÇÃO DE PERCENTUAL
+   ========================================================= */
+
+function calcularPercentual(realizado, meta) {
+
+    const valorRealizado = Number(realizado) || 0;
+    const valorMeta = Number(meta) || 0;
+
+    if (valorMeta <= 0) {
+        return 0;
+    }
+
+    return (valorRealizado / valorMeta) * 100;
+}
+
+
+/* =========================================================
+   ATUALIZA BARRA DE PROGRESSO
+   ========================================================= */
+
+function atualizarProgresso(elementoId, percentual) {
+
+    const elemento = document.getElementById(elementoId);
+
+    if (!elemento) {
+        return;
+    }
+
+    /*
+     * A barra visual fica limitada a 100%.
+     * O percentual exibido pode passar de 100%.
+     */
+
+    const largura = Math.min(percentual, 100);
+
+    elemento.style.width = `${largura}%`;
+}
+
+
+/* =========================================================
+   ATUALIZA PERCENTUAL
+   ========================================================= */
+
+function atualizarPercentual(elementoId, percentual) {
+
+    const elemento = document.getElementById(elementoId);
+
+    if (!elemento) {
+        return;
+    }
+
+    elemento.textContent =
+        `${percentual.toFixed(1).replace(".", ",")}%`;
+}
+
+
+/* =========================================================
+   ATUALIZA STATUS
+   ========================================================= */
+
+function atualizarStatus(texto, erro = false) {
+
+    const elemento = document.getElementById("status");
+
+    if (!elemento) {
+        return;
+    }
+
+    elemento.textContent = texto;
+
+    if (erro) {
+        elemento.style.color = "#ff3333";
+    } else {
+        elemento.style.color = "#aaa";
+    }
+}
+
+
+/* =========================================================
+   ATUALIZA INDICADORES
+   ========================================================= */
+
+function atualizarMetricas(dados) {
+
+    const metas = dados.metas || {};
+
+    /*
+     * Valores vindos da aba PRODUCAO
+     */
+
+    const metaMes = Number(metas.metaMes) || 0;
+    const metaSemana = Number(metas.metaSemana) || 0;
+    const metaDia = Number(metas.metaDia) || 0;
+
+    const vendidoMes = Number(metas.vendidoMes) || 0;
+    const vendidoSemana = Number(metas.vendidoSemana) || 0;
+    const vendidoDia = Number(metas.vendidoDia) || 0;
+
+
+    /* =====================================================
+       VOLUME TOTAL DA UNIDADE
+       ===================================================== */
+
+    const volumeTotal =
+        document.getElementById("volumeTotal");
+
+    if (volumeTotal) {
+
+        volumeTotal.textContent =
+            formatarMoeda(vendidoMes);
+    }
+
+
+    /* =====================================================
+       META DO MÊS
+       ===================================================== */
+
+    const elementoMetaMes =
+        document.getElementById("metaMes");
+
+    if (elementoMetaMes) {
+
+        elementoMetaMes.textContent =
+            formatarMoeda(metaMes);
+    }
+
+
+    /* =====================================================
+       META DIÁRIA
+       ===================================================== */
+
+    const elementoMetaDia =
+        document.getElementById("metaDia");
+
+    const elementoVendidoDia =
+        document.getElementById("vendidoDia");
+
+    if (elementoMetaDia) {
+
+        elementoMetaDia.textContent =
+            formatarMoeda(metaDia);
+    }
+
+    if (elementoVendidoDia) {
+
+        elementoVendidoDia.textContent =
+            formatarMoeda(vendidoDia);
+    }
+
+
+    const percentualDia =
+        calcularPercentual(
+            vendidoDia,
+            metaDia
+        );
+
+    atualizarProgresso(
+        "progressDia",
+        percentualDia
+    );
+
+    atualizarPercentual(
+        "percentDia",
+        percentualDia
+    );
+
+
+    /* =====================================================
+       META SEMANAL
+       ===================================================== */
+
+    const elementoMetaSemana =
+        document.getElementById("metaSemana");
+
+    const elementoVendidoSemana =
+        document.getElementById("vendidoSemana");
+
+    if (elementoMetaSemana) {
+
+        elementoMetaSemana.textContent =
+            formatarMoeda(metaSemana);
+    }
+
+    if (elementoVendidoSemana) {
+
+        elementoVendidoSemana.textContent =
+            formatarMoeda(vendidoSemana);
+    }
+
+
+    const percentualSemana =
+        calcularPercentual(
+            vendidoSemana,
+            metaSemana
+        );
+
+    atualizarProgresso(
+        "progressSemana",
+        percentualSemana
+    );
+
+    atualizarPercentual(
+        "percentSemana",
+        percentualSemana
+    );
+
+
+    /* =====================================================
+       META MENSAL
+       ===================================================== */
+
+    const elementoMetaMes2 =
+        document.getElementById("metaMes2");
+
+    const elementoVendidoMes =
+        document.getElementById("vendidoMes");
+
+    if (elementoMetaMes2) {
+
+        elementoMetaMes2.textContent =
+            formatarMoeda(metaMes);
+    }
+
+    if (elementoVendidoMes) {
+
+        elementoVendidoMes.textContent =
+            formatarMoeda(vendidoMes);
+    }
+
+
+    const percentualMes =
+        calcularPercentual(
+            vendidoMes,
+            metaMes
+        );
+
+    atualizarProgresso(
+        "progressMes",
+        percentualMes
+    );
+
+    atualizarPercentual(
+        "percentMes",
+        percentualMes
+    );
+}
+
+
+/* =========================================================
+   ATUALIZA PÓDIO
+   ========================================================= */
+
+function atualizarPodio(ranking) {
+
+    if (!ranking || ranking.length === 0) {
+        return;
+    }
+
+
+    /*
+     * TOP 1
+     */
+
+    if (ranking[0]) {
+
+        const item = ranking[0];
+
+        document.getElementById("nome1").textContent =
+            item.nome || "-";
+
+        document.getElementById("valor1").textContent =
+            formatarMoeda(item.producao);
+
+        const foto1 =
+            document.getElementById("foto1");
+
+        if (foto1) {
+
+            if (item.foto) {
+
+                foto1.src = item.foto;
+
+                foto1.style.display = "block";
+
+            } else {
+
+                foto1.removeAttribute("src");
+
+                foto1.style.display = "block";
+            }
+        }
+    }
+
+
+    /*
+     * TOP 2
+     */
+
+    if (ranking[1]) {
+
+        const item = ranking[1];
+
+        document.getElementById("nome2").textContent =
+            item.nome || "-";
+
+        document.getElementById("valor2").textContent =
+            formatarMoeda(item.producao);
+
+        const foto2 =
+            document.getElementById("foto2");
+
+        if (foto2) {
+
+            if (item.foto) {
+
+                foto2.src = item.foto;
+
+                foto2.style.display = "block";
+
+            } else {
+
+                foto2.removeAttribute("src");
+
+                foto2.style.display = "block";
+            }
+        }
+
+    } else {
+
+        document.getElementById("nome2").textContent =
+            "-";
+
+        document.getElementById("valor2").textContent =
+            "R$ -";
+    }
+
+
+    /*
+     * TOP 3
+     */
+
+    if (ranking[2]) {
+
+        const item = ranking[2];
+
+        document.getElementById("nome3").textContent =
+            item.nome || "-";
+
+        document.getElementById("valor3").textContent =
+            formatarMoeda(item.producao);
+
+        const foto3 =
+            document.getElementById("foto3");
+
+        if (foto3) {
+
+            if (item.foto) {
+
+                foto3.src = item.foto;
+
+                foto3.style.display = "block";
+
+            } else {
+
+                foto3.removeAttribute("src");
+
+                foto3.style.display = "block";
+            }
+        }
+
+    } else {
+
+        document.getElementById("nome3").textContent =
+            "-";
+
+        document.getElementById("valor3").textContent =
+            "R$ -";
+    }
+}
+
+
+/* =========================================================
+   ATUALIZA TOP 10
+   ========================================================= */
+
+function atualizarRanking(ranking) {
+
+    const rankingList =
+        document.getElementById("rankingList");
+
+    if (!rankingList) {
+        return;
+    }
+
+
+    /*
+     * LIMPA A TABELA
+     */
+
+    rankingList.innerHTML = "";
+
+
+    /*
+     * IMPORTANTE:
+     *
+     * Só entram consultores com produção maior
+     * que zero.
+     *
+     * Depois limitamos aos 10 primeiros.
+     */
+
+    const rankingValido = (ranking || [])
+        .filter(item => Number(item.producao) > 0)
+        .slice(0, 10);
+
+
+    /*
+     * CRIA AS LINHAS
+     */
+
+    rankingValido.forEach((item, index) => {
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "ranking-row";
+
+
+        row.innerHTML = `
+
+            <span class="position">
+                ${index + 1}
+            </span>
+
+            <span class="ranking-name">
+                ${item.nome || "-"}
+            </span>
+
+            <span class="ranking-value">
+                ${formatarMoeda(item.producao)}
+            </span>
+
+        `;
+
+
+        rankingList.appendChild(row);
+
+    });
+
+
+    /*
+     * CASO NÃO TENHA NENHUM CONSULTOR
+     */
+
+    if (rankingValido.length === 0) {
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "ranking-row";
+
+        row.innerHTML = `
+
+            <span class="position">
+                -
+            </span>
+
+            <span class="ranking-name">
+                Nenhum consultor com produção
+            </span>
+
+            <span class="ranking-value">
+                R$ 0,00
+            </span>
+
+        `;
+
+        rankingList.appendChild(row);
+    }
+}
+
+
+/* =========================================================
+   ATUALIZA DATA/HORA
+   ========================================================= */
+
+function atualizarDataHora(data) {
+
+    const elemento =
+        document.getElementById(
+            "ultimaAtualizacao"
+        );
+
+    if (!elemento) {
+        return;
+    }
+
+
+    if (!data) {
+
+        elemento.textContent =
+            "Última atualização: --";
+
+        return;
+    }
+
+
+    const dataObj =
+        new Date(data);
+
+
+    if (isNaN(dataObj.getTime())) {
+
+        elemento.textContent =
+            "Última atualização: --";
+
+        return;
+    }
+
+
+    const dataFormatada =
+        dataObj.toLocaleString(
+            "pt-BR",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            }
+        );
+
+
+    elemento.textContent =
+        `Última atualização: ${dataFormatada}`;
+}
+
+
+/* =========================================================
+   BUSCAR API
+   ========================================================= */
+
+async function carregarDados() {
 
     try {
 
-        console.log("Buscando dados...");
+        console.log("Chamando API...");
 
-        const resposta = await fetch(API_URL);
+
+        const resposta =
+            await fetch(
+                API_URL,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+
+        console.log(
+            "Status:",
+            resposta.status
+        );
+
 
         if (!resposta.ok) {
+
             throw new Error(
-                `Erro HTTP ${resposta.status}`
+                `HTTP ${resposta.status}`
             );
         }
 
-        const dados = await resposta.json();
 
-        console.log("DADOS RECEBIDOS:", dados);
+        const dados =
+            await resposta.json();
 
+
+        console.log(
+            "DADOS RECEBIDOS:",
+            dados
+        );
+
+
+        /*
+         * VERIFICA API
+         */
 
         if (dados.status !== "ok") {
+
             throw new Error(
-                dados.mensagem || "Erro na API"
+                dados.mensagem ||
+                "API retornou erro"
             );
         }
 
 
-        // =================================================
-        // RANKING
-        // =================================================
+        /* =================================================
+           ATUALIZA STATUS
+           ================================================= */
 
-        renderizarRanking(
+        atualizarStatus(
+            "Dados atualizados"
+        );
+
+
+        /* =================================================
+           ATUALIZA MÉTRICAS
+           ================================================= */
+
+        atualizarMetricas(
+            dados
+        );
+
+
+        /* =================================================
+           ATUALIZA PÓDIO
+           ================================================= */
+
+        atualizarPodio(
             dados.ranking
         );
 
 
-        // =================================================
-        // PRODUÇÃO
-        // =================================================
+        /* =================================================
+           ATUALIZA TOP 10
+           ================================================= */
 
-        renderizarProducao(
-            dados.producao
+        atualizarRanking(
+            dados.ranking
         );
 
 
-        // =================================================
-        // STATUS
-        // =================================================
+        /* =================================================
+           ATUALIZA DATA
+           ================================================= */
 
-        const status =
-            document.getElementById("status");
-
-        if (status) {
-            status.textContent =
-                "Dados atualizados";
-        }
+        atualizarDataHora(
+            dados.atualizadoEm
+        );
 
 
-        const indicador =
-            document.querySelector(".status-dot");
-
-        if (indicador) {
-            indicador.style.background =
-                "#00ff66";
-        }
-
-
-        // =================================================
-        // DATA
-        // =================================================
-
-        const ultimaAtualizacao =
-            document.getElementById(
-                "ultimaAtualizacao"
-            );
-
-        if (ultimaAtualizacao) {
-
-            const data =
-                new Date(
-                    dados.atualizadoEm
-                );
-
-            ultimaAtualizacao.textContent =
-                "Última atualização: " +
-                data.toLocaleString("pt-BR");
-        }
+        console.log(
+            "Dashboard atualizado com sucesso."
+        );
 
 
     } catch (erro) {
 
         console.error(
-            "ERRO NO DASHBOARD:",
+            "ERRO AO CARREGAR API:",
             erro
         );
 
 
-        const status =
-            document.getElementById("status");
-
-        if (status) {
-            status.textContent =
-                "Erro ao carregar dados";
-        }
-
+        atualizarStatus(
+            "Erro na conexão",
+            true
+        );
     }
-
 }
 
 
-// =====================================================
-// RANKING
-// =====================================================
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
 
-function renderizarRanking(ranking) {
+carregarDados();
 
-    const lista =
-        document.getElementById(
-            "rankingList"
-        );
 
+/* =========================================================
+   ATUALIZAÇÃO AUTOMÁTICA
+   =========================================================
 
-    if (!lista) {
-        console.error(
-            "Elemento rankingList não encontrado"
-        );
+   Atualiza os dados a cada 60 segundos.
+   ========================================================= */
 
-        return;
-    }
-
-
-    lista.innerHTML = "";
-
-
-    // ===================================================
-    // TOP 10
-    // ===================================================
-
-    ranking
-        .slice(0, 10)
-        .forEach(
-            (consultor, index) => {
-
-                const linha =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                linha.className =
-                    "ranking-row";
-
-
-                linha.innerHTML = `
-
-                    <span class="position">
-                        ${index + 1}
-                    </span>
-
-                    <span class="ranking-name">
-                        ${consultor.nome}
-                    </span>
-
-                    <span class="ranking-value">
-                        ${formatarMoeda(
-                            consultor.producao
-                        )}
-                    </span>
-
-                `;
-
-
-                lista.appendChild(linha);
-
-            }
-        );
-
-
-    // ===================================================
-    // TOP 3
-    // ===================================================
-
-    ranking
-        .slice(0, 3)
-        .forEach(
-            (consultor, index) => {
-
-                const posicao =
-                    index + 1;
-
-
-                const nome =
-                    document.getElementById(
-                        `nome${posicao}`
-                    );
-
-
-                const valor =
-                    document.getElementById(
-                        `valor${posicao}`
-                    );
-
-
-                const foto =
-                    document.getElementById(
-                        `foto${posicao}`
-                    );
-
-
-                if (nome) {
-
-                    nome.textContent =
-                        consultor.nome;
-
-                }
-
-
-                if (valor) {
-
-                    valor.textContent =
-                        formatarMoeda(
-                            consultor.producao
-                        );
-
-                }
-
-
-                if (
-                    foto &&
-                    consultor.foto
-                ) {
-
-                    foto.src =
-                        converterFotoDrive(
-                            consultor.foto
-                        );
-
-                }
-
-            }
-        );
-
-}
-
-
-// =====================================================
-// PRODUÇÃO
-// =====================================================
-
-function renderizarProducao(producao) {
-
-    console.log(
-        "PRODUÇÃO:",
-        producao
-    );
-
-
-    // ===================================================
-    // VOLUME TOTAL
-    // ===================================================
-
-    definirTexto(
-        "volumeTotal",
-        formatarMoeda(
-            producao.vendidoMes
-        )
-    );
-
-
-    // ===================================================
-    // META MÊS
-    // ===================================================
-
-    definirTexto(
-        "metaMes",
-        formatarMoeda(
-            producao.metaMes
-        )
-    );
-
-
-    definirTexto(
-        "metaMes2",
-        formatarMoeda(
-            producao.metaMes
-        )
-    );
-
-
-    // ===================================================
-    // META SEMANAL
-    // ===================================================
-
-    definirTexto(
-        "metaSemana",
-        formatarMoeda(
-            producao.metaSemana
-        )
-    );
-
-
-    // ===================================================
-    // META DIÁRIA
-    // ===================================================
-
-    definirTexto(
-        "metaDia",
-        formatarMoeda(
-            producao.metaDia
-        )
-    );
-
-
-    // ===================================================
-    // REALIZADO MÊS
-    // ===================================================
-
-    definirTexto(
-        "vendidoMes",
-        formatarMoeda(
-            producao.vendidoMes
-        )
-    );
-
-
-    // ===================================================
-    // REALIZADO SEMANA
-    // ===================================================
-
-    definirTexto(
-        "vendidoSemana",
-        formatarMoeda(
-            producao.vendidoSemana
-        )
-    );
-
-
-    // ===================================================
-    // REALIZADO DIA
-    //
-    // EXCLUSIVAMENTE I3
-    // ===================================================
-
-    definirTexto(
-        "vendidoDia",
-        formatarMoeda(
-            producao.vendidoDia
-        )
-    );
-
-
-    // ===================================================
-    // BARRA DIÁRIA
-    // ===================================================
-
-    atualizarMeta(
-        "progressDia",
-        "percentDia",
-        producao.vendidoDia,
-        producao.metaDia
-    );
-
-
-    // ===================================================
-    // BARRA SEMANAL
-    // ===================================================
-
-    atualizarMeta(
-        "progressSemana",
-        "percentSemana",
-        producao.vendidoSemana,
-        producao.metaSemana
-    );
-
-
-    // ===================================================
-    // BARRA MENSAL
-    // ===================================================
-
-    atualizarMeta(
-        "progressMes",
-        "percentMes",
-        producao.vendidoMes,
-        producao.metaMes
-    );
-
-}
-
-
-// =====================================================
-// DEFINIR TEXTO
-// =====================================================
-
-function definirTexto(id, valor) {
-
-    const elemento =
-        document.getElementById(id);
-
-
-    if (!elemento) {
-
-        console.warn(
-            `Elemento "${id}" não encontrado`
-        );
-
-        return;
-    }
-
-
-    elemento.textContent =
-        valor;
-}
-
-
-// =====================================================
-// META / PROGRESSO
-// =====================================================
-
-function atualizarMeta(
-    barraId,
-    percentualId,
-    realizado,
-    meta
-) {
-
-    const valorRealizado =
-        Number(realizado) || 0;
-
-    const valorMeta =
-        Number(meta) || 0;
-
-
-    if (valorMeta <= 0) {
-        return;
-    }
-
-
-    const percentual =
-        (valorRealizado / valorMeta) * 100;
-
-
-    const percentualVisual =
-        Math.min(
-            Math.max(
-                percentual,
-                0
-            ),
-            100
-        );
-
-
-    const barra =
-        document.getElementById(
-            barraId
-        );
-
-
-    const texto =
-        document.getElementById(
-            percentualId
-        );
-
-
-    if (barra) {
-
-        barra.style.width =
-            `${percentualVisual}%`;
-
-    }
-
-
-    if (texto) {
-
-        texto.textContent =
-            `${percentual.toFixed(1)}%`;
-
-    }
-
-}
-
-
-// =====================================================
-// MOEDA
-// =====================================================
-
-function formatarMoeda(valor) {
-
-    return Number(
-        valor || 0
-    ).toLocaleString(
-        "pt-BR",
-        {
-            style: "currency",
-            currency: "BRL"
-        }
-    );
-
-}
-
-
-// =====================================================
-// FOTO GOOGLE DRIVE
-// =====================================================
-
-function converterFotoDrive(url) {
-
-    if (!url) {
-        return "";
-    }
-
-
-    const match =
-        url.match(
-            /\/d\/([^/]+)/
-        );
-
-
-    if (!match) {
-        return url;
-    }
-
-
-    const fileId =
-        match[1];
-
-
-    return (
-        `https://drive.google.com/thumbnail` +
-        `?id=${fileId}&sz=w500`
-    );
-
-}
-
-
-// =====================================================
-// EXECUTAR
-// =====================================================
-
-console.log(
-    "APP.JS CARREGADO"
+setInterval(
+    carregarDados,
+    60000
 );
-
-
-carregarDashboard();
