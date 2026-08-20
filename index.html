@@ -1,164 +1,156 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking Ademicon | Goiânia - Jardim Goiás</title>
 
-<title>Ranking Ademicon</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+    <main class="dashboard">
 
-    <!-- =========================
-         COLUNA ESQUERDA
-    ========================== -->
-
-    <div class="left">
-
-        <div class="logo-area">
-
-            <img
-                src="logo-ademicon.png.png"
-                class="logo-ademicon"
-                alt="Ademicon">
-
-            <h2>RANKING DE VENDAS</h2>
-
-        </div>
-
-        <div class="podium">
-
-            <div class="winner second" id="secondPlace"></div>
-
-            <div class="winner first" id="firstPlace"></div>
-
-            <div class="winner third" id="thirdPlace"></div>
-
-        </div>
-
-          <div class="footer-dashboard">
-
-            <div class="footer-left">
-
-                <div class="footer-item">
-                    🎯 <span>FOCO NO OBJETIVO</span>
-                </div>
-
-                <div class="footer-item">
-                    🏆 <span>DISCIPLINA TODO DIA</span>
-                </div>
-
-                <div class="footer-item">
-                    🚀 <span>RESULTADOS EXTRAORDINÁRIOS</span>
-                </div>
-
+        <header class="header">
+            <div>
+                <h1>RANKING ADEMICON</h1>
+                <p>Goiânia - Jardim Goiás</p>
             </div>
 
-        </div>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span id="status">Conectando...</span>
+            </div>
+        </header>
 
-    </div>
 
+        <!-- INDICADORES -->
 
-    <div class="right">
+        <section class="metrics">
 
-        <div class="top-panel">
-
-            <div class="top-title">
-                TOP 10
+            <div class="metric">
+                <span>VOLUME TOTAL DA UNIDADE</span>
+                <strong id="volumeTotal">R$ -</strong>
             </div>
 
-            <div class="last-update">
-                Última atualização:
-                <span id="lastUpdate">--</span>
+            <div class="metric">
+                <span>META DO MÊS</span>
+                <strong id="metaMes">R$ -</strong>
             </div>
 
-            <div class="unit-total">
+            <div class="metric">
+                <span>META DIÁRIA</span>
+                <strong id="metaDia">R$ -</strong>
 
-                <div class="unit-total-label">
-                    VOLUME TOTAL DA UNIDADE
+                <small>
+                    Realizado:
+                    <b id="vendidoDia">R$ -</b>
+                </small>
+
+                <div class="progress">
+                    <div id="progressDia"></div>
                 </div>
 
-                <div class="unit-total-value" id="unitTotal">
-                    R$ 0,00
-                </div>
-
+                <small id="percentDia">0%</small>
             </div>
 
-            <!-- META DO MÊS -->
+            <div class="metric">
+                <span>META SEMANAL</span>
+                <strong id="metaSemana">R$ -</strong>
 
-            <div class="meta-box">
+                <small>
+                    Realizado:
+                    <b id="vendidoSemana">R$ -</b>
+                </small>
 
-                <div class="meta-label">
-                    META DO MÊS
+                <div class="progress">
+                    <div id="progressSemana"></div>
                 </div>
 
-                <div class="meta-values">
-
-                    <span id="metaAtual">
-                        R$ 0,00
-                    </span>
-
-                    /
-
-                    <span id="metaMes">
-                        R$ 0,00
-                    </span>
-
-                </div>
-
-                <div class="progress-bar">
-                    <div id="progressFill"></div>
-                </div>
-
-                <div class="meta-info">
-
-                    <span id="percentualMeta">
-                        0%
-                    </span>
-
-                    <span id="faltanteMeta">
-                        Faltam R$ 0,00
-                    </span>
-
-                </div>
-
+                <small id="percentSemana">0%</small>
             </div>
 
+            <div class="metric">
+                <span>META MENSAL</span>
+                <strong id="metaMes2">R$ -</strong>
 
-            <!-- TABELA -->
+                <small>
+                    Realizado:
+                    <b id="vendidoMes">R$ -</b>
+                </small>
 
-            <table class="ranking-table">
+                <div class="progress">
+                    <div id="progressMes"></div>
+                </div>
 
-                <thead>
+                <small id="percentMes">0%</small>
+            </div>
 
-                    <tr>
-                        <th>POS.</th>
-                        <th>CONSULTOR</th>
-                        <th>VOLUME</th>
-                    </tr>
+        </section>
 
-                </thead>
 
-                <tbody id="rankingTable">
+        <!-- PODIO -->
 
-                </tbody>
+        <section class="podium">
 
-            </table>
+            <div class="podium-card second">
+                <span class="position">2º</span>
+                <img id="foto2" src="" alt="">
+                <h2 id="nome2">-</h2>
+                <strong id="valor2">R$ -</strong>
+            </div>
 
-        </div>
+            <div class="podium-card first">
+                <span class="position">1º</span>
+                <img id="foto1" src="" alt="">
+                <h2 id="nome1">-</h2>
+                <strong id="valor1">R$ -</strong>
+            </div>
 
-    </div>
+            <div class="podium-card third">
+                <span class="position">3º</span>
+                <img id="foto3" src="" alt="">
+                <h2 id="nome3">-</h2>
+                <strong id="valor3">R$ -</strong>
+            </div>
 
-</div>
+        </section>
 
-<script src="app.js"></script>
+
+        <!-- TOP 10 -->
+
+        <section class="ranking">
+
+            <div class="ranking-header">
+                <span>POS.</span>
+                <span>CONSULTOR</span>
+                <span>VOLUME</span>
+            </div>
+
+            <div id="rankingList"></div>
+
+        </section>
+
+
+        <!-- ATUALIZAÇÃO -->
+
+        <footer>
+
+            <span id="ultimaAtualizacao">
+                Última atualização: --
+            </span>
+
+            <span>
+                GRANDES RESULTADOS SÃO CONSTRUÍDOS POR GRANDES ESCOLHAS.
+            </span>
+
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
