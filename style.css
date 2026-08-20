@@ -1,6 +1,7 @@
 /* =========================================================
    RANKING ADEMICON
    LAYOUT TV 16:9
+   VERSÃO AJUSTADA
    ========================================================= */
 
 @import url(
@@ -13,10 +14,13 @@
    ========================================================= */
 
 * {
+
     box-sizing: border-box;
 
     margin: 0;
+
     padding: 0;
+
 }
 
 
@@ -24,6 +28,7 @@ html,
 body {
 
     width: 100%;
+
     height: 100%;
 
     overflow: hidden;
@@ -63,6 +68,7 @@ body {
 .dashboard {
 
     width: 100%;
+
     height: 100vh;
 
     padding:
@@ -90,6 +96,7 @@ body {
     position: fixed;
 
     top: 34px;
+
     right: 42px;
 
     display: flex;
@@ -110,6 +117,7 @@ body {
 .status-dot {
 
     width: 7px;
+
     height: 7px;
 
     border-radius: 50%;
@@ -117,7 +125,8 @@ body {
     background: #00ff66;
 
     box-shadow:
-        0 0 10px #00ff66;
+        0 0 10px
+        #00ff66;
 
 }
 
@@ -187,19 +196,29 @@ body {
 
 .hero-title {
 
-    margin-top: 10px;
+    margin-top: 4px;
 
     margin-left: 45px;
 
-    font-size: clamp(
-        48px,
-        4.5vw,
-        78px
-    );
+    /*
+       REDUZIDO:
+       Antes:
+       clamp(48px, 4.5vw, 78px)
+
+       Agora:
+       clamp(42px, 3.8vw, 66px)
+    */
+
+    font-size:
+        clamp(
+            42px,
+            3.8vw,
+            66px
+        );
 
     line-height: .90;
 
-    letter-spacing: -4px;
+    letter-spacing: -3px;
 
     font-weight: 900;
 
@@ -215,9 +234,9 @@ body {
 
 .hero-title p {
 
-    margin-top: 17px;
+    margin-top: 14px;
 
-    font-size: 17px;
+    font-size: 16px;
 
     line-height: 1;
 
@@ -255,16 +274,26 @@ body {
 
     gap: 0;
 
+    /*
+       SUBIR O PÓDIO
+
+       O valor negativo cria mais espaço entre
+       o pódio e as caixas inferiores.
+    */
+
     margin:
-        8px
+        -34px
         0
-        5px;
+        18px;
+
+    transform:
+        translateY(-10px);
 
 }
 
 
 /* =========================================================
-   CARDS
+   CARDS DO PÓDIO
    ========================================================= */
 
 .podium-card {
@@ -305,7 +334,14 @@ body {
     border-radius: 18px;
 
     box-shadow:
-        inset 0 0 30px rgba(255,255,255,.025);
+        inset
+        0 0 30px
+        rgba(
+            255,
+            255,
+            255,
+            .025
+        );
 
 }
 
@@ -327,8 +363,21 @@ body {
     border-color: #ff0000;
 
     box-shadow:
-        0 0 25px rgba(255,0,0,.15),
-        inset 0 0 35px rgba(255,0,0,.04);
+        0 0 25px
+        rgba(
+            255,
+            0,
+            0,
+            .15
+        ),
+        inset
+        0 0 35px
+        rgba(
+            255,
+            0,
+            0,
+            .04
+        );
 
 }
 
@@ -370,7 +419,13 @@ body {
     font-weight: 900;
 
     box-shadow:
-        0 5px 15px rgba(255,0,0,.25);
+        0 5px 15px
+        rgba(
+            255,
+            0,
+            0,
+            .25
+        );
 
 }
 
@@ -395,6 +450,7 @@ body {
 .podium-image {
 
     width: 150px;
+
     height: 150px;
 
     margin-top: 10px;
@@ -412,7 +468,8 @@ body {
     background: #252525;
 
     border:
-        2px solid #555;
+        2px solid
+        #555;
 
 }
 
@@ -420,12 +477,20 @@ body {
 .podium-card.first .podium-image {
 
     width: 180px;
+
     height: 180px;
 
-    border-color: #ff0000;
+    border-color:
+        #ff0000;
 
     box-shadow:
-        0 0 20px rgba(255,0,0,.25);
+        0 0 20px
+        rgba(
+            255,
+            0,
+            0,
+            .25
+        );
 
 }
 
@@ -433,6 +498,7 @@ body {
 .podium-image img {
 
     width: 100%;
+
     height: 100%;
 
     object-fit: cover;
@@ -470,24 +536,40 @@ body {
 
 /* =========================================================
    PILARES
+   FOCO / DISCIPLINA / ESTRATÉGIA / RESULTADOS
    ========================================================= */
 
 .pillars {
 
-    height: 72px;
+    /*
+       AUMENTADO
+       Antes: 72px
+       Agora: 88px
+    */
+
+    height: 88px;
 
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(
+            4,
+            1fr
+        );
 
     border:
-        1px solid #292929;
+        1px solid
+        #292929;
 
     border-radius: 14px;
 
     background:
-        rgba(10,10,10,.8);
+        rgba(
+            10,
+            10,
+            10,
+            .8
+        );
 
     overflow: hidden;
 
@@ -500,13 +582,15 @@ body {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 13px;
 
     padding:
-        10px 12px;
+        12px
+        14px;
 
     border-right:
-        1px solid #292929;
+        1px solid
+        #292929;
 
 }
 
@@ -518,24 +602,48 @@ body {
 }
 
 
+/* =========================================================
+   ÍCONES DOS PILARES
+   ========================================================= */
+
 .pillar-icon {
 
     color: #ff0000;
 
-    font-size: 30px;
+    /*
+       AUMENTADO
+       Antes: 30px
+       Agora: 39px
+    */
+
+    font-size: 39px;
 
     line-height: 1;
 
+    flex-shrink: 0;
+
 }
 
+
+/* =========================================================
+   TEXTO DOS PILARES
+   ========================================================= */
 
 .pillar strong {
 
     display: block;
 
-    font-size: 10px;
+    /*
+       AUMENTADO
+       Antes: 10px
+       Agora: 12px
+    */
+
+    font-size: 12px;
 
     font-weight: 900;
+
+    line-height: 1.05;
 
 }
 
@@ -544,11 +652,19 @@ body {
 
     display: block;
 
-    margin-top: 3px;
+    margin-top: 5px;
 
-    font-size: 8px;
+    /*
+       AUMENTADO
+       Antes: 8px
+       Agora: 10px
+    */
+
+    font-size: 10px;
 
     color: #aaa;
+
+    line-height: 1.05;
 
 }
 
@@ -582,7 +698,8 @@ body {
         18px;
 
     border:
-        1px solid #292929;
+        1px solid
+        #292929;
 
     border-radius: 20px;
 
@@ -594,7 +711,14 @@ body {
         );
 
     box-shadow:
-        inset 0 0 40px rgba(255,255,255,.015);
+        inset
+        0 0 40px
+        rgba(
+            255,
+            255,
+            255,
+            .015
+        );
 
 }
 
@@ -666,15 +790,22 @@ body {
     height: 70px;
 
     padding:
-        14px 16px;
+        14px
+        16px;
 
     border:
-        1px solid #292929;
+        1px solid
+        #292929;
 
     border-radius: 8px;
 
     background:
-        rgba(15,15,15,.85);
+        rgba(
+            15,
+            15,
+            15,
+            .85
+        );
 
 }
 
@@ -719,6 +850,27 @@ body {
 
     font-size: 20px;
 
+    font-weight: 900;
+
+}
+
+
+/* =========================================================
+   META DO MÊS — % DESTACADA
+   ========================================================= */
+
+.summary-card:nth-child(2) b {
+
+    display: block;
+
+    min-width: 55px;
+
+    text-align: right;
+
+    font-size: 21px;
+
+    line-height: 1;
+
 }
 
 
@@ -733,10 +885,12 @@ body {
     height: 45px;
 
     padding:
-        10px 16px;
+        10px
+        16px;
 
     border:
-        1px solid #292929;
+        1px solid
+        #292929;
 
     border-radius: 8px;
 
@@ -832,7 +986,10 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(
+            3,
+            1fr
+        );
 
     gap: 14px;
 
@@ -857,12 +1014,18 @@ body {
     align-items: center;
 
     border:
-        1px solid #292929;
+        1px solid
+        #292929;
 
     border-radius: 9px;
 
     background:
-        rgba(10,10,10,.75);
+        rgba(
+            10,
+            10,
+            10,
+            .75
+        );
 
 }
 
@@ -925,17 +1088,29 @@ body {
 
 
 /* =========================================================
-   CÍRCULOS
+   CÍRCULOS DE META
    ========================================================= */
 
 .circle-progress {
 
+    /*
+       O JS atualiza esta variável dinamicamente.
+
+       Exemplo:
+
+       15.4% =
+       15.4% do círculo em vermelho.
+    */
+
     --progress: 0%;
 
     width: 72px;
+
     height: 72px;
 
     flex-shrink: 0;
+
+    position: relative;
 
     display: flex;
 
@@ -947,16 +1122,66 @@ body {
 
     background:
         conic-gradient(
-            #ff0000 var(--progress),
-            #292929 var(--progress)
+            #ff0000
+            0%
+            var(--progress),
+
+            #292929
+            var(--progress)
+            100%
         );
+
+    /*
+       Transição suave do gráfico.
+    */
+
+    transition:
+        background
+        .8s ease;
 
 }
 
 
+/*
+   Brilho sutil na parte vermelha
+*/
+
+.circle-progress::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 12px
+        rgba(
+            255,
+            0,
+            0,
+            .12
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   CENTRO DO CÍRCULO
+   ========================================================= */
+
 .circle-inner {
 
+    position: relative;
+
+    z-index: 2;
+
     width: 58px;
+
     height: 58px;
 
     border-radius: 50%;
@@ -992,7 +1217,8 @@ body {
     margin-top: 15px;
 
     border:
-        1px solid #222;
+        1px solid
+        #222;
 
     border-radius: 8px;
 
@@ -1021,7 +1247,8 @@ body {
     height: 42px;
 
     padding:
-        0 15px;
+        0
+        15px;
 
     background:
         linear-gradient(
@@ -1044,13 +1271,20 @@ body {
     height: 33px;
 
     padding:
-        0 15px;
+        0
+        15px;
 
     border-bottom:
-        1px solid #1c1c1c;
+        1px solid
+        #1c1c1c;
 
     background:
-        rgba(4,4,4,.65);
+        rgba(
+            4,
+            4,
+            4,
+            .65
+        );
 
 }
 
@@ -1149,6 +1383,37 @@ body {
 
 
 /* =========================================================
+   AJUSTE EXTRA PARA O PÓDIO
+   ========================================================= */
+
+.left-panel .podium {
+
+    /*
+       Mantém o pódio visualmente mais alto
+       sem alterar o posicionamento das caixas.
+    */
+
+    position: relative;
+
+    top: -8px;
+
+}
+
+
+/* =========================================================
+   AJUSTE EXTRA DAS CAIXAS INFERIORES
+   ========================================================= */
+
+.left-panel .pillars {
+
+    position: relative;
+
+    z-index: 5;
+
+}
+
+
+/* =========================================================
    RESPONSIVO
    ========================================================= */
 
@@ -1187,6 +1452,7 @@ body {
     .podium-image {
 
         width: 105px;
+
         height: 105px;
 
     }
@@ -1195,6 +1461,7 @@ body {
     .podium-card.first .podium-image {
 
         width: 125px;
+
         height: 125px;
 
     }
@@ -1209,7 +1476,21 @@ body {
 
     .pillar-icon {
 
-        font-size: 23px;
+        font-size: 30px;
+
+    }
+
+
+    .pillar strong {
+
+        font-size: 10px;
+
+    }
+
+
+    .pillar span {
+
+        font-size: 8px;
 
     }
 
