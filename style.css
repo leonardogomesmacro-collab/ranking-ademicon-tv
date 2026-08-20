@@ -1,11 +1,4 @@
-/* =========================================================
-   RANKING ADEMICON
-   LAYOUT TV 16:9
-   ========================================================= */
-
-@import url(
-    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap'
-);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 
 /* =========================================================
@@ -13,10 +6,13 @@
    ========================================================= */
 
 * {
+
     box-sizing: border-box;
 
     margin: 0;
+
     padding: 0;
+
 }
 
 
@@ -24,9 +20,12 @@ html,
 body {
 
     width: 100%;
+
     height: 100%;
 
-    overflow: hidden;
+    margin: 0;
+
+    padding: 0;
 
 }
 
@@ -35,13 +34,13 @@ body {
 
     background:
         radial-gradient(
-            circle at 15% 50%,
+            circle at 15% 35%,
             rgba(255, 0, 0, .08),
-            transparent 35%
+            transparent 32%
         ),
         radial-gradient(
-            circle at 85% 30%,
-            rgba(255, 0, 0, .035),
+            circle at 85% 50%,
+            rgba(255, 0, 0, .025),
             transparent 30%
         ),
         #050505;
@@ -53,6 +52,10 @@ body {
         Arial,
         sans-serif;
 
+    min-height: 100vh;
+
+    overflow: hidden;
+
 }
 
 
@@ -62,35 +65,75 @@ body {
 
 .dashboard {
 
-    width: 100%;
+    width: min(
+        1180px,
+        94vw
+    );
+
     height: 100vh;
 
+    max-height: 100vh;
+
+    margin: 0 auto;
+
     padding:
-        20px
-        30px
-        16px;
+        24px
+        0
+        12px;
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns:
-        39%
-        61%;
-
-    gap: 26px;
+    flex-direction: column;
 
 }
 
 
 /* =========================================================
-   STATUS
+   HEADER
    ========================================================= */
 
-.connection-status {
+.header {
 
-    position: fixed;
+    display: flex;
 
-    top: 34px;
-    right: 42px;
+    justify-content: space-between;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+    margin-bottom: 18px;
+
+}
+
+
+.header h1 {
+
+    font-size: 42px;
+
+    line-height: .95;
+
+    font-weight: 900;
+
+    letter-spacing: -2.5px;
+
+    color: #fff;
+
+}
+
+
+.header p {
+
+    color: #aaa;
+
+    margin-top: 5px;
+
+    font-size: 12px;
+
+}
+
+
+.status {
 
     display: flex;
 
@@ -102,139 +145,185 @@ body {
 
     font-size: 11px;
 
-    z-index: 100;
-
 }
 
 
 .status-dot {
 
-    width: 7px;
-    height: 7px;
+    width: 8px;
 
-    border-radius: 50%;
+    height: 8px;
+
+    flex-shrink: 0;
 
     background: #00ff66;
 
+    border-radius: 50%;
+
     box-shadow:
-        0 0 10px #00ff66;
+        0 0 10px
+        #00ff66;
 
 }
 
 
 /* =========================================================
-   PAINEL ESQUERDO
+   MÉTRICAS
    ========================================================= */
 
-.left-panel {
+.metrics {
 
-    height: 100%;
+    display: grid;
 
-    display: flex;
+    grid-template-columns:
+        repeat(
+            5,
+            1fr
+        );
 
-    flex-direction: column;
+    gap: 10px;
 
-    justify-content: space-between;
+    flex-shrink: 0;
+
+    margin-bottom: 18px;
+
+}
+
+
+.metric {
+
+    min-width: 0;
+
+    min-height: 105px;
 
     padding:
-        18px
-        0
-        0;
+        14px
+        16px;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .10
+        );
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                255,
+                255,
+                255,
+                .055
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                .012
+            )
+        );
 
 }
 
 
-/* =========================================================
-   LOGO
-   ========================================================= */
+.metric span {
 
-.brand {
-
-    padding-left: 90px;
-
-}
-
-
-.brand img {
-
-    width: 125px;
-
-    height: auto;
-
-    object-fit: contain;
-
-    filter:
-        brightness(0)
-        invert(1);
-
-}
-
-
-.brand-location {
-
-    margin-top: 3px;
-
-    font-size: 11px;
+    display: block;
 
     color: #aaa;
 
-}
+    font-size: 10px;
 
+    font-weight: 600;
 
-/* =========================================================
-   TÍTULO
-   ========================================================= */
-
-hero-title {
-
-    margin-top: 8px;
-
-    margin-left: 45px;
-
-    font-size: clamp(
-        40px,
-        3.7vw,
-        64px
-    );
-
-    line-height: .90;
-
-    letter-spacing: -3px;
-
-    font-weight: 900;
+    margin-bottom: 8px;
 
 }
 
 
-.hero-title .red {
+.metric strong {
+
+    display: block;
 
     color: #ff0000;
 
-}
-
-
-.hero-title p {
-
-    margin-top: 16px;
-
-    font-size: 16px;
+    font-size: 20px;
 
     line-height: 1;
 
-    letter-spacing: 0;
+    font-weight: 800;
 
-    font-weight: 400;
+    white-space: nowrap;
+
+}
+
+
+.metric small {
+
+    display: block;
+
+    color: #888;
+
+    margin-top: 7px;
+
+    font-size: 9px;
+
+}
+
+
+.metric small b {
 
     color: #fff;
 
 }
 
 
-.hero-title p strong {
+/* =========================================================
+   BARRAS DE PROGRESSO
+   ========================================================= */
 
-    font-weight: 800;
+.progress {
+
+    height: 5px;
+
+    background: #242424;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 8px;
 
 }
+
+
+.progress div {
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0000,
+            #c40000
+        );
+
+    border-radius: 20px;
+
+    transition:
+        width .8s
+        ease;
+
+}
+
+
 /* =========================================================
    PÓDIO
    ========================================================= */
@@ -260,9 +349,6 @@ hero-title {
 
 }
 
-/* =========================================================
-   CARDS
-   ========================================================= */
 
 .podium-card {
 
@@ -270,9 +356,9 @@ hero-title {
 
     width: 31%;
 
-    height: 62%;
+    height: 52%;
 
-    min-height: 235px;
+    min-height: 220px;
 
     padding:
         30px
@@ -292,17 +378,35 @@ hero-title {
     background:
         linear-gradient(
             145deg,
-            rgba(35,35,35,.85),
-            rgba(8,8,8,.95)
+            rgba(
+                35,
+                35,
+                35,
+                .85
+            ),
+            rgba(
+                8,
+                8,
+                8,
+                .95
+            )
         );
 
     border:
-        1px solid #333;
+        1px solid
+        #333;
 
     border-radius: 18px;
 
     box-shadow:
-        inset 0 0 30px rgba(255,255,255,.025);
+        inset
+        0 0 30px
+        rgba(
+            255,
+            255,
+            255,
+            .025
+        );
 
 }
 
@@ -310,64 +414,74 @@ hero-title {
 .podium-card.second,
 .podium-card.third {
 
-    height: 56%;
+    height: 52%;
 
 }
 
 
 .podium-card.first {
 
-    height: 68%;
+    height: 63%;
 
     z-index: 2;
 
-    border-color: #ff0000;
+    border-color:
+        #ff0000;
 
     box-shadow:
-        0 0 25px rgba(255,0,0,.15),
-        inset 0 0 35px rgba(255,0,0,.04);
+        0 0 25px
+        rgba(
+            255,
+            0,
+            0,
+            .15
+        ),
+        inset
+        0 0 35px
+        rgba(
+            255,
+            0,
+            0,
+            .04
+        );
 
 }
 
 
 /* =========================================================
-   POSIÇÃO
+   POSIÇÃO DO PÓDIO
    ========================================================= */
 
-.podium-card .position {
+.position {
 
-    position: absolute;
+    display: inline-flex;
 
-    top: -17px;
+    align-items: center;
 
-    left: 50%;
+    justify-content: center;
 
-    transform:
-        translateX(-50%);
+    min-width: 42px;
 
-    min-width: 55px;
+    height: 28px;
 
     padding:
-        7px
-        13px;
-
-    border-radius: 8px;
+        4px
+        10px;
 
     background:
-        linear-gradient(
-            180deg,
-            #ff1111,
-            #b90000
-        );
+        #ff0000;
+
+    border-radius: 7px;
 
     color: #fff;
 
-    font-size: 18px;
+    font-size: 13px;
 
     font-weight: 900;
 
-    box-shadow:
-        0 5px 15px rgba(255,0,0,.25);
+    line-height: 1;
+
+    margin-bottom: 8px;
 
 }
 
@@ -376,559 +490,274 @@ hero-title {
 .podium-card.third .position {
 
     background:
-        linear-gradient(
-            180deg,
-            #777,
-            #3a3a3a
+        #555;
+
+}
+
+
+/* =========================================================
+   FOTOS
+   ========================================================= */
+
+.podium-card img {
+
+    display: block;
+
+    width: 92px;
+
+    height: 92px;
+
+    margin:
+        10px
+        auto
+        8px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        2px solid
+        #333;
+
+    background:
+        #222;
+
+}
+
+
+.podium-card.first img {
+
+    width: 108px;
+
+    height: 108px;
+
+    border-color:
+        #ff0000;
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            255,
+            0,
+            0,
+            .3
         );
 
 }
 
 
 /* =========================================================
-   FOTO
+   NOME
    ========================================================= */
-
-.podium-image {
-
-    width: 150px;
-    height: 150px;
-
-    margin-top: 10px;
-
-    border-radius: 50%;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #252525;
-
-    border:
-        2px solid #555;
-
-}
-
-
-.podium-card.first .podium-image {
-
-    width: 180px;
-    height: 180px;
-
-    border-color: #ff0000;
-
-    box-shadow:
-        0 0 20px rgba(255,0,0,.25);
-
-}
-
-
-.podium-image img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-}
-
 
 .podium-card h2 {
 
     max-width: 95%;
 
-    margin-top: 12px;
-
     font-size: 14px;
 
-    line-height: 1.12;
+    line-height: 1.15;
 
     font-weight: 800;
+
+    margin:
+        6px
+        auto
+        4px;
 
 }
 
 
 .podium-card strong {
 
-    margin-top: 8px;
+    display: block;
 
-    color: #ff0000;
+    color:
+        #ff0000;
 
-    font-size: 17px;
-
-    font-weight: 900;
-
-}
-
-
-/* =========================================================
-   PILARES
-   ========================================================= */
-
-.pillars {
-
-    height: 82px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    border:
-        1px solid #292929;
-
-    border-radius: 14px;
-
-    background:
-        rgba(10,10,10,.88);
-
-    overflow: hidden;
-
-}
-
-
-.pillar {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 13px;
-
-    padding:
-        10px 14px;
-
-    border-right:
-        1px solid #292929;
-
-}
-
-
-.pillar:last-child {
-
-    border-right: none;
-
-}
-
-
-.pillar-icon {
-
-    color: #ff0000;
-
-    font-size: 36px;
+    font-size: 15px;
 
     line-height: 1;
 
-    font-weight: 400;
-
-}
-
-.pillar strong {
-
-    display: block;
-
-    font-size: 12px;
+    margin-top: 5px;
 
     font-weight: 900;
 
-    letter-spacing: -.2px;
-
 }
 
-.pillar span {
-
-    display: block;
-
-    margin-top: 4px;
-
-    font-size: 9px;
-
-    color: #aaa;
-
-    font-weight: 500;
-
-}
 
 /* =========================================================
-   PAINEL DIREITO
+   RANKING
    ========================================================= */
 
-.right-panel {
+.ranking {
 
-    min-width: 0;
-
-    height: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-}
-
-
-.ranking-panel {
-
-    flex: 1;
+    flex: 0 0 auto;
 
     min-height: 0;
 
-    padding:
-        22px
-        22px
-        18px;
+    max-height: 38vh;
 
     border:
-        1px solid #292929;
+        1px solid
+        #222;
 
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20,20,20,.90),
-            rgba(7,7,7,.95)
-        );
-
-    box-shadow:
-        inset 0 0 40px rgba(255,255,255,.015);
-
-}
-
-
-/* =========================================================
-   HEADER DIREITO
-   ========================================================= */
-
-.panel-header h1 {
-
-    font-size: 38px;
-
-    font-weight: 900;
-
-    letter-spacing: -1.5px;
-
-}
-
-
-.panel-header h1 span {
-
-    color: #ff0000;
-
-    font-size: 55px;
-
-    vertical-align: -5px;
-
-    margin-right: 7px;
-
-}
-
-
-.panel-header p {
-
-    margin-top: 3px;
-
-    color: #999;
-
-    font-size: 11px;
-
-    text-transform: uppercase;
-
-}
-
-
-/* =========================================================
-   RESUMO
-   ========================================================= */
-
-.summary {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    gap: 16px;
-
-    margin-top: 14px;
-
-}
-
-
-.summary-card {
-
-    position: relative;
-
-    height: 70px;
-
-    padding:
-        14px 16px;
-
-    border:
-        1px solid #292929;
-
-    border-radius: 8px;
-
-    background:
-        rgba(15,15,15,.85);
-
-}
-
-
-.summary-card span {
-
-    display: block;
-
-    color: #bbb;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-}
-
-
-.summary-card strong {
-
-    display: block;
-
-    margin-top: 7px;
-
-    color: #ff0000;
-
-    font-size: 22px;
-
-    font-weight: 900;
-
-}
-
-
-.summary-card b {
-
-    position: absolute;
-
-    right: 15px;
-
-    bottom: 13px;
-
-    color: #ff0000;
-
-    font-size: 20px;
-
-}
-
-
-/* =========================================================
-   PROGRESSO MENSAL
-   ========================================================= */
-
-.monthly-progress {
-
-    margin-top: 15px;
-
-    height: 45px;
-
-    padding:
-        10px 16px;
-
-    border:
-        1px solid #292929;
-
-    border-radius: 8px;
-
-}
-
-
-.progress-info {
-
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-}
-
-
-.progress-info > strong {
-
-    min-width: 55px;
-
-    color: #ff0000;
-
-    font-size: 16px;
-
-}
-
-
-.progress-track {
-
-    flex: 1;
-
-    height: 11px;
-
-    background: #252525;
-
-    border-radius: 20px;
+    border-radius: 14px;
 
     overflow: hidden;
 
-}
-
-
-.progress-fill {
-
-    height: 100%;
-
-    width: 0%;
-
     background:
-        linear-gradient(
-            90deg,
-            #ff0000,
-            #c00000
-        );
-
-    border-radius: 20px;
-
-    transition:
-        width .8s ease;
+        #080808;
 
 }
 
 
-.progress-info > span {
-
-    min-width: 105px;
-
-    text-align: right;
-
-    font-size: 11px;
-
-    color: #bbb;
-
-}
-
-
-.progress-info > span b {
-
-    color: #fff;
-
-}
-
-
-/* =========================================================
-   METAS
-   ========================================================= */
-
-.goal-grid {
+.ranking-header,
+.ranking-row {
 
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 14px;
-
-    margin-top: 15px;
-
-}
-
-
-.goal-card {
-
-    min-width: 0;
-
-    height: 105px;
-
-    padding:
-        13px;
-
-    display: flex;
-
-    justify-content: space-between;
+        55px
+        1fr
+        180px;
 
     align-items: center;
 
-    border:
-        1px solid #292929;
+}
 
-    border-radius: 9px;
+
+.ranking-header {
+
+    height: 36px;
+
+    padding:
+        0
+        16px;
 
     background:
-        rgba(10,10,10,.75);
+        #ed0000;
+
+    color:
+        #fff;
+
+    font-size: 11px;
+
+    font-weight: 900;
 
 }
 
 
-.goal-content {
+.ranking-row {
 
-    min-width: 0;
+    min-height: 31px;
+
+    padding:
+        0
+        16px;
+
+    border-bottom:
+        1px solid
+        #1d1d1d;
+
+    font-size: 11px;
 
 }
 
 
-.goal-content > span {
+.ranking-row:last-child {
 
-    display: block;
+    border-bottom:
+        none;
 
-    color: #bbb;
+}
 
-    font-size: 10px;
+
+.ranking-row .position {
+
+    background:
+        none;
+
+    padding: 0;
+
+    min-width: auto;
+
+    height: auto;
+
+    color:
+        #fff;
+
+    font-size: 11px;
+
+    margin: 0;
+
+    justify-content:
+        flex-start;
+
+}
+
+
+.ranking-name {
 
     font-weight: 600;
 
-}
+    white-space: nowrap;
 
+    overflow: hidden;
 
-.goal-content > strong {
-
-    display: block;
-
-    margin-top: 5px;
-
-    font-size: 17px;
+    text-overflow: ellipsis;
 
 }
 
 
-.goal-content > small {
+.ranking-value {
 
-    display: block;
+    text-align: right;
 
-    margin-top: 15px;
+    color:
+        #ff0000;
 
-    color: #999;
-
-    font-size: 9px;
-
-}
-
-
-.goal-content > b {
-
-    display: block;
-
-    margin-top: 3px;
-
-    color: #ff0000;
-
-    font-size: 12px;
+    font-weight: 900;
 
 }
 
 
 /* =========================================================
-   CÍRCULOS
+   RODAPÉ
    ========================================================= */
+
+footer {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    flex-shrink: 0;
+
+    height: 24px;
+
+    margin-top: 8px;
+
+    color:
+        #666;
+
+    font-size: 8px;
+
+}
+
+
+footer span:last-child {
+
+    color:
+        #888;
+
+}
+
 
 /* =========================================================
    CÍRCULOS DE META
@@ -939,9 +768,12 @@ hero-title {
     --progress: 0deg;
 
     width: 76px;
+
     height: 76px;
 
     flex-shrink: 0;
+
+    position: relative;
 
     display: flex;
 
@@ -953,13 +785,15 @@ hero-title {
 
     background:
         conic-gradient(
-            #ff0000 0deg,
-            #ff0000 var(--progress),
-            #303030 var(--progress),
-            #303030 360deg
+            #ff0000
+            0deg,
+            #ff0000
+            var(--progress),
+            #303030
+            var(--progress),
+            #303030
+            360deg
         );
-
-    position: relative;
 
 }
 
@@ -987,9 +821,8 @@ hero-title {
     z-index: 2;
 
     width: 100%;
-    height: 100%;
 
-    border-radius: 50%;
+    height: 100%;
 
     display: flex;
 
@@ -997,182 +830,235 @@ hero-title {
 
     justify-content: center;
 
-    background: transparent;
+    border-radius: 50%;
 
 }
 
 
-.circle-inner span {
+.circle-inner span,
+.circle-value,
+.circle-percent {
 
-    color: #fff;
+    color:
+        #fff;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    font-weight: 900;
-
-}
-
-/* =========================================================
-   RANKING
-   ========================================================= */
-
-.ranking {
-
-    margin-top: 15px;
-
-    border:
-        1px solid #222;
-
-    border-radius: 8px;
-
-    overflow: hidden;
-
-}
-
-
-.ranking-header,
-.ranking-row {
-
-    display: grid;
-
-    grid-template-columns:
-        65px
-        1fr
-        130px;
-
-    align-items: center;
-
-}
-
-
-.ranking-header {
-
-    height: 42px;
-
-    padding:
-        0 15px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ed0000,
-            #c90000
-        );
-
-    color: #fff;
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-}
-
-
-.ranking-row {
-
-    height: 33px;
-
-    padding:
-        0 15px;
-
-    border-bottom:
-        1px solid #1c1c1c;
-
-    background:
-        rgba(4,4,4,.65);
-
-}
-
-
-.ranking-row:last-child {
-
-    border-bottom: none;
-
-}
-
-
-.ranking-row .position {
-
-    color: #fff;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-}
-
-
-.ranking-name {
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-
-    color: #eee;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-}
-
-
-.ranking-value {
-
-    text-align: right;
-
-    color: #ff0000;
-
-    font-size: 12px;
-
-    font-weight: 900;
+    font-weight:
+        900;
 
 }
 
 
 /* =========================================================
-   FOOTER
+   LAYOUT DE CARDS COM CÍRCULO
    ========================================================= */
 
-.right-panel footer {
-
-    height: 38px;
-
-    flex-shrink: 0;
+.goal-card {
 
     display: flex;
 
     align-items: center;
 
-    padding-left: 5px;
+    justify-content:
+        space-between;
 
-    gap: 10px;
-
-    color: #888;
-
-    font-size: 10px;
+    gap: 15px;
 
 }
 
 
-.footer-line {
+.goal-card .circle-progress {
 
-    width: 2px;
-
-    height: 22px;
-
-    background: #ff0000;
+    margin-left: auto;
 
 }
 
 
-.right-panel footer strong {
+/* =========================================================
+   PILARES
+   FOCO / DISCIPLINA / ESTRATÉGIA / RESULTADOS
+   ========================================================= */
 
-    color: #ff0000;
+.pillars {
 
-    font-weight: 900;
+    height: 82px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    border:
+        1px solid
+        #292929;
+
+    border-radius: 14px;
+
+    background:
+        rgba(
+            10,
+            10,
+            10,
+            .88
+        );
+
+    overflow: hidden;
+
+}
+
+
+.pillar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 13px;
+
+    padding:
+        10px
+        14px;
+
+    border-right:
+        1px solid
+        #292929;
+
+}
+
+
+.pillar:last-child {
+
+    border-right:
+        none;
+
+}
+
+
+.pillar-icon {
+
+    color:
+        #ff0000;
+
+    font-size:
+        36px;
+
+    line-height: 1;
+
+    font-weight:
+        400;
+
+}
+
+
+.pillar strong {
+
+    display: block;
+
+    font-size:
+        12px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        -.2px;
+
+}
+
+
+.pillar span {
+
+    display: block;
+
+    margin-top:
+        4px;
+
+    font-size:
+        9px;
+
+    color:
+        #aaa;
+
+    font-weight:
+        500;
+
+}
+
+
+/* =========================================================
+   TÍTULO LATERAL
+   RANKING DE VENDAS
+   ========================================================= */
+
+.hero-title {
+
+    margin-top:
+        8px;
+
+    margin-left:
+        45px;
+
+    font-size:
+        clamp(
+            40px,
+            3.7vw,
+            64px
+        );
+
+    line-height:
+        .90;
+
+    letter-spacing:
+        -3px;
+
+    font-weight:
+        900;
+
+}
+
+
+.hero-title .red {
+
+    color:
+        #ff0000;
+
+}
+
+
+.hero-title p {
+
+    margin-top:
+        16px;
+
+    font-size:
+        16px;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        0;
+
+    font-weight:
+        400;
+
+    color:
+        #fff;
+
+}
+
+
+.hero-title p strong {
+
+    font-weight:
+        800;
 
 }
 
@@ -1181,64 +1067,263 @@ hero-title {
    RESPONSIVO
    ========================================================= */
 
-@media (max-width: 1200px) {
+@media (
+    max-width: 1100px
+) {
+
+    .metrics {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+    }
+
+
+    body {
+
+        overflow-y:
+            auto;
+
+    }
+
 
     .dashboard {
 
-        grid-template-columns:
-            36%
-            64%;
+        height:
+            auto;
 
-        gap: 15px;
+        max-height:
+            none;
+
+    }
+
+
+    .ranking {
+
+        max-height:
+            none;
+
+    }
+
+}
+
+
+@media (
+    max-width: 700px
+) {
+
+    body {
+
+        overflow-y:
+            auto;
+
+    }
+
+
+    .dashboard {
+
+        width:
+            94vw;
+
+        height:
+            auto;
+
+        min-height:
+            100vh;
 
         padding:
+            20px
+            0;
+
+    }
+
+
+    .header {
+
+        align-items:
+            flex-start;
+
+        gap:
             15px;
 
     }
 
 
-    .hero-title {
+    .header h1 {
 
-        margin-left: 20px;
-
-        font-size: 48px;
-
-    }
-
-
-    .brand {
-
-        padding-left: 40px;
+        font-size:
+            30px;
 
     }
 
 
-    .podium-image {
+    .metrics {
 
-        width: 105px;
-        height: 105px;
+        grid-template-columns:
+            1fr;
 
     }
 
 
-    .podium-card.first .podium-image {
+    .podium {
 
-        width: 125px;
-        height: 125px;
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        gap:
+            10px;
+
+        margin:
+            15px
+            0;
+
+    }
+
+
+    .podium-card,
+    .podium-card.first,
+    .podium-card.second,
+    .podium-card.third {
+
+        width:
+            100%;
+
+        height:
+            auto;
+
+        min-height:
+            250px;
+
+    }
+
+
+    .ranking {
+
+        max-height:
+            none;
+
+    }
+
+
+    .ranking-header,
+    .ranking-row {
+
+        grid-template-columns:
+            45px
+            1fr
+            125px;
+
+    }
+
+
+    .ranking-name {
+
+        font-size:
+            9px;
+
+    }
+
+
+    .ranking-value {
+
+        font-size:
+            9px;
+
+    }
+
+
+    footer {
+
+        flex-direction:
+            column;
+
+        gap:
+            5px;
+
+        height:
+            auto;
+
+        padding:
+            10px
+            0;
+
+    }
+
+
+    .pillars {
+
+        height:
+            auto;
+
+        grid-template-columns:
+            1fr 1fr;
 
     }
 
 
     .pillar {
 
-        padding: 8px;
+        min-height:
+            70px;
+
+    }
+
+}
+
+
+/* =========================================================
+   AJUSTE PARA TELAS GRANDES / TV
+   ========================================================= */
+
+@media (
+    min-width: 1500px
+) {
+
+    .dashboard {
+
+        width:
+            min(
+                1320px,
+                92vw
+            );
 
     }
 
 
-    .pillar-icon {
+    .header h1 {
 
-        font-size: 23px;
+        font-size:
+            46px;
+
+    }
+
+
+    .metric {
+
+        min-height:
+            115px;
+
+    }
+
+
+    .metric strong {
+
+        font-size:
+            22px;
+
+    }
+
+
+    .ranking-row {
+
+        min-height:
+            34px;
 
     }
 
