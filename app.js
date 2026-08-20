@@ -73,20 +73,9 @@ async function carregarRanking() {
             await resposta.json();
 
 
-        // =================================================
-        // MOSTRAR RESPOSTA COMPLETA NO CONSOLE
-        // =================================================
-
         console.log("=================================");
         console.log("DADOS RECEBIDOS DA API");
         console.log(dados);
-        console.log(
-            JSON.stringify(
-                dados,
-                null,
-                2
-            )
-        );
         console.log("=================================");
 
 
@@ -94,6 +83,16 @@ async function carregarRanking() {
 
             throw new Error(
                 "API retornou dados vazios."
+            );
+
+        }
+
+
+        if (dados.status === "erro") {
+
+            throw new Error(
+                dados.mensagem ||
+                "Erro retornado pelo Google Apps Script."
             );
 
         }
@@ -111,34 +110,40 @@ async function carregarRanking() {
 
         // =================================================
         // METAS
+        //
+        // Compatibilidade:
+        // - dados.metas
+        // - dados.producao
         // =================================================
 
-        if (dados.metas) {
+        const metas =
+            dados.metas ||
+            dados.producao ||
+            null;
+
+
+        if (metas) {
 
             console.log(
-                "OBJETO METAS RECEBIDO:"
+                "OBJETO DE METAS:",
+                metas
             );
-
-            console.log(
-                dados.metas
-            );
-
 
             atualizarMetas(
-                dados.metas
+                metas
             );
 
         } else {
 
             console.warn(
-                "ATENÇÃO: dados.metas não encontrado."
+                "Nenhum objeto de metas encontrado."
             );
 
         }
 
 
         // =================================================
-        // RANKING GERAL
+        // RANKING
         // =================================================
 
         if (
@@ -151,7 +156,6 @@ async function carregarRanking() {
                 "Ranking recebido:",
                 dados.ranking
             );
-
 
             atualizarRanking(
                 dados.ranking
@@ -246,7 +250,9 @@ function atualizarStatus(
 
 
     if (!bolinha) {
+
         return;
+
     }
 
 
@@ -280,15 +286,10 @@ function atualizarMetas(
 ) {
 
     console.log("=================================");
-    console.log("LENDO METAS");
-    console.log("OBJETO METAS:");
+    console.log("ATUALIZANDO METAS");
     console.log(metas);
     console.log("=================================");
 
-
-    // =====================================================
-    // META DO MÊS
-    // =====================================================
 
     const metaMes =
         numero(
@@ -296,19 +297,11 @@ function atualizarMetas(
         );
 
 
-    // =====================================================
-    // META DA SEMANA
-    // =====================================================
-
     const metaSemana =
         numero(
             metas.metaSemana
         );
 
-
-    // =====================================================
-    // META DO DIA
-    // =====================================================
 
     const metaDia =
         numero(
@@ -316,19 +309,11 @@ function atualizarMetas(
         );
 
 
-    // =====================================================
-    // VENDIDO NO MÊS
-    // =====================================================
-
     const vendidoMes =
         numero(
             metas.vendidoMes
         );
 
-
-    // =====================================================
-    // VENDIDO NA SEMANA
-    // =====================================================
 
     const vendidoSemana =
         numero(
@@ -336,27 +321,11 @@ function atualizarMetas(
         );
 
 
-    // =====================================================
-    // VENDIDO NO DIA
-    //
-    // IMPORTANTE:
-    // O Apps Script deve buscar este valor
-    // EXCLUSIVAMENTE da célula I3.
-    // =====================================================
-
     const vendidoDia =
         numero(
             metas.vendidoDia
         );
 
-
-    // =====================================================
-    // LOG DOS VALORES
-    // =====================================================
-
-    console.log("=================================");
-    console.log("VALORES DAS METAS");
-    console.log("=================================");
 
     console.log(
         "Meta mês:",
@@ -384,11 +353,9 @@ function atualizarMetas(
     );
 
     console.log(
-        "Vendido dia - I3:",
+        "Vendido dia:",
         vendidoDia
     );
-
-    console.log("=================================");
 
 
     // =====================================================
@@ -397,9 +364,7 @@ function atualizarMetas(
 
     colocarTexto(
         "volumeTotal",
-        moeda(
-            vendidoMes
-        )
+        moeda(vendidoMes)
     );
 
 
@@ -409,9 +374,7 @@ function atualizarMetas(
 
     colocarTexto(
         "metaMes",
-        moeda(
-            metaMes
-        )
+        moeda(metaMes)
     );
 
 
@@ -421,17 +384,13 @@ function atualizarMetas(
 
     colocarTexto(
         "metaDia",
-        moeda(
-            metaDia
-        )
+        moeda(metaDia)
     );
 
 
     colocarTexto(
         "vendidoDia",
-        moeda(
-            vendidoDia
-        )
+        moeda(vendidoDia)
     );
 
 
@@ -449,17 +408,13 @@ function atualizarMetas(
 
     colocarTexto(
         "metaSemana",
-        moeda(
-            metaSemana
-        )
+        moeda(metaSemana)
     );
 
 
     colocarTexto(
         "vendidoSemana",
-        moeda(
-            vendidoSemana
-        )
+        moeda(vendidoSemana)
     );
 
 
@@ -477,17 +432,13 @@ function atualizarMetas(
 
     colocarTexto(
         "metaMes2",
-        moeda(
-            metaMes
-        )
+        moeda(metaMes)
     );
 
 
     colocarTexto(
         "vendidoMes",
-        moeda(
-            vendidoMes
-        )
+        moeda(vendidoMes)
     );
 
 
@@ -499,23 +450,75 @@ function atualizarMetas(
     );
 
 
+    // =====================================================
+    // PERCENTUAL DA META MENSAL
+    // =====================================================
+
+    const percentualMensal =
+        calcularPercentual(
+            vendidoMes,
+            metaMes
+        );
+
+
+    atualizarElementosPercentualMensal(
+        percentualMensal
+    );
+
+
+    // =====================================================
+    // ATUALIZAR CÍRCULOS
+    // =====================================================
+
+    atualizarCirculosMeta(
+        "dia",
+        vendidoDia,
+        metaDia
+    );
+
+
+    atualizarCirculosMeta(
+        "semana",
+        vendidoSemana,
+        metaSemana
+    );
+
+
+    atualizarCirculosMeta(
+        "mes",
+        vendidoMes,
+        metaMes
+    );
+
+
     console.log(
-        "METAS APLICADAS NO DASHBOARD."
+        "Metas aplicadas no dashboard."
     );
 
 }
 
 
 // =========================================================
-// RANKING GERAL
+// RANKING
 // =========================================================
 
 function atualizarRanking(
     ranking
 ) {
 
+    if (
+        !Array.isArray(
+            ranking
+        )
+    ) {
+
+        return;
+
+    }
+
+
     // =====================================================
-    // SOMENTE CONSULTORES COM PRODUÇÃO > 0
+    // SOMENTE PRODUÇÃO MAIOR QUE ZERO
     // =====================================================
 
     const rankingValido =
@@ -523,13 +526,10 @@ function atualizarRanking(
             .filter(
                 function (item) {
 
-                    const producao =
+                    return (
                         numero(
                             item.producao
-                        );
-
-                    return (
-                        producao > 0
+                        ) > 0
                     );
 
                 }
@@ -563,7 +563,7 @@ function atualizarRanking(
     // =====================================================
     // VOLUME GERAL
     //
-    // Soma TODOS os consultores.
+    // Soma todos os consultores.
     // =====================================================
 
     const volumeGeral =
@@ -587,9 +587,7 @@ function atualizarRanking(
 
     colocarTexto(
         "volumeTotal",
-        moeda(
-            volumeGeral
-        )
+        moeda(volumeGeral)
     );
 
 
@@ -621,31 +619,21 @@ function atualizarPodium(
     ranking
 ) {
 
-    const primeiro =
-        ranking[0];
-
-    const segundo =
-        ranking[1];
-
-    const terceiro =
-        ranking[2];
-
-
     preencherPodium(
         1,
-        primeiro
+        ranking[0]
     );
 
 
     preencherPodium(
         2,
-        segundo
+        ranking[1]
     );
 
 
     preencherPodium(
         3,
-        terceiro
+        ranking[2]
     );
 
 }
@@ -679,7 +667,7 @@ function preencherPodium(
 
 
     // =====================================================
-    // CASO NÃO EXISTA CONSULTOR
+    // SEM CONSULTOR
     // =====================================================
 
     if (!pessoa) {
@@ -717,18 +705,6 @@ function preencherPodium(
 
 
     // =====================================================
-    // MOSTRAR FOTO
-    // =====================================================
-
-    if (foto) {
-
-        foto.style.display =
-            "block";
-
-    }
-
-
-    // =====================================================
     // NOME
     // =====================================================
 
@@ -742,7 +718,7 @@ function preencherPodium(
 
 
     // =====================================================
-    // PRODUÇÃO
+    // VALOR
     // =====================================================
 
     if (valor) {
@@ -769,6 +745,10 @@ function preencherPodium(
 
         if (urlFoto) {
 
+            foto.style.display =
+                "block";
+
+
             foto.src =
                 urlFoto;
 
@@ -777,7 +757,7 @@ function preencherPodium(
                 function () {
 
                     console.warn(
-                        "Erro ao carregar foto:",
+                        "Não foi possível carregar a foto:",
                         pessoa.foto
                     );
 
@@ -785,7 +765,6 @@ function preencherPodium(
                         "none";
 
                 };
-
 
         } else {
 
@@ -828,17 +807,9 @@ function atualizarTabela(
     }
 
 
-    // =====================================================
-    // LIMPAR
-    // =====================================================
-
     lista.innerHTML =
         "";
 
-
-    // =====================================================
-    // CRIAR LINHAS
-    // =====================================================
 
     ranking.forEach(
         function (
@@ -846,16 +817,16 @@ function atualizarTabela(
             index
         ) {
 
-            // ---------------------------------------------
-            // SEGURANÇA:
-            // NÃO CRIAR LINHA COM PRODUÇÃO ZERO
-            // ---------------------------------------------
-
             const producao =
                 numero(
                     item.producao
                 );
 
+
+            // =================================================
+            // SEGURANÇA
+            // Nunca mostrar produção zero.
+            // =================================================
 
             if (
                 producao <= 0
@@ -876,9 +847,9 @@ function atualizarTabela(
                 "ranking-row";
 
 
-            // ---------------------------------------------
+            // =================================================
             // POSIÇÃO
-            // ---------------------------------------------
+            // =================================================
 
             const posicao =
                 document.createElement(
@@ -894,9 +865,9 @@ function atualizarTabela(
                 index + 1;
 
 
-            // ---------------------------------------------
+            // =================================================
             // NOME
-            // ---------------------------------------------
+            // =================================================
 
             const nome =
                 document.createElement(
@@ -913,9 +884,9 @@ function atualizarTabela(
                 "-";
 
 
-            // ---------------------------------------------
+            // =================================================
             // VALOR
-            // ---------------------------------------------
+            // =================================================
 
             const valor =
                 document.createElement(
@@ -933,9 +904,9 @@ function atualizarTabela(
                 );
 
 
-            // ---------------------------------------------
-            // MONTAR LINHA
-            // ---------------------------------------------
+            // =================================================
+            // MONTAR
+            // =================================================
 
             linha.appendChild(
                 posicao
@@ -984,7 +955,7 @@ function converterFotoDrive(
 
 
     // =====================================================
-    // JÁ É THUMBNAIL
+    // THUMBNAIL
     // =====================================================
 
     if (
@@ -999,9 +970,7 @@ function converterFotoDrive(
 
 
     // =====================================================
-    // FORMATO:
-    //
-    // https://drive.google.com/file/d/ID/view
+    // FILE/D/ID/VIEW
     // =====================================================
 
     const match =
@@ -1015,14 +984,10 @@ function converterFotoDrive(
         match[1]
     ) {
 
-        const id =
-            match[1];
-
-
         return (
             "https://drive.google.com/thumbnail?id=" +
             encodeURIComponent(
-                id
+                match[1]
             ) +
             "&sz=w600"
         );
@@ -1031,9 +996,7 @@ function converterFotoDrive(
 
 
     // =====================================================
-    // FORMATO:
-    //
-    // ?id=ID
+    // ?ID=ID
     // =====================================================
 
     const idMatch =
@@ -1057,10 +1020,6 @@ function converterFotoDrive(
 
     }
 
-
-    // =====================================================
-    // RETORNAR URL ORIGINAL
-    // =====================================================
 
     return url;
 
@@ -1090,26 +1049,15 @@ function atualizarProgresso(
         );
 
 
-    let porcentagem = 0;
+    const porcentagem =
+        calcularPercentual(
+            realizado,
+            meta
+        );
 
 
     // =====================================================
-    // CALCULAR PERCENTUAL
-    // =====================================================
-
-    if (
-        meta > 0 &&
-        realizado >= 0
-    ) {
-
-        porcentagem =
-            (realizado / meta) * 100;
-
-    }
-
-
-    // =====================================================
-    // BARRA LIMITADA A 100%
+    // BARRA
     // =====================================================
 
     const largura =
@@ -1122,10 +1070,6 @@ function atualizarProgresso(
         );
 
 
-    // =====================================================
-    // ATUALIZAR BARRA
-    // =====================================================
-
     if (barra) {
 
         barra.style.width =
@@ -1135,7 +1079,7 @@ function atualizarProgresso(
 
 
     // =====================================================
-    // ATUALIZAR TEXTO
+    // TEXTO
     // =====================================================
 
     if (percentual) {
@@ -1147,12 +1091,25 @@ function atualizarProgresso(
 
     }
 
+}
 
-    // =====================================================
-    // CONVERTER % PARA GRAUS
-    //
-    // 100% = 360 graus
-    // =====================================================
+
+// =========================================================
+// ATUALIZAR CÍRCULOS
+// =========================================================
+
+function atualizarCirculosMeta(
+    tipo,
+    realizado,
+    meta
+) {
+
+    const porcentagem =
+        calcularPercentual(
+            realizado,
+            meta
+        );
+
 
     const graus =
         Math.min(
@@ -1164,175 +1121,445 @@ function atualizarProgresso(
         );
 
 
-    // =====================================================
-    // META DIÁRIA
-    // =====================================================
+    const seletores =
+        [
+            `.circle-progress[data-meta="${tipo}"]`,
+            `.circle-progress[data-type="${tipo}"]`,
+            `.circle-progress[data-tipo="${tipo}"]`
+        ];
 
-    if (
-        barraId === "progressDia"
-    ) {
 
-        const circulo =
+    let circulos = [];
+
+
+    seletores.forEach(
+        function (seletor) {
+
             document
-                .getElementById(
-                    "percentDia"
+                .querySelectorAll(
+                    seletor
                 )
-                ?.closest(
-                    ".goal-card"
-                )
-                ?.querySelector(
-                    ".circle-progress"
+                .forEach(
+                    function (elemento) {
+
+                        if (
+                            !circulos.includes(
+                                elemento
+                            )
+                        ) {
+
+                            circulos.push(
+                                elemento
+                            );
+
+                        }
+
+                    }
                 );
 
-
-        if (circulo) {
-
-            circulo.style.setProperty(
-                "--progress",
-                graus + "deg"
-            );
-
         }
+    );
+
+
+    // =====================================================
+    // FALLBACK POR ID
+    // =====================================================
+
+    const ids =
+        {
+            dia: [
+                "circleDia",
+                "progressCircleDia"
+            ],
+
+            semana: [
+                "circleSemana",
+                "progressCircleSemana"
+            ],
+
+            mes: [
+                "circleMes",
+                "progressCircleMes"
+            ]
+        };
+
+
+    if (
+        ids[tipo]
+    ) {
+
+        ids[tipo].forEach(
+            function (id) {
+
+                const elemento =
+                    document.getElementById(
+                        id
+                    );
+
+
+                if (
+                    elemento &&
+                    !circulos.includes(
+                        elemento
+                    )
+                ) {
+
+                    circulos.push(
+                        elemento
+                    );
+
+                }
+
+            }
+        );
 
     }
 
 
-    // =====================================================
-    // META SEMANAL
-    // =====================================================
-
-    if (
-        barraId === "progressSemana"
-    ) {
-
-        const circulo =
-            document
-                .getElementById(
-                    "percentSemana"
-                )
-                ?.closest(
-                    ".goal-card"
-                )
-                ?.querySelector(
-                    ".circle-progress"
-                );
-
-
-        if (circulo) {
+    circulos.forEach(
+        function (circulo) {
 
             circulo.style.setProperty(
                 "--progress",
                 graus + "deg"
             );
 
-        }
-
-    }
-
-
-    // =====================================================
-    // META MENSAL
-    // =====================================================
-
-    if (
-        barraId === "progressMes"
-    ) {
-
-        const circulo =
-            document
-                .getElementById(
-                    "percentMesCircle"
-                )
-                ?.closest(
-                    ".goal-card"
-                )
-                ?.querySelector(
-                    ".circle-progress"
-                );
-
-
-        if (circulo) {
 
             circulo.style.setProperty(
-                "--progress",
-                graus + "deg"
-            );
-
-        }
-
-
-        // =================================================
-        // PERCENTUAL NO CARD SUPERIOR
-        // =================================================
-
-        const percentualTopo =
-            document.getElementById(
-                "percentMesTop"
+                "--progress-percent",
+                porcentagem + "%"
             );
 
 
-        if (percentualTopo) {
-
-            percentualTopo.textContent =
+            circulo.setAttribute(
+                "data-percent",
                 formatarPercentual(
                     porcentagem
-                );
-
-        }
-
-
-        // =================================================
-        // PERCENTUAL DENTRO DO CÍRCULO
-        // =================================================
-
-        const percentualCirculo =
-            document.getElementById(
-                "percentMesCircle"
+                )
             );
 
-
-        if (percentualCirculo) {
-
-            percentualCirculo.textContent =
-                formatarPercentual(
-                    porcentagem
-                );
-
         }
+    );
 
 
-        // =================================================
-        // QUANTO FALTA
-        // =================================================
+    // =====================================================
+    // TEXTOS DOS CÍRCULOS
+    // =====================================================
 
-        const faltam =
-            document.getElementById(
-                "faltamMes"
-            );
+    const idsPercentual =
+        {
+            dia: [
+                "percentDiaCircle",
+                "percentDiaCircular"
+            ],
+
+            semana: [
+                "percentSemanaCircle",
+                "percentSemanaCircular"
+            ],
+
+            mes: [
+                "percentMesCircle",
+                "percentMesCircular"
+            ]
+        };
 
 
-        if (faltam) {
+    if (
+        idsPercentual[tipo]
+    ) {
 
-            const restante =
-                Math.max(
-                    meta - realizado,
-                    0
+        idsPercentual[tipo].forEach(
+            function (id) {
+
+                colocarTexto(
+                    id,
+                    formatarPercentual(
+                        porcentagem
+                    )
                 );
 
-
-            faltam.textContent =
-                moeda(
-                    restante
-                );
-
-        }
+            }
+        );
 
     }
+
+
+    // =====================================================
+    // COMPATIBILIDADE COM ELEMENTO DENTRO DO CÍRCULO
+    // =====================================================
+
+    circulos.forEach(
+        function (circulo) {
+
+            const texto =
+                circulo.querySelector(
+                    ".circle-inner span, .circle-value, .circle-percent"
+                );
+
+
+            if (texto) {
+
+                texto.textContent =
+                    formatarPercentual(
+                        porcentagem
+                    );
+
+            }
+
+        }
+    );
 
 }
 
+
 // =========================================================
-// COLOCAR TEXTO NA PÁGINA
+// PERCENTUAL MENSAL
+// =========================================================
+
+function atualizarElementosPercentualMensal(
+    porcentagem
+) {
+
+    const texto =
+        formatarPercentual(
+            porcentagem
+        );
+
+
+    const elementos =
+        [
+            "percentMesTop",
+            "percentMesCircle",
+            "percentMesCircular",
+            "percentualMes"
+        ];
+
+
+    elementos.forEach(
+        function (id) {
+
+            colocarTexto(
+                id,
+                texto
+            );
+
+        }
+    );
+
+
+    // =====================================================
+    // FALLBACK:
+    // procura elementos relacionados à meta mensal
+    // =====================================================
+
+    document
+        .querySelectorAll(
+            "[data-percent-mes]"
+        )
+        .forEach(
+            function (elemento) {
+
+                elemento.textContent =
+                    texto;
+
+            }
+        );
+
+}
+
+
+// =========================================================
+// CALCULAR PERCENTUAL
+// =========================================================
+
+function calcularPercentual(
+    realizado,
+    meta
+) {
+
+    realizado =
+        numero(
+            realizado
+        );
+
+
+    meta =
+        numero(
+            meta
+        );
+
+
+    if (
+        meta <= 0
+    ) {
+
+        return 0;
+
+    }
+
+
+    return (
+        realizado /
+        meta
+    ) * 100;
+
+}
+
+
+// =========================================================
+// FORMATAÇÃO DE MOEDA
+// =========================================================
+
+function moeda(
+    valor
+) {
+
+    valor =
+        numero(
+            valor
+        );
+
+
+    return valor.toLocaleString(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    );
+
+}
+
+
+// =========================================================
+// CONVERTER PARA NÚMERO
+// =========================================================
+
+function numero(
+    valor
+) {
+
+    if (
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ) {
+
+        return 0;
+
+    }
+
+
+    if (
+        typeof valor ===
+        "number"
+    ) {
+
+        return isNaN(
+            valor
+        )
+            ? 0
+            : valor;
+
+    }
+
+
+    let texto =
+        String(
+            valor
+        ).trim();
+
+
+    // =====================================================
+    // REMOVER R$
+    // =====================================================
+
+    texto =
+        texto.replace(
+            /R\$/gi,
+            ""
+        ).trim();
+
+
+    // =====================================================
+    // FORMATO BRASILEIRO
+    // 1.234.567,89
+    // =====================================================
+
+    if (
+        texto.includes(",")
+    ) {
+
+        texto =
+            texto.replace(
+                /\./g,
+                ""
+            );
+
+
+        texto =
+            texto.replace(
+                ",",
+                "."
+            );
+
+    }
+
+
+    // =====================================================
+    // LIMPAR
+    // =====================================================
+
+    texto =
+        texto.replace(
+            /[^\d.-]/g,
+            ""
+        );
+
+
+    const resultado =
+        parseFloat(
+            texto
+        );
+
+
+    return isNaN(
+        resultado
+    )
+        ? 0
+        : resultado;
+
+}
+
+
+// =========================================================
+// PERCENTUAL
+// =========================================================
+
+function formatarPercentual(
+    valor
+) {
+
+    valor =
+        numero(
+            valor
+        );
+
+
+    return valor.toLocaleString(
+        "pt-BR",
+        {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1
+        }
+    ) + "%";
+
+}
+
+
+// =========================================================
+// COLOCAR TEXTO
 // =========================================================
 
 function colocarTexto(
@@ -1350,13 +1577,6 @@ function colocarTexto(
 
         elemento.textContent =
             texto;
-
-    } else {
-
-        console.warn(
-            "Elemento não encontrado:",
-            id
-        );
 
     }
 
@@ -1440,9 +1660,6 @@ function atualizarData(
 
 // =========================================================
 // ATUALIZAÇÃO AUTOMÁTICA
-// =========================================================
-//
-// Atualiza a cada 60 segundos.
 // =========================================================
 
 setInterval(
