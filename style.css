@@ -539,42 +539,36 @@ body {
    FOCO / DISCIPLINA / ESTRATÉGIA / RESULTADOS
    ========================================================= */
 
+/* =========================================================
+   PILARES
+   ========================================================= */
+
 .pillars {
 
-    /*
-       AUMENTADO
-       Antes: 72px
-       Agora: 88px
-    */
-
-    height: 88px;
+    height: 100px;
 
     display: grid;
 
     grid-template-columns:
-        repeat(
-            4,
-            1fr
-        );
+        repeat(4, 1fr);
 
     border:
         1px solid
         #292929;
 
-    border-radius: 14px;
+    border-radius: 15px;
 
     background:
-        rgba(
-            10,
-            10,
-            10,
-            .8
-        );
+        rgba(10,10,10,.88);
 
     overflow: hidden;
 
 }
 
+
+/* =========================================================
+   CADA PILAR
+   ========================================================= */
 
 .pillar {
 
@@ -582,11 +576,10 @@ body {
 
     align-items: center;
 
-    gap: 13px;
+    gap: 15px;
 
     padding:
-        12px
-        14px;
+        14px 16px;
 
     border-right:
         1px solid
@@ -603,20 +596,14 @@ body {
 
 
 /* =========================================================
-   ÍCONES DOS PILARES
+   ÍCONE
    ========================================================= */
 
 .pillar-icon {
 
     color: #ff0000;
 
-    /*
-       AUMENTADO
-       Antes: 30px
-       Agora: 39px
-    */
-
-    font-size: 39px;
+    font-size: 43px;
 
     line-height: 1;
 
@@ -626,20 +613,14 @@ body {
 
 
 /* =========================================================
-   TEXTO DOS PILARES
+   TÍTULO
    ========================================================= */
 
 .pillar strong {
 
     display: block;
 
-    /*
-       AUMENTADO
-       Antes: 10px
-       Agora: 12px
-    */
-
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 900;
 
@@ -648,17 +629,15 @@ body {
 }
 
 
+/* =========================================================
+   SUBTÍTULO
+   ========================================================= */
+
 .pillar span {
 
     display: block;
 
-    margin-top: 5px;
-
-    /*
-       AUMENTADO
-       Antes: 8px
-       Agora: 10px
-    */
+    margin-top: 6px;
 
     font-size: 10px;
 
@@ -667,7 +646,6 @@ body {
     line-height: 1.05;
 
 }
-
 
 /* =========================================================
    PAINEL DIREITO
