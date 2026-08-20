@@ -1,6 +1,6 @@
 // =========================================================
 // RANKING ADEMICON
-// APP.JS — VERSÃO COMPLETA
+// APP.JS
 // =========================================================
 
 const API_URL =
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // =========================================================
-// BUSCAR DADOS DA API
+// BUSCAR API
 // =========================================================
 
 async function carregarRanking() {
@@ -35,51 +35,67 @@ async function carregarRanking() {
 
         console.log("Chamando API...");
 
-        const resposta = await fetch(API_URL, {
+        const resposta = await fetch(API_URL + "?t=" + Date.now(), {
             method: "GET",
-            cache: "no-cache"
+            cache: "no-store"
         });
 
         console.log("Status API:", resposta.status);
 
         if (!resposta.ok) {
+
             throw new Error(
                 "Erro HTTP: " + resposta.status
             );
+
         }
 
         const dados = await resposta.json();
 
-        console.log("DADOS RECEBIDOS:");
+        console.log("=================================");
+        console.log("DADOS RECEBIDOS DA API");
         console.log(dados);
+        console.log("=================================");
 
-        // Verificação básica
+
         if (!dados) {
-            throw new Error("API retornou dados vazios.");
+
+            throw new Error(
+                "API retornou dados vazios."
+            );
+
         }
 
 
         // =================================================
-        // ATUALIZAR STATUS
+        // STATUS
         // =================================================
 
-        atualizarStatus("Dados atualizados", true);
+        atualizarStatus(
+            "Dados atualizados",
+            true
+        );
 
 
         // =================================================
         // METAS
         // =================================================
 
+        console.log(
+            "OBJETO METAS:",
+            dados.metas
+        );
+
         if (dados.metas) {
 
-            console.log("METAS:", dados.metas);
-
-            atualizarMetas(dados.metas);
+            atualizarMetas(
+                dados.metas
+            );
 
         } else {
 
-            console.warn(
-                "Objeto 'metas' não encontrado."
+            console.error(
+                "ERRO: objeto 'metas' não encontrado na API."
             );
 
         }
@@ -89,29 +105,63 @@ async function carregarRanking() {
         // RANKING GERAL
         // =================================================
 
-        if (Array.isArray(dados.ranking)) {
+        if (
+            Array.isArray(
+                dados.ranking
+            )
+        ) {
 
             console.log(
-                "Ranking recebido:",
+                "RANKING GERAL:",
                 dados.ranking
             );
 
-            atualizarRanking(dados.ranking);
-
-        } else {
-
-            console.warn(
-                "Ranking não encontrado ou formato inválido."
+            atualizarRanking(
+                dados.ranking
             );
 
         }
 
 
         // =================================================
-        // DATA DA ATUALIZAÇÃO
+        // RANKING SEMANA
         // =================================================
 
-        if (dados.atualizadoEm) {
+        if (
+            dados.rankingSemana
+        ) {
+
+            console.log(
+                "RANKING SEMANA:",
+                dados.rankingSemana
+            );
+
+        }
+
+
+        // =================================================
+        // RANKING CONTRATOS
+        // =================================================
+
+        if (
+            dados.rankingContratos
+        ) {
+
+            console.log(
+                "RANKING CONTRATOS:",
+                dados.rankingContratos
+            );
+
+        }
+
+
+        // =================================================
+        // DATA
+        // =================================================
+
+        if (
+            dados.atualizadoEm
+        ) {
 
             atualizarData(
                 dados.atualizadoEm
@@ -120,7 +170,9 @@ async function carregarRanking() {
         }
 
 
-        console.log("Ranking atualizado com sucesso.");
+        console.log(
+            "Ranking atualizado com sucesso."
+        );
 
     }
 
@@ -142,20 +194,31 @@ async function carregarRanking() {
 
 
 // =========================================================
-// STATUS DA API
+// STATUS
 // =========================================================
 
-function atualizarStatus(texto, conectado) {
+function atualizarStatus(
+    texto,
+    conectado
+) {
 
     const elemento =
-        document.getElementById("status");
+        document.getElementById(
+            "status"
+        );
 
     if (elemento) {
-        elemento.textContent = texto;
+
+        elemento.textContent =
+            texto;
+
     }
 
+
     const bolinha =
-        document.querySelector(".status-dot");
+        document.querySelector(
+            ".status-dot"
+        );
 
     if (bolinha) {
 
@@ -186,43 +249,83 @@ function atualizarStatus(texto, conectado) {
 // METAS
 // =========================================================
 
-function atualizarMetas(metas) {
+function atualizarMetas(
+    metas
+) {
 
-    // -----------------------------------------------------
+    console.log(
+        "========== METAS =========="
+    );
+
+    console.log(
+        "metaMes:",
+        metas.metaMes
+    );
+
+    console.log(
+        "metaSemana:",
+        metas.metaSemana
+    );
+
+    console.log(
+        "metaDia:",
+        metas.metaDia
+    );
+
+    console.log(
+        "vendidoMes:",
+        metas.vendidoMes
+    );
+
+    console.log(
+        "vendidoSemana:",
+        metas.vendidoSemana
+    );
+
+    console.log(
+        "vendidoDia:",
+        metas.vendidoDia
+    );
+
+
+    // =====================================================
     // VALORES
-    // -----------------------------------------------------
+    // =====================================================
 
     const metaMes =
-        numero(metas.metaMes);
+        numero(
+            metas.metaMes
+        );
 
     const metaSemana =
-        numero(metas.metaSemana);
+        numero(
+            metas.metaSemana
+        );
 
     const metaDia =
-        numero(metas.metaDia);
+        numero(
+            metas.metaDia
+        );
 
     const vendidoMes =
-        numero(metas.vendidoMes);
+        numero(
+            metas.vendidoMes
+        );
 
     const vendidoSemana =
-        numero(metas.vendidoSemana);
+        numero(
+            metas.vendidoSemana
+        );
 
     const vendidoDia =
-        numero(metas.vendidoDia);
+        numero(
+            metas.vendidoDia
+        );
 
 
-    console.log("Meta mês:", metaMes);
-    console.log("Meta semana:", metaSemana);
-    console.log("Meta dia:", metaDia);
-
-    console.log("Vendido mês:", vendidoMes);
-    console.log("Vendido semana:", vendidoSemana);
-    console.log("Vendido dia:", vendidoDia);
-
-
-    // -----------------------------------------------------
+    // =====================================================
     // VOLUME TOTAL DA UNIDADE
-    // -----------------------------------------------------
+    // =====================================================
 
     colocarTexto(
         "volumeTotal",
@@ -230,9 +333,9 @@ function atualizarMetas(metas) {
     );
 
 
-    // -----------------------------------------------------
+    // =====================================================
     // META DO MÊS
-    // -----------------------------------------------------
+    // =====================================================
 
     colocarTexto(
         "metaMes",
@@ -240,9 +343,9 @@ function atualizarMetas(metas) {
     );
 
 
-    // -----------------------------------------------------
+    // =====================================================
     // META DIÁRIA
-    // -----------------------------------------------------
+    // =====================================================
 
     colocarTexto(
         "metaDia",
@@ -263,9 +366,9 @@ function atualizarMetas(metas) {
     );
 
 
-    // -----------------------------------------------------
+    // =====================================================
     // META SEMANAL
-    // -----------------------------------------------------
+    // =====================================================
 
     colocarTexto(
         "metaSemana",
@@ -286,9 +389,9 @@ function atualizarMetas(metas) {
     );
 
 
-    // -----------------------------------------------------
+    // =====================================================
     // META MENSAL
-    // -----------------------------------------------------
+    // =====================================================
 
     colocarTexto(
         "metaMes2",
@@ -312,69 +415,25 @@ function atualizarMetas(metas) {
 
 
 // =========================================================
-// RANKING
+// RANKING GERAL
 // =========================================================
 
-function atualizarRanking(ranking) {
+function atualizarRanking(
+    ranking
+) {
 
-    // -----------------------------------------------------
-    // IMPORTANTE:
-    // Mostrar somente quem possui produção > 0
-    // -----------------------------------------------------
-
-    const rankingValido =
-        ranking
-            .filter(item => {
-
-                const producao =
-                    numero(item.producao);
-
-                return producao > 0;
-
-            })
-            .sort((a, b) => {
-
-                return numero(b.producao)
-                    -
-                    numero(a.producao);
-
-            })
-            .slice(0, 10);
-
-
-    console.log(
-        "Ranking válido:",
-        rankingValido
-    );
-
-
-    // -----------------------------------------------------
+    // =====================================================
     // VOLUME TOTAL
-    // -----------------------------------------------------
-
-    const volumeTotal =
-        rankingValido.reduce(
-            (total, item) => {
-
-                return total +
-                    numero(item.producao);
-
-            },
-            0
-        );
-
-
-    // IMPORTANTE:
-    // O volume total deve considerar TODOS os
-    // consultores, inclusive os que não estão no TOP 10.
-    // -----------------------------------------------------
+    // =====================================================
 
     const volumeGeral =
         ranking.reduce(
             (total, item) => {
 
                 return total +
-                    numero(item.producao);
+                    numero(
+                        item.producao
+                    );
 
             },
             0
@@ -387,18 +446,47 @@ function atualizarRanking(ranking) {
     );
 
 
-    // -----------------------------------------------------
+    // =====================================================
+    // FILTRAR SOMENTE PRODUÇÃO > 0
+    // =====================================================
+
+    const rankingValido =
+        ranking
+            .filter(
+                item =>
+                    numero(
+                        item.producao
+                    ) > 0
+            )
+            .sort(
+                (a, b) =>
+                    numero(b.producao) -
+                    numero(a.producao)
+            )
+            .slice(
+                0,
+                10
+            );
+
+
+    console.log(
+        "RANKING VÁLIDO:",
+        rankingValido
+    );
+
+
+    // =====================================================
     // PÓDIO
-    // -----------------------------------------------------
+    // =====================================================
 
     atualizarPodium(
         rankingValido
     );
 
 
-    // -----------------------------------------------------
+    // =====================================================
     // TOP 10
-    // -----------------------------------------------------
+    // =====================================================
 
     atualizarTabela(
         rankingValido
@@ -411,45 +499,23 @@ function atualizarRanking(ranking) {
 // PÓDIO
 // =========================================================
 
-function atualizarPodium(ranking) {
-
-    const primeiro =
-        ranking[0];
-
-    const segundo =
-        ranking[1];
-
-    const terceiro =
-        ranking[2];
-
-
-    // -----------------------------------------------------
-    // 1º LUGAR
-    // -----------------------------------------------------
+function atualizarPodium(
+    ranking
+) {
 
     preencherPodium(
         1,
-        primeiro
+        ranking[0]
     );
-
-
-    // -----------------------------------------------------
-    // 2º LUGAR
-    // -----------------------------------------------------
 
     preencherPodium(
         2,
-        segundo
+        ranking[1]
     );
-
-
-    // -----------------------------------------------------
-    // 3º LUGAR
-    // -----------------------------------------------------
 
     preencherPodium(
         3,
-        terceiro
+        ranking[2]
     );
 
 }
@@ -459,7 +525,10 @@ function atualizarPodium(ranking) {
 // PREENCHER PÓDIO
 // =========================================================
 
-function preencherPodium(posicao, pessoa) {
+function preencherPodium(
+    posicao,
+    pessoa
+) {
 
     const nome =
         document.getElementById(
@@ -476,10 +545,6 @@ function preencherPodium(posicao, pessoa) {
             "foto" + posicao
         );
 
-
-    // -----------------------------------------------------
-    // SEM CONSULTOR
-    // -----------------------------------------------------
 
     if (!pessoa) {
 
@@ -504,9 +569,9 @@ function preencherPodium(posicao, pessoa) {
     }
 
 
-    // -----------------------------------------------------
+    // =====================================================
     // NOME
-    // -----------------------------------------------------
+    // =====================================================
 
     if (nome) {
 
@@ -516,9 +581,9 @@ function preencherPodium(posicao, pessoa) {
     }
 
 
-    // -----------------------------------------------------
-    // PRODUÇÃO
-    // -----------------------------------------------------
+    // =====================================================
+    // VALOR
+    // =====================================================
 
     if (valor) {
 
@@ -530,33 +595,24 @@ function preencherPodium(posicao, pessoa) {
     }
 
 
-    // -----------------------------------------------------
+    // =====================================================
     // FOTO
-    // -----------------------------------------------------
+    // =====================================================
 
     if (foto) {
 
-        const urlFoto =
+        const url =
             converterFotoDrive(
                 pessoa.foto
             );
 
-        if (urlFoto) {
+        if (url) {
+
+            foto.style.display =
+                "block";
 
             foto.src =
-                urlFoto;
-
-            foto.onerror = function () {
-
-                console.warn(
-                    "Não foi possível carregar a foto:",
-                    pessoa.foto
-                );
-
-                this.style.display =
-                    "none";
-
-            };
+                url;
 
         } else {
 
@@ -572,10 +628,12 @@ function preencherPodium(posicao, pessoa) {
 
 
 // =========================================================
-// TOP 10 — TABELA
+// TOP 10
 // =========================================================
 
-function atualizarTabela(ranking) {
+function atualizarTabela(
+    ranking
+) {
 
     const lista =
         document.getElementById(
@@ -586,7 +644,7 @@ function atualizarTabela(ranking) {
     if (!lista) {
 
         console.error(
-            "Elemento #rankingList não encontrado."
+            "#rankingList não encontrado."
         );
 
         return;
@@ -594,7 +652,6 @@ function atualizarTabela(ranking) {
     }
 
 
-    // Limpar tabela
     lista.innerHTML = "";
 
 
@@ -606,14 +663,11 @@ function atualizarTabela(ranking) {
                     "div"
                 );
 
-
             linha.className =
                 "ranking-row";
 
 
-            // ------------------------------------------------
             // POSIÇÃO
-            // ------------------------------------------------
 
             const posicao =
                 document.createElement(
@@ -627,9 +681,7 @@ function atualizarTabela(ranking) {
                 index + 1;
 
 
-            // ------------------------------------------------
             // NOME
-            // ------------------------------------------------
 
             const nome =
                 document.createElement(
@@ -643,9 +695,7 @@ function atualizarTabela(ranking) {
                 item.nome || "-";
 
 
-            // ------------------------------------------------
             // VALOR
-            // ------------------------------------------------
 
             const valor =
                 document.createElement(
@@ -660,10 +710,6 @@ function atualizarTabela(ranking) {
                     item.producao
                 );
 
-
-            // ------------------------------------------------
-            // MONTAR LINHA
-            // ------------------------------------------------
 
             linha.appendChild(
                 posicao
@@ -689,10 +735,12 @@ function atualizarTabela(ranking) {
 
 
 // =========================================================
-// CONVERTER FOTO GOOGLE DRIVE
+// FOTO GOOGLE DRIVE
 // =========================================================
 
-function converterFotoDrive(url) {
+function converterFotoDrive(
+    url
+) {
 
     if (!url) {
         return "";
@@ -703,9 +751,7 @@ function converterFotoDrive(url) {
         String(url).trim();
 
 
-    // -----------------------------------------------------
     // Já é thumbnail
-    // -----------------------------------------------------
 
     if (
         url.includes(
@@ -718,11 +764,8 @@ function converterFotoDrive(url) {
     }
 
 
-    // -----------------------------------------------------
-    // Extrair ID de:
-    //
-    // https://drive.google.com/file/d/ID/view
-    // -----------------------------------------------------
+    // URL:
+    // drive.google.com/file/d/ID/view
 
     const match =
         url.match(
@@ -730,23 +773,23 @@ function converterFotoDrive(url) {
         );
 
 
-    if (match && match[1]) {
-
-        const id =
-            match[1];
+    if (
+        match &&
+        match[1]
+    ) {
 
         return (
             "https://drive.google.com/thumbnail?id=" +
-            encodeURIComponent(id) +
+            encodeURIComponent(
+                match[1]
+            ) +
             "&sz=w600"
         );
 
     }
 
 
-    // -----------------------------------------------------
-    // Caso a URL já seja outro formato do Drive
-    // -----------------------------------------------------
+    // URL com ?id=ID
 
     const idMatch =
         url.match(
@@ -754,7 +797,10 @@ function converterFotoDrive(url) {
         );
 
 
-    if (idMatch && idMatch[1]) {
+    if (
+        idMatch &&
+        idMatch[1]
+    ) {
 
         return (
             "https://drive.google.com/thumbnail?id=" +
@@ -773,7 +819,7 @@ function converterFotoDrive(url) {
 
 
 // =========================================================
-// PROGRESSO DAS METAS
+// PROGRESSO
 // =========================================================
 
 function atualizarProgresso(
@@ -798,17 +844,18 @@ function atualizarProgresso(
 
 
     if (
-        meta > 0 &&
-        realizado >= 0
+        meta > 0
     ) {
 
         porcentagem =
-            (realizado / meta) * 100;
+            (
+                realizado /
+                meta
+            ) * 100;
 
     }
 
 
-    // Limitar visualmente a barra a 100%
     const largura =
         Math.min(
             Math.max(
@@ -840,16 +887,16 @@ function atualizarProgresso(
 
 
 // =========================================================
-// FORMATAÇÃO DE MOEDA
+// MOEDA
 // =========================================================
 
-function moeda(valor) {
+function moeda(
+    valor
+) {
 
-    valor =
-        numero(valor);
-
-
-    return valor.toLocaleString(
+    return numero(
+        valor
+    ).toLocaleString(
         "pt-BR",
         {
             style: "currency",
@@ -861,10 +908,12 @@ function moeda(valor) {
 
 
 // =========================================================
-// CONVERTER NÚMERO
+// NÚMERO
 // =========================================================
 
-function numero(valor) {
+function numero(
+    valor
+) {
 
     if (
         valor === null ||
@@ -877,7 +926,8 @@ function numero(valor) {
     }
 
 
-    // Se já for número
+    // Número nativo
+
     if (
         typeof valor ===
         "number"
@@ -895,7 +945,8 @@ function numero(valor) {
             .trim();
 
 
-    // Remover R$
+    // Remove R$
+
     texto =
         texto.replace(
             /R\$/gi,
@@ -904,8 +955,8 @@ function numero(valor) {
         .trim();
 
 
-    // Formato brasileiro:
-    // 1.234.567,89
+    // Número brasileiro
+
     if (
         texto.includes(",")
     ) {
@@ -932,10 +983,14 @@ function numero(valor) {
 
 
     const resultado =
-        parseFloat(texto);
+        parseFloat(
+            texto
+        );
 
 
-    return isNaN(resultado)
+    return isNaN(
+        resultado
+    )
         ? 0
         : resultado;
 
@@ -962,7 +1017,7 @@ function formatarPercentual(
 
 
 // =========================================================
-// COLOCAR TEXTO
+// INSERIR TEXTO
 // =========================================================
 
 function colocarTexto(
@@ -994,7 +1049,7 @@ function colocarTexto(
 
 
 // =========================================================
-// DATA DE ATUALIZAÇÃO
+// DATA
 // =========================================================
 
 function atualizarData(
@@ -1012,63 +1067,47 @@ function atualizarData(
     }
 
 
-    try {
-
-        const dataObj =
-            new Date(data);
+    const dataObj =
+        new Date(data);
 
 
-        if (
-            isNaN(
-                dataObj.getTime()
-            )
-        ) {
-
-            elemento.textContent =
-                "Última atualização: " +
-                data;
-
-            return;
-
-        }
-
-
-        const dataFormatada =
-            dataObj.toLocaleString(
-                "pt-BR",
-                {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit"
-                }
-            );
-
+    if (
+        isNaN(
+            dataObj.getTime()
+        )
+    ) {
 
         elemento.textContent =
             "Última atualização: " +
-            dataFormatada;
+            data;
+
+        return;
 
     }
 
-    catch (erro) {
 
-        console.warn(
-            "Erro ao formatar data:",
-            erro
+    const dataFormatada =
+        dataObj.toLocaleString(
+            "pt-BR",
+            {
+                day: "2-digit",
+                month: "2-digit",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
         );
 
-    }
+
+    elemento.textContent =
+        "Última atualização: " +
+        dataFormatada;
 
 }
 
 
 // =========================================================
 // ATUALIZAÇÃO AUTOMÁTICA
-// =========================================================
-//
-// Atualiza a cada 60 segundos.
 // =========================================================
 
 setInterval(
