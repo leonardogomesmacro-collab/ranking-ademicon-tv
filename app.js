@@ -1,306 +1,626 @@
-const API = "https://script.google.com/macros/s/AKfycbwBP4nAktENi9eyLUra2MwDj0PNsOYIK3dT3r2Lzmc5H9OvD2jK2v7_7ZflZh6bqk5dDw/exec";
+const SPREADSHEET_ID =
+    "1k4BFHPCYUkgvibtPAX24QbFynGFa-2tITJ_jZHp2A2U";
 
-function moeda(valor){
 
-  return Number(valor).toLocaleString(
-    "pt-BR",
-    {
-      style:"currency",
-      currency:"BRL"
-    }
-  );
+/* =====================================================
+   CONFIGURAÇÃO DA PLANILHA
+===================================================== */
 
-}
+const CONFIG = {
 
-function atualizarHorario(){
+    ranking: {
+        sheet: "RANKING",
+        range: "A2:L",
+    },
 
-  const agora = new Date();
+    rankingSemana: {
+        sheet: "RANKINGSEMANA",
+        range: "A2:L2",
+    },
 
-  document.getElementById(
-    "lastUpdate"
-  ).innerHTML =
-    agora.toLocaleString("pt-BR");
+    rankingContratos: {
+        sheet: "RANKINGCONTRATOS",
+        range: "A2:L2",
+    },
 
-}
-
-function nomeCurto(nome){
-
-  if(!nome) return "";
-
-  const especiais = [
-    "KFR",
-    "GRF",
-    "DCARDOSO"
-  ];
-
-  for(const item of especiais){
-
-    if(
-      nome.toUpperCase()
-      .includes(item)
-    ){
-      return item;
+    producao: {
+        sheet: "PRODUCAO",
+        range: "B2:I3",
     }
 
-  }
+};
 
-  return nome
-    .split(" ")[0]
-    .toUpperCase();
 
-}
+/* =====================================================
+   URL GOOGLE SHEETS
+===================================================== */
 
-/* ==========================
-   CARREGAR DADOS
-========================== */
+function getSheetUrl(sheet, range) {
 
-async function carregarRanking(){
+    const query = `
+        select *
+        where A is not null
+    `;
 
-  try{
-
-    const response =
-      await fetch(
-        API +
-        "?nocache=" +
-        Date.now()
-      );
-
-    const retorno =
-      await response.json();
-
-    const ranking =
-      retorno.ranking || [];
-
-    const config =
-      retorno.config || {};
-
-renderPodium(ranking);
-renderTabela(ranking);
-renderVolumeTotal(ranking);
-
-renderMeta(ranking, config);
-
-atualizarHorario();
-
-  }
-  catch(e){
-
-    console.error(
-      "Erro ao carregar ranking:",
-      e
-    );
-
-  }
-
-}
-
-/* ==========================
-   VOLUME TOTAL
-========================== */
-
-function renderVolumeTotal(ranking){
-
-  const total =
-    ranking.reduce(
-      (acc,item)=>
-        acc +
-        Number(item.producao),
-      0
-    );
-
-  document.getElementById(
-    "unitTotal"
-  ).innerHTML =
-    moeda(total);
-
-}
-
-/* ==========================
-   META DO MÊS
-========================== */
-
-function renderMeta(
-  ranking,
-  config
-){
-
-  const volumeTotal =
-    ranking.reduce(
-      (acc,item)=>
-        acc +
-        Number(item.producao),
-      0
-    );
-
-  const metaMes =
-    Number(
-      config.metaMes || 0
-    );
-
-  const percentual =
-    metaMes > 0
-      ? (
-          volumeTotal /
-          metaMes
-        ) * 100
-      : 0;
-
-  const faltante =
-    Math.max(
-      metaMes -
-      volumeTotal,
-      0
-    );
-
-  document.getElementById(
-    "metaAtual"
-  ).innerHTML =
-    moeda(volumeTotal);
-
-  document.getElementById(
-    "metaMes"
-  ).innerHTML =
-    moeda(metaMes);
-
-  document.getElementById(
-    "percentualMeta"
-  ).innerHTML =
-    percentual.toFixed(1) +
-    "%";
-
-  document.getElementById(
-    "faltanteMeta"
-  ).innerHTML =
-    "Faltam " +
-    moeda(faltante);
-
-  document.getElementById(
-    "progressFill"
-  ).style.width =
-    Math.min(
-      percentual,
-      100
-    ) + "%";
-
+    return `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq` +
+        `?sheet=${encodeURIComponent(sheet)}` +
+        `&range=${encodeURIComponent(range)}` +
+        `&tqx=out:json` +
+        `&tq=${encodeURIComponent(query)}`;
 }
 
 
-/* ==========================
-   PODIUM
-========================== */
+/* =====================================================
+   BUSCAR DADOS
+===================================================== */
 
-function renderPodium(ranking){
+async function fetchSheet(sheet, range) {
 
-  if(
-    !ranking ||
-    ranking.length < 3
-  ) return;
+    const url = getSheetUrl(sheet, range);
 
-  const primeiro =
-    ranking[0];
+    const response = await fetch(url);
 
-  const segundo =
-    ranking[1];
+    if (!response.ok) {
+        throw new Error(
+            `Erro ao acessar a aba ${sheet}`
+        );
+    }
 
-  const terceiro =
-    ranking[2];
+    const text = await response.text();
 
-  document.getElementById(
-    "firstPlace"
-  ).innerHTML = `
-    <img src="${primeiro.foto}" alt="">
-    <div class="podium-base">
-      <div class="medal medal-gold">1º</div>
-      <p>${nomeCurto(primeiro.consultor)}</p>
-      <h3>${moeda(primeiro.producao)}</h3>
-    </div>
-  `;
+    /*
+       O Google retorna algo parecido com:
 
-  document.getElementById(
-    "secondPlace"
-  ).innerHTML = `
-    <img src="${segundo.foto}" alt="">
-    <div class="podium-base">
-      <div class="medal medal-silver">2º</div>
-      <p>${nomeCurto(segundo.consultor)}</p>
-      <h3>${moeda(segundo.producao)}</h3>
-    </div>
-  `;
+       google.visualization.Query.setResponse({...});
 
-  document.getElementById(
-    "thirdPlace"
-  ).innerHTML = `
-    <img src="${terceiro.foto}" alt="">
-    <div class="podium-base">
-      <div class="medal medal-bronze">3º</div>
-      <p>${nomeCurto(terceiro.consultor)}</p>
-      <h3>${moeda(terceiro.producao)}</h3>
-    </div>
-  `;
+       Precisamos retirar essa parte.
+    */
 
+    const jsonText = text
+        .replace(/^[^(]*\(/, "")
+        .replace(/\);?\s*$/, "");
+
+    const json = JSON.parse(jsonText);
+
+    return json.table;
 }
 
-/* ==========================
-   TABELA TOP 10
-========================== */
 
-function renderTabela(
-  ranking
-){
+/* =====================================================
+   CONVERTER LINHAS
+===================================================== */
 
-  const tabela =
-    document.getElementById(
-      "rankingTable"
+function getCellValue(row, index) {
+
+    if (!row.c[index]) {
+        return "";
+    }
+
+    return row.c[index].v ?? "";
+}
+
+
+/* =====================================================
+   FORMATAR MOEDA
+===================================================== */
+
+function formatCurrency(value) {
+
+    const number = Number(value) || 0;
+
+    return number.toLocaleString(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    );
+}
+
+
+/* =====================================================
+   CONVERTER VALOR
+===================================================== */
+
+function parseNumber(value) {
+
+    if (typeof value === "number") {
+        return value;
+    }
+
+    if (!value) {
+        return 0;
+    }
+
+    return Number(
+        String(value)
+            .replace("R$", "")
+            .replace(/\./g, "")
+            .replace(",", ".")
+            .trim()
+    ) || 0;
+}
+
+
+/* =====================================================
+   BUSCAR RANKING
+===================================================== */
+
+async function carregarRanking() {
+
+    const tabela = await fetchSheet(
+        CONFIG.ranking.sheet,
+        CONFIG.ranking.range
     );
 
-  tabela.innerHTML = "";
+    const ranking = tabela.rows
+        .map(row => {
 
-  ranking
-    .slice(0,10)
-    .forEach(item=>{
+            return {
 
-      tabela.innerHTML += `
-        <tr>
-          <td>${item.posicao}</td>
-          <td>${item.consultor.toUpperCase()}</td>
-          <td>${moeda(item.producao)}</td>
-        </tr>
-      `;
+                nome:
+                    getCellValue(row, 0),
+
+                producao:
+                    parseNumber(
+                        getCellValue(row, 5)
+                    ),
+
+                foto:
+                    getCellValue(row, 11)
+
+            };
+
+        })
+        .filter(item =>
+            item.nome &&
+            item.producao > 0
+        )
+        .sort(
+            (a, b) =>
+                b.producao - a.producao
+        );
+
+    return ranking;
+}
+
+
+/* =====================================================
+   RENDERIZAR TOP 10
+===================================================== */
+
+function renderRanking(ranking) {
+
+    const lista =
+        document.getElementById(
+            "rankingList"
+        );
+
+    lista.innerHTML = "";
+
+    ranking
+        .slice(0, 10)
+        .forEach((consultor, index) => {
+
+            const row =
+                document.createElement("div");
+
+            row.className =
+                "ranking-row";
+
+            row.innerHTML = `
+
+                <span class="position">
+                    ${index + 1}
+                </span>
+
+                <span class="ranking-name">
+                    ${consultor.nome}
+                </span>
+
+                <span class="ranking-value">
+                    ${formatCurrency(
+                        consultor.producao
+                    )}
+                </span>
+
+            `;
+
+            lista.appendChild(row);
+
+        });
+}
+
+
+/* =====================================================
+   RENDERIZAR PÓDIO
+===================================================== */
+
+function renderPodium(ranking) {
+
+    const top3 =
+        ranking.slice(0, 3);
+
+    top3.forEach((consultor, index) => {
+
+        const posicao = index + 1;
+
+        document.getElementById(
+            `nome${posicao}`
+        ).textContent =
+            consultor.nome;
+
+        document.getElementById(
+            `valor${posicao}`
+        ).textContent =
+            formatCurrency(
+                consultor.producao
+            );
+
+        const foto =
+            document.getElementById(
+                `foto${posicao}`
+            );
+
+        if (consultor.foto) {
+
+            foto.src =
+                converterFotoGoogleDrive(
+                    consultor.foto
+                );
+
+        }
 
     });
+}
+
+
+/* =====================================================
+   CONVERTER FOTO GOOGLE DRIVE
+===================================================== */
+
+function converterFotoGoogleDrive(url) {
+
+    if (!url) {
+        return "";
+    }
+
+    const match =
+        url.match(
+            /\/d\/([^/]+)/
+        );
+
+    if (!match) {
+        return url;
+    }
+
+    const fileId = match[1];
+
+    return `https://drive.google.com/thumbnail?id=${fileId}&sz=w500`;
+}
+
+
+/* =====================================================
+   BUSCAR PRODUÇÃO
+===================================================== */
+
+async function carregarProducao() {
+
+    /*
+       IMPORTANTE:
+
+       B2 = meta mês
+       C2 = meta semana
+       D2 = meta dia
+       E2 = vendido mês
+       H2 = vendido semana
+       I3 = vendido dia
+    */
+
+    const tabela =
+        await fetchSheet(
+            CONFIG.producao.sheet,
+            CONFIG.producao.range
+        );
+
+    /*
+       Como estamos usando B2:I3:
+
+       índice 0 = B
+       índice 1 = C
+       índice 2 = D
+       índice 3 = E
+       índice 4 = F
+       índice 5 = G
+       índice 6 = H
+       índice 7 = I
+    */
+
+    const linha2 =
+        tabela.rows[0];
+
+    const linha3 =
+        tabela.rows[1];
+
+    const dados = {
+
+        metaMes:
+            parseNumber(
+                getCellValue(
+                    linha2,
+                    0
+                )
+            ),
+
+        metaSemana:
+            parseNumber(
+                getCellValue(
+                    linha2,
+                    1
+                )
+            ),
+
+        metaDia:
+            parseNumber(
+                getCellValue(
+                    linha2,
+                    2
+                )
+            ),
+
+        vendidoMes:
+            parseNumber(
+                getCellValue(
+                    linha2,
+                    3
+                )
+            ),
+
+        vendidoSemana:
+            parseNumber(
+                getCellValue(
+                    linha2,
+                    6
+                )
+            ),
+
+        /*
+           I3 — EXATAMENTE COMO VOCÊ DEFINIU
+        */
+
+        vendidoDia:
+            parseNumber(
+                getCellValue(
+                    linha3,
+                    7
+                )
+            )
+
+    };
+
+    return dados;
+}
+
+
+/* =====================================================
+   ATUALIZAR METAS
+===================================================== */
+
+function renderProducao(dados) {
+
+    document.getElementById(
+        "metaMes"
+    ).textContent =
+        formatCurrency(
+            dados.metaMes
+        );
+
+    document.getElementById(
+        "metaMes2"
+    ).textContent =
+        formatCurrency(
+            dados.metaMes
+        );
+
+    document.getElementById(
+        "metaSemana"
+    ).textContent =
+        formatCurrency(
+            dados.metaSemana
+        );
+
+    document.getElementById(
+        "metaDia"
+    ).textContent =
+        formatCurrency(
+            dados.metaDia
+        );
+
+    document.getElementById(
+        "vendidoMes"
+    ).textContent =
+        formatCurrency(
+            dados.vendidoMes
+        );
+
+    document.getElementById(
+        "vendidoSemana"
+    ).textContent =
+        formatCurrency(
+            dados.vendidoSemana
+        );
+
+    document.getElementById(
+        "vendidoDia"
+    ).textContent =
+        formatCurrency(
+            dados.vendidoDia
+        );
+
+
+    const percentualMes =
+        calcularPercentual(
+            dados.vendidoMes,
+            dados.metaMes
+        );
+
+    const percentualSemana =
+        calcularPercentual(
+            dados.vendidoSemana,
+            dados.metaSemana
+        );
+
+    const percentualDia =
+        calcularPercentual(
+            dados.vendidoDia,
+            dados.metaDia
+        );
+
+
+    atualizarProgress(
+        "progressMes",
+        "percentMes",
+        percentualMes
+    );
+
+    atualizarProgress(
+        "progressSemana",
+        "percentSemana",
+        percentualSemana
+    );
+
+    atualizarProgress(
+        "progressDia",
+        "percentDia",
+        percentualDia
+    );
+
+
+    document.getElementById(
+        "volumeTotal"
+    ).textContent =
+        formatCurrency(
+            dados.vendidoMes
+        );
+}
+
+
+/* =====================================================
+   PERCENTUAL
+===================================================== */
+
+function calcularPercentual(
+    realizado,
+    meta
+) {
+
+    if (!meta) {
+        return 0;
+    }
+
+    return Math.min(
+        (realizado / meta) * 100,
+        100
+    );
+}
+
+
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+function atualizarProgress(
+    progressId,
+    percentId,
+    percentual
+) {
+
+    document.getElementById(
+        progressId
+    ).style.width =
+        `${percentual}%`;
+
+    document.getElementById(
+        percentId
+    ).textContent =
+        `${percentual.toFixed(1)}%`;
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+async function iniciarDashboard() {
+
+    try {
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Carregando dados...";
+
+
+        /*
+           RANKING
+        */
+
+        const ranking =
+            await carregarRanking();
+
+        renderRanking(ranking);
+
+        renderPodium(ranking);
+
+
+        /*
+           PRODUÇÃO
+        */
+
+        const producao =
+            await carregarProducao();
+
+        renderProducao(producao);
+
+
+        /*
+           STATUS
+        */
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Dados atualizados";
+
+
+        document.getElementById(
+            "ultimaAtualizacao"
+        ).textContent =
+            "Última atualização: " +
+            new Date().toLocaleString(
+                "pt-BR"
+            );
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro no dashboard:",
+            erro
+        );
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Erro ao carregar dados";
+
+    }
 
 }
 
 
-document.addEventListener(
-    "click",
-    () => {
+/* =====================================================
+   INICIAR
+===================================================== */
 
-        document.documentElement
-        .requestFullscreen()
-        .catch(()=>{});
-
-    },
-    { once:true }
-);
-
-/* ==========================
-   AUTO REFRESH
-========================== */
-
-// CARREGA IMEDIATAMENTE
-carregarRanking();
-
-// Atualiza a cada 60 segundos
-setInterval(() => {
-
-    carregarRanking();
-
-}, 60000);
-
-// Recarrega a página a cada 30 minutos
-setInterval(() => {
-
-    location.reload();
-
-}, 1800000);
+iniciarDashboard();
