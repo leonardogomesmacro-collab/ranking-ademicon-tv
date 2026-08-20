@@ -650,7 +650,119 @@ footer strong {
 
 
 /* =========================================================
-   TELAS MENORES
+   NAVEGAÇÃO ENTRE TELAS
+   ========================================================= */
+
+.screen-navigation {
+
+    position: fixed;
+
+    right: 26px;
+
+    bottom: 20px;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-width: 105px;
+
+    padding:
+        10px
+        16px;
+
+    color: #fff;
+
+    background:
+        rgba(
+            8,
+            8,
+            8,
+            .92
+        );
+
+    border:
+        1px solid
+        #333;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: .8px;
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    box-shadow:
+        0 5px 20px
+        rgba(
+            0,
+            0,
+            0,
+            .45
+        );
+
+    transition:
+        all .2s ease;
+
+}
+
+
+.screen-navigation b {
+
+    color: #ff0000;
+
+    font-size: 18px;
+
+    line-height: 1;
+
+}
+
+
+.screen-navigation:hover {
+
+    border-color:
+        #ff0000;
+
+    background:
+        rgba(
+            255,
+            0,
+            0,
+            .10
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            255,
+            0,
+            0,
+            .20
+        );
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   RESPONSIVO
    ========================================================= */
 
 @media (max-width: 1200px) {
@@ -691,6 +803,15 @@ footer strong {
     .main-value {
 
         font-size: 31px;
+
+    }
+
+
+    .screen-navigation {
+
+        right: 16px;
+
+        bottom: 14px;
 
     }
 
