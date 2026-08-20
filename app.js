@@ -3,37 +3,33 @@ const API_URL = "https://script.google.com/macros/s/AKfycbwhrz4NYBkZhO11hxauYPyi
 console.log("APP.JS CARREGADO");
 
 async function testarAPI() {
-
     try {
 
         console.log("Chamando API...");
 
         const resposta = await fetch(API_URL);
 
-        console.log(
-            "Status:",
-            resposta.status
-        );
+        console.log("Status:", resposta.status);
 
         const dados = await resposta.json();
 
-        console.log(
-            "DADOS RECEBIDOS:",
-            dados
-        );
+        console.log("DADOS RECEBIDOS:", dados);
 
-        document.getElementById("status").textContent =
-            "API conectada!";
+        const status = document.getElementById("status");
+
+        if (status) {
+            status.textContent = "API conectada!";
+        }
 
     } catch (erro) {
 
-        console.error(
-            "ERRO:",
-            erro
-        );
+        console.error("ERRO:", erro);
 
-        document.getElementById("status").textContent =
-            "Erro na conexão";
+        const status = document.getElementById("status");
+
+        if (status) {
+            status.textContent = "Erro na conexão";
+        }
     }
 }
 
