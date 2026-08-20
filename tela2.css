@@ -1,1 +1,647 @@
+/* =========================================================
+   TELA 2 — ADEMICON
+   DESTAQUES DA SEMANA
+   ========================================================= */
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+}
+
+
+body {
+
+    background:
+        radial-gradient(
+            circle at 20% 45%,
+            rgba(255, 0, 0, .07),
+            transparent 32%
+        ),
+        #050505;
+
+    color: #fff;
+
+    font-family:
+        'Inter',
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   TELA
+   ========================================================= */
+
+.screen {
+
+    width: 100%;
+    height: 100vh;
+
+    max-width: 1600px;
+
+    margin: 0 auto;
+
+    padding:
+        28px
+        42px
+        18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    flex-shrink: 0;
+}
+
+
+.brand-mark {
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -1.5px;
+}
+
+
+.location {
+
+    color: #999;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+.status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #aaa;
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    background: #00ff66;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px
+        #00ff66;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.title-section {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-top: 28px;
+
+    flex-shrink: 0;
+}
+
+
+.title-line {
+
+    width: 7px;
+
+    height: 78px;
+
+    background: #ff0000;
+
+    transform:
+        skewX(-14deg);
+
+    box-shadow:
+        0 0 18px
+        rgba(255, 0, 0, .25);
+}
+
+
+.title-section h1 {
+
+    font-size: 52px;
+
+    line-height: .95;
+
+    font-weight: 900;
+
+    letter-spacing: -2.5px;
+}
+
+
+.title-section h1 span {
+
+    color: #ff0000;
+}
+
+
+.title-section p {
+
+    margin-top: 10px;
+
+    color: #ddd;
+
+    font-size: 14px;
+
+    letter-spacing: .3px;
+}
+
+
+.title-section p strong {
+
+    color: #fff;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   HIGHLIGHTS
+   ========================================================= */
+
+.highlights {
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 28px;
+
+    align-items: stretch;
+
+    margin-top: 24px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.highlight-card {
+
+    position: relative;
+
+    min-height: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #080808
+        );
+
+    border:
+        1px solid
+        #292929;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    padding:
+        25px
+        35px
+        28px;
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,.025);
+}
+
+
+.highlight-card.semana {
+
+    border-color:
+        rgba(255, 0, 0, .65);
+
+    box-shadow:
+        0 0 35px
+        rgba(255, 0, 0, .08);
+}
+
+
+.highlight-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 0, 0, .08),
+            transparent 68%
+        );
+
+    bottom: -190px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD HEADER
+   ========================================================= */
+
+.card-header {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    flex-shrink: 0;
+}
+
+
+.slash {
+
+    color: #ff0000;
+
+    font-size: 36px;
+
+    font-weight: 900;
+
+    line-height: .7;
+
+    transform:
+        skewX(-12deg);
+}
+
+
+.card-header h2 {
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    letter-spacing: -.6px;
+}
+
+
+/* =========================================================
+   POSIÇÃO
+   ========================================================= */
+
+.position {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-top: 18px;
+
+    padding:
+        7px
+        17px;
+
+    background: #ff0000;
+
+    border-radius: 8px;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 0 18px
+        rgba(255,0,0,.22);
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   FOTO
+   ========================================================= */
+
+.photo-wrapper {
+
+    width: 190px;
+    height: 190px;
+
+    margin-top: 18px;
+
+    border-radius: 50%;
+
+    padding: 4px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff0000,
+            #650000
+        );
+
+    box-shadow:
+        0 0 30px
+        rgba(255,0,0,.16);
+
+    flex-shrink: 0;
+
+    z-index: 2;
+}
+
+
+.photo-wrapper img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    border-radius: 50%;
+
+    background: #222;
+
+    border:
+        3px solid
+        #101010;
+}
+
+
+/* =========================================================
+   NOME
+   ========================================================= */
+
+.highlight-card h3 {
+
+    max-width: 80%;
+
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 22px;
+
+    line-height: 1.12;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   VALOR PRINCIPAL
+   ========================================================= */
+
+.main-value {
+
+    margin-top: 12px;
+
+    color: #ff0000;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   DESCRIÇÃO
+   ========================================================= */
+
+.description {
+
+    margin-top: 12px;
+
+    color: #999;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 16px;
+
+    padding-left: 10px;
+
+    border-left:
+        3px solid
+        #ff0000;
+
+    color: #777;
+
+    font-size: 10px;
+
+    min-height: 20px;
+}
+
+
+footer strong {
+
+    color: #ff0000;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .screen {
+
+        padding:
+            20px;
+    }
+
+
+    .title-section h1 {
+
+        font-size: 40px;
+    }
+
+
+    .photo-wrapper {
+
+        width: 150px;
+        height: 150px;
+    }
+
+
+    .highlight-card h3 {
+
+        font-size: 18px;
+    }
+
+
+    .main-value {
+
+        font-size: 23px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    html,
+    body {
+
+        overflow: auto;
+    }
+
+
+    .screen {
+
+        height: auto;
+
+        min-height: 100vh;
+    }
+
+
+    .highlights {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .title-section {
+
+        justify-content: flex-start;
+    }
+
+
+    .title-section h1 {
+
+        font-size: 34px;
+    }
+
+
+    .highlight-card {
+
+        min-height: 500px;
+    }
+
+}
