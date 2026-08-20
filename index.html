@@ -1,156 +1,556 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ranking Ademicon | Goiânia - Jardim Goiás</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Ranking Ademicon | Goiânia - Jardim Goiás
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <main class="dashboard">
+<main class="dashboard">
 
-        <header class="header">
+
+    <!-- =====================================================
+         LADO ESQUERDO
+         ===================================================== -->
+
+    <section class="left-panel">
+
+
+        <!-- LOGO -->
+
+        <div class="brand">
+
+            <img
+                src="logo-ademicon.png.png"
+                alt="Ademicon"
+            >
+
+            <div class="brand-location">
+                Goiânia - Jardim Goiás
+            </div>
+
+        </div>
+
+
+        <!-- TÍTULO -->
+
+        <div class="hero-title">
+
             <div>
-                <h1>RANKING ADEMICON</h1>
-                <p>Goiânia - Jardim Goiás</p>
+                RANKING
             </div>
 
-            <div class="status">
-                <span class="status-dot"></span>
-                <span id="status">Conectando...</span>
-            </div>
-        </header>
-
-
-        <!-- INDICADORES -->
-
-        <section class="metrics">
-
-            <div class="metric">
-                <span>VOLUME TOTAL DA UNIDADE</span>
-                <strong id="volumeTotal">R$ -</strong>
+            <div class="red">
+                DE VENDAS
             </div>
 
-            <div class="metric">
-                <span>META DO MÊS</span>
-                <strong id="metaMes">R$ -</strong>
-            </div>
+            <p>
+                OS MELHORES,
+                <strong>INSPIRAM TODOS.</strong>
+            </p>
 
-            <div class="metric">
-                <span>META DIÁRIA</span>
-                <strong id="metaDia">R$ -</strong>
-
-                <small>
-                    Realizado:
-                    <b id="vendidoDia">R$ -</b>
-                </small>
-
-                <div class="progress">
-                    <div id="progressDia"></div>
-                </div>
-
-                <small id="percentDia">0%</small>
-            </div>
-
-            <div class="metric">
-                <span>META SEMANAL</span>
-                <strong id="metaSemana">R$ -</strong>
-
-                <small>
-                    Realizado:
-                    <b id="vendidoSemana">R$ -</b>
-                </small>
-
-                <div class="progress">
-                    <div id="progressSemana"></div>
-                </div>
-
-                <small id="percentSemana">0%</small>
-            </div>
-
-            <div class="metric">
-                <span>META MENSAL</span>
-                <strong id="metaMes2">R$ -</strong>
-
-                <small>
-                    Realizado:
-                    <b id="vendidoMes">R$ -</b>
-                </small>
-
-                <div class="progress">
-                    <div id="progressMes"></div>
-                </div>
-
-                <small id="percentMes">0%</small>
-            </div>
-
-        </section>
+        </div>
 
 
-        <!-- PODIO -->
+        <!-- PÓDIO -->
 
         <section class="podium">
 
+
+            <!-- 2º -->
+
             <div class="podium-card second">
-                <span class="position">2º</span>
-                <img id="foto2" src="" alt="">
-                <h2 id="nome2">-</h2>
-                <strong id="valor2">R$ -</strong>
+
+                <div class="position">
+                    2º
+                </div>
+
+                <div class="podium-image">
+
+                    <img
+                        id="foto2"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+                <h2 id="nome2">
+                    -
+                </h2>
+
+                <strong id="valor2">
+                    R$ -
+                </strong>
+
             </div>
+
+
+            <!-- 1º -->
 
             <div class="podium-card first">
-                <span class="position">1º</span>
-                <img id="foto1" src="" alt="">
-                <h2 id="nome1">-</h2>
-                <strong id="valor1">R$ -</strong>
+
+                <div class="position">
+                    1º
+                </div>
+
+                <div class="podium-image">
+
+                    <img
+                        id="foto1"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+                <h2 id="nome1">
+                    -
+                </h2>
+
+                <strong id="valor1">
+                    R$ -
+                </strong>
+
             </div>
+
+
+            <!-- 3º -->
 
             <div class="podium-card third">
-                <span class="position">3º</span>
-                <img id="foto3" src="" alt="">
-                <h2 id="nome3">-</h2>
-                <strong id="valor3">R$ -</strong>
+
+                <div class="position">
+                    3º
+                </div>
+
+                <div class="podium-image">
+
+                    <img
+                        id="foto3"
+                        src=""
+                        alt=""
+                    >
+
+                </div>
+
+                <h2 id="nome3">
+                    -
+                </h2>
+
+                <strong id="valor3">
+                    R$ -
+                </strong>
+
             </div>
+
 
         </section>
 
 
-        <!-- TOP 10 -->
+        <!-- PILARES -->
 
-        <section class="ranking">
+        <div class="pillars">
 
-            <div class="ranking-header">
-                <span>POS.</span>
-                <span>CONSULTOR</span>
-                <span>VOLUME</span>
+
+            <div class="pillar">
+
+                <div class="pillar-icon">
+                    ◎
+                </div>
+
+                <div>
+                    <strong>
+                        FOCO
+                    </strong>
+
+                    <span>
+                        NO OBJETIVO
+                    </span>
+                </div>
+
             </div>
 
-            <div id="rankingList"></div>
 
-        </section>
+            <div class="pillar">
+
+                <div class="pillar-icon">
+                    ☆
+                </div>
+
+                <div>
+                    <strong>
+                        DISCIPLINA
+                    </strong>
+
+                    <span>
+                        TODO DIA
+                    </span>
+                </div>
+
+            </div>
 
 
-        <!-- ATUALIZAÇÃO -->
+            <div class="pillar">
+
+                <div class="pillar-icon">
+                    ↗
+                </div>
+
+                <div>
+                    <strong>
+                        ESTRATÉGIA
+                    </strong>
+
+                    <span>
+                        COM INTELIGÊNCIA
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="pillar">
+
+                <div class="pillar-icon">
+                    ♜
+                </div>
+
+                <div>
+                    <strong>
+                        RESULTADOS
+                    </strong>
+
+                    <span>
+                        EXTRAORDINÁRIOS
+                    </span>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================================
+         LADO DIREITO
+         ===================================================== -->
+
+    <section class="right-panel">
+
+
+        <div class="ranking-panel">
+
+
+            <!-- CABEÇALHO -->
+
+            <header class="panel-header">
+
+                <h1>
+                    <span>/</span>
+                    TOP 10
+                </h1>
+
+                <p id="ultimaAtualizacao">
+                    ÚLTIMA ATUALIZAÇÃO: --/--/---- --:--
+                </p>
+
+            </header>
+
+
+            <!-- =================================================
+                 RESUMO
+                 ================================================= -->
+
+            <section class="summary">
+
+
+                <div class="summary-card">
+
+                    <span>
+                        VOLUME TOTAL DA UNIDADE
+                    </span>
+
+                    <strong id="volumeTotal">
+                        R$ -
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <span>
+                        META DO MÊS
+                    </span>
+
+                    <strong id="metaMes">
+                        R$ -
+                    </strong>
+
+                    <b id="percentMesTop">
+                        --%
+                    </b>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 PROGRESSO MENSAL
+                 ================================================= -->
+
+            <section class="monthly-progress">
+
+                <div class="progress-info">
+
+                    <strong id="percentMes">
+                        0%
+                    </strong>
+
+                    <div class="progress-track">
+
+                        <div
+                            id="progressMes"
+                            class="progress-fill"
+                        ></div>
+
+                    </div>
+
+                    <span>
+                        FALTAM
+                        <b id="faltamMes">
+                            R$ -
+                        </b>
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 METAS
+                 ================================================= -->
+
+            <section class="goal-grid">
+
+
+                <!-- DIA -->
+
+                <div class="goal-card">
+
+                    <div class="goal-content">
+
+                        <span>
+                            META DIÁRIA
+                        </span>
+
+                        <strong id="metaDia">
+                            R$ -
+                        </strong>
+
+                        <small>
+                            REALIZADO HOJE
+                        </small>
+
+                        <b id="vendidoDia">
+                            R$ -
+                        </b>
+
+                    </div>
+
+                    <div class="circle-progress">
+
+                        <div class="circle-inner">
+
+                            <span id="percentDia">
+                                0%
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SEMANA -->
+
+                <div class="goal-card">
+
+                    <div class="goal-content">
+
+                        <span>
+                            META SEMANAL
+                        </span>
+
+                        <strong id="metaSemana">
+                            R$ -
+                        </strong>
+
+                        <small>
+                            REALIZADO NA SEMANA
+                        </small>
+
+                        <b id="vendidoSemana">
+                            R$ -
+                        </b>
+
+                    </div>
+
+                    <div class="circle-progress">
+
+                        <div class="circle-inner">
+
+                            <span id="percentSemana">
+                                0%
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MÊS -->
+
+                <div class="goal-card">
+
+                    <div class="goal-content">
+
+                        <span>
+                            META MENSAL
+                        </span>
+
+                        <strong id="metaMes2">
+                            R$ -
+                        </strong>
+
+                        <small>
+                            REALIZADO NO MÊS
+                        </small>
+
+                        <b id="vendidoMes">
+                            R$ -
+                        </b>
+
+                    </div>
+
+                    <div class="circle-progress">
+
+                        <div class="circle-inner">
+
+                            <span id="percentMesCircle">
+                                0%
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 TABELA
+                 ================================================= -->
+
+            <section class="ranking">
+
+
+                <div class="ranking-header">
+
+                    <span>
+                        POS.
+                    </span>
+
+                    <span>
+                        CONSULTOR
+                    </span>
+
+                    <span>
+                        VOLUME
+                    </span>
+
+                </div>
+
+
+                <div id="rankingList"></div>
+
+
+            </section>
+
+
+        </div>
+
+
+        <!-- RODAPÉ -->
 
         <footer>
 
-            <span id="ultimaAtualizacao">
-                Última atualização: --
-            </span>
+            <span class="footer-line"></span>
 
             <span>
-                GRANDES RESULTADOS SÃO CONSTRUÍDOS POR GRANDES ESCOLHAS.
+                GRANDES RESULTADOS SÃO CONSTRUÍDOS
+                POR GRANDES ESCOLHAS.
             </span>
+
+            <strong>
+                SIGA EM FRENTE.
+            </strong>
 
         </footer>
 
-    </main>
 
-    <script src="app.js"></script>
+    </section>
+
+
+</main>
+
+
+<!-- STATUS -->
+
+<div class="connection-status">
+
+    <span class="status-dot"></span>
+
+    <span id="status">
+        Conectando...
+    </span>
+
+</div>
+
+
+<script src="app.js"></script>
 
 </body>
+
 </html>
