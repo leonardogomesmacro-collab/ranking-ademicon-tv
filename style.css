@@ -1340,9 +1340,9 @@ body {
 
     position: fixed;
 
-    right: 26px;
+    right: 28px;
 
-    bottom: 20px;
+    bottom: 18px;
 
     z-index: 99999;
 
@@ -1350,14 +1350,16 @@ body {
 
     align-items: center;
 
-    gap: 10px;
-
-    min-width: 105px;
-
     justify-content: center;
 
+    gap: 10px;
+
+    min-width: 115px;
+
+    height: 38px;
+
     padding:
-        10px
+        0
         16px;
 
     color: #fff;
@@ -1367,28 +1369,22 @@ body {
             8,
             8,
             8,
-            .92
+            .96
         );
 
     border:
         1px solid
-        #333;
+        #444;
 
     border-radius: 8px;
 
     text-decoration: none;
 
-    font-size: 10px;
+    font-size: 11px;
 
     font-weight: 900;
 
     letter-spacing: .8px;
-
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
 
     box-shadow:
         0 5px 20px
@@ -1396,7 +1392,7 @@ body {
             0,
             0,
             0,
-            .45
+            .55
         );
 
     transition:
@@ -1409,7 +1405,7 @@ body {
 
     color: #ff0000;
 
-    font-size: 18px;
+    font-size: 20px;
 
     line-height: 1;
 
@@ -1417,6 +1413,8 @@ body {
 
 
 .screen-navigation:hover {
+
+    color: #fff;
 
     border-color:
         #ff0000;
@@ -1426,7 +1424,7 @@ body {
             255,
             0,
             0,
-            .10
+            .12
         );
 
     box-shadow:
@@ -1435,11 +1433,25 @@ body {
             255,
             0,
             0,
-            .20
+            .25
         );
 
     transform:
         translateY(-2px);
+
+}
+
+
+.screen-navigation-next {
+
+    right: 28px;
+
+}
+
+
+.screen-navigation-back {
+
+    right: 28px;
 
 }
 
