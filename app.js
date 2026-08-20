@@ -1090,9 +1090,12 @@ function atualizarProgresso(
         );
 
 
-    let porcentagem =
-        0;
+    let porcentagem = 0;
 
+
+    // =====================================================
+    // CALCULAR PERCENTUAL
+    // =====================================================
 
     if (
         meta > 0 &&
@@ -1100,17 +1103,13 @@ function atualizarProgresso(
     ) {
 
         porcentagem =
-            (
-                realizado /
-                meta
-            ) *
-            100;
+            (realizado / meta) * 100;
 
     }
 
 
     // =====================================================
-    // LIMITAR BARRA A 100%
+    // BARRA LIMITADA A 100%
     // =====================================================
 
     const largura =
@@ -1123,6 +1122,10 @@ function atualizarProgresso(
         );
 
 
+    // =====================================================
+    // ATUALIZAR BARRA
+    // =====================================================
+
     if (barra) {
 
         barra.style.width =
@@ -1130,6 +1133,10 @@ function atualizarProgresso(
 
     }
 
+
+    // =====================================================
+    // ATUALIZAR TEXTO
+    // =====================================================
 
     if (percentual) {
 
@@ -1140,166 +1147,189 @@ function atualizarProgresso(
 
     }
 
-}
-
-
-// =========================================================
-// FORMATAÇÃO DE MOEDA
-// =========================================================
-
-function moeda(
-    valor
-) {
-
-    valor =
-        numero(
-            valor
-        );
-
-
-    return valor.toLocaleString(
-        "pt-BR",
-        {
-            style: "currency",
-            currency: "BRL"
-        }
-    );
-
-}
-
-
-// =========================================================
-// CONVERTER PARA NÚMERO
-// =========================================================
-
-function numero(
-    valor
-) {
 
     // =====================================================
-    // VAZIO
-    // =====================================================
-
-    if (
-        valor === null ||
-        valor === undefined ||
-        valor === ""
-    ) {
-
-        return 0;
-
-    }
-
-
-    // =====================================================
-    // JÁ É NÚMERO
-    // =====================================================
-
-    if (
-        typeof valor ===
-        "number"
-    ) {
-
-        return isNaN(
-            valor
-        )
-            ? 0
-            : valor;
-
-    }
-
-
-    // =====================================================
-    // CONVERTER TEXTO
-    // =====================================================
-
-    let texto =
-        String(
-            valor
-        ).trim();
-
-
-    // =====================================================
-    // REMOVER R$
-    // =====================================================
-
-    texto =
-        texto.replace(
-            /R\$/gi,
-            ""
-        ).trim();
-
-
-    // =====================================================
-    // FORMATO BRASILEIRO
+    // CONVERTER % PARA GRAUS
     //
-    // 1.234.567,89
+    // 100% = 360 graus
+    // =====================================================
+
+    const graus =
+        Math.min(
+            Math.max(
+                porcentagem * 3.6,
+                0
+            ),
+            360
+        );
+
+
+    // =====================================================
+    // META DIÁRIA
     // =====================================================
 
     if (
-        texto.includes(",")
+        barraId === "progressDia"
     ) {
 
-        texto =
-            texto.replace(
-                /\./g,
-                ""
-            );
+        const circulo =
+            document
+                .getElementById(
+                    "percentDia"
+                )
+                ?.closest(
+                    ".goal-card"
+                )
+                ?.querySelector(
+                    ".circle-progress"
+                );
 
 
-        texto =
-            texto.replace(
-                ",",
-                "."
+        if (circulo) {
+
+            circulo.style.setProperty(
+                "--progress",
+                graus + "deg"
             );
+
+        }
 
     }
 
 
     // =====================================================
-    // REMOVER CARACTERES INVÁLIDOS
+    // META SEMANAL
     // =====================================================
 
-    texto =
-        texto.replace(
-            /[^\d.-]/g,
-            ""
-        );
+    if (
+        barraId === "progressSemana"
+    ) {
+
+        const circulo =
+            document
+                .getElementById(
+                    "percentSemana"
+                )
+                ?.closest(
+                    ".goal-card"
+                )
+                ?.querySelector(
+                    ".circle-progress"
+                );
 
 
-    const resultado =
-        parseFloat(
-            texto
-        );
+        if (circulo) {
 
+            circulo.style.setProperty(
+                "--progress",
+                graus + "deg"
+            );
 
-    return isNaN(
-        resultado
-    )
-        ? 0
-        : resultado;
-
-}
-
-
-// =========================================================
-// PERCENTUAL
-// =========================================================
-
-function formatarPercentual(
-    valor
-) {
-
-    return valor.toLocaleString(
-        "pt-BR",
-        {
-            minimumFractionDigits: 1,
-            maximumFractionDigits: 1
         }
-    ) + "%";
+
+    }
+
+
+    // =====================================================
+    // META MENSAL
+    // =====================================================
+
+    if (
+        barraId === "progressMes"
+    ) {
+
+        const circulo =
+            document
+                .getElementById(
+                    "percentMesCircle"
+                )
+                ?.closest(
+                    ".goal-card"
+                )
+                ?.querySelector(
+                    ".circle-progress"
+                );
+
+
+        if (circulo) {
+
+            circulo.style.setProperty(
+                "--progress",
+                graus + "deg"
+            );
+
+        }
+
+
+        // =================================================
+        // PERCENTUAL NO CARD SUPERIOR
+        // =================================================
+
+        const percentualTopo =
+            document.getElementById(
+                "percentMesTop"
+            );
+
+
+        if (percentualTopo) {
+
+            percentualTopo.textContent =
+                formatarPercentual(
+                    porcentagem
+                );
+
+        }
+
+
+        // =================================================
+        // PERCENTUAL DENTRO DO CÍRCULO
+        // =================================================
+
+        const percentualCirculo =
+            document.getElementById(
+                "percentMesCircle"
+            );
+
+
+        if (percentualCirculo) {
+
+            percentualCirculo.textContent =
+                formatarPercentual(
+                    porcentagem
+                );
+
+        }
+
+
+        // =================================================
+        // QUANTO FALTA
+        // =================================================
+
+        const faltam =
+            document.getElementById(
+                "faltamMes"
+            );
+
+
+        if (faltam) {
+
+            const restante =
+                Math.max(
+                    meta - realizado,
+                    0
+                );
+
+
+            faltam.textContent =
+                moeda(
+                    restante
+                );
+
+        }
+
+    }
 
 }
-
 
 // =========================================================
 // COLOCAR TEXTO NA PÁGINA
