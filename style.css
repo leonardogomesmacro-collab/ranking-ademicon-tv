@@ -627,3 +627,49 @@ footer span:last-child {
         min-height: 25px;
     }
 }
+
+/* =========================================================
+   AJUSTE — RANKING SEM ESPAÇO VAZIO
+   ========================================================= */
+
+.dashboard {
+    grid-template-rows:
+        55px
+        105px
+        220px
+        auto
+        20px;
+}
+
+
+/* O ranking ocupa somente o espaço necessário */
+
+.ranking {
+    flex: none;
+
+    height: auto;
+
+    min-height: 0;
+}
+
+
+/* Lista deixa de preencher o espaço restante */
+
+#rankingList {
+    flex: none;
+
+    height: auto;
+
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+/* Cada consultor ocupa uma linha fixa */
+
+.ranking-row {
+    height: 27px;
+
+    min-height: 27px;
+}
