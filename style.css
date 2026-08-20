@@ -904,11 +904,25 @@ body {
 }
 
 
+/* =========================================================
+   TEXTO FALTANTE DA META
+   ========================================================= */
+
 .progress-info > span {
 
-    min-width: 105px;
+    min-width: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 4px;
 
     text-align: right;
+
+    white-space: nowrap;
 
     font-size: 11px;
 
@@ -920,6 +934,17 @@ body {
 .progress-info > span b {
 
     color: #fff;
+
+    font-weight: 800;
+
+}
+
+
+#percentFaltanteMes {
+
+    color: #ff0000;
+
+    font-weight: 900;
 
 }
 
@@ -1573,6 +1598,15 @@ body {
     .ranking-row {
 
         height: 36px;
+
+    }
+
+
+    .progress-info > span {
+
+        min-width: 145px;
+
+        font-size: 10px;
 
     }
 
