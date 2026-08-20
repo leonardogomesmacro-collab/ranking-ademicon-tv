@@ -1,7 +1,7 @@
 /* =========================================================
    RANKING ADEMICON
    LAYOUT TV 16:9
-   VERSÃO AJUSTADA
+   VERSÃO FINAL AJUSTADA
    ========================================================= */
 
 @import url(
@@ -72,17 +72,21 @@ body {
     height: 100vh;
 
     padding:
-        20px
-        30px
-        16px;
+        18px
+        26px
+        12px;
 
     display: grid;
 
-    grid-template-columns:
-        39%
-        61%;
+    /*
+       Mais espaço para o painel direito.
+    */
 
-    gap: 26px;
+    grid-template-columns:
+        38%
+        62%;
+
+    gap: 24px;
 
 }
 
@@ -95,9 +99,9 @@ body {
 
     position: fixed;
 
-    top: 34px;
+    top: 25px;
 
-    right: 42px;
+    right: 35px;
 
     display: flex;
 
@@ -146,7 +150,7 @@ body {
     justify-content: space-between;
 
     padding:
-        18px
+        12px
         0
         0;
 
@@ -159,14 +163,14 @@ body {
 
 .brand {
 
-    padding-left: 90px;
+    padding-left: 72px;
 
 }
 
 
 .brand img {
 
-    width: 125px;
+    width: 120px;
 
     height: auto;
 
@@ -196,24 +200,15 @@ body {
 
 .hero-title {
 
-    margin-top: 4px;
+    margin-top: 0;
 
-    margin-left: 45px;
-
-    /*
-       REDUZIDO:
-       Antes:
-       clamp(48px, 4.5vw, 78px)
-
-       Agora:
-       clamp(42px, 3.8vw, 66px)
-    */
+    margin-left: 42px;
 
     font-size:
         clamp(
-            42px,
-            3.8vw,
-            66px
+            40px,
+            3.6vw,
+            62px
         );
 
     line-height: .90;
@@ -275,19 +270,16 @@ body {
     gap: 0;
 
     /*
-       SUBIR O PÓDIO
-
-       O valor negativo cria mais espaço entre
-       o pódio e as caixas inferiores.
+       PÓDIO MAIS ALTO
     */
 
     margin:
-        -34px
+        -52px
         0
-        18px;
+        12px;
 
     transform:
-        translateY(-10px);
+        translateY(-14px);
 
 }
 
@@ -302,9 +294,9 @@ body {
 
     width: 31%;
 
-    height: 62%;
+    height: 64%;
 
-    min-height: 235px;
+    min-height: 245px;
 
     padding:
         30px
@@ -329,7 +321,8 @@ body {
         );
 
     border:
-        1px solid #333;
+        1px solid
+        #333;
 
     border-radius: 18px;
 
@@ -349,14 +342,14 @@ body {
 .podium-card.second,
 .podium-card.third {
 
-    height: 56%;
+    height: 58%;
 
 }
 
 
 .podium-card.first {
 
-    height: 68%;
+    height: 71%;
 
     z-index: 2;
 
@@ -449,9 +442,9 @@ body {
 
 .podium-image {
 
-    width: 150px;
+    width: 145px;
 
-    height: 150px;
+    height: 145px;
 
     margin-top: 10px;
 
@@ -476,9 +469,9 @@ body {
 
 .podium-card.first .podium-image {
 
-    width: 180px;
+    width: 175px;
 
-    height: 180px;
+    height: 175px;
 
     border-color:
         #ff0000;
@@ -539,18 +532,21 @@ body {
    FOCO / DISCIPLINA / ESTRATÉGIA / RESULTADOS
    ========================================================= */
 
-/* =========================================================
-   PILARES
-   ========================================================= */
-
 .pillars {
+
+    /*
+       AUMENTADO
+    */
 
     height: 100px;
 
     display: grid;
 
     grid-template-columns:
-        repeat(4, 1fr);
+        repeat(
+            4,
+            1fr
+        );
 
     border:
         1px solid
@@ -559,7 +555,12 @@ body {
     border-radius: 15px;
 
     background:
-        rgba(10,10,10,.88);
+        rgba(
+            10,
+            10,
+            10,
+            .88
+        );
 
     overflow: hidden;
 
@@ -579,7 +580,8 @@ body {
     gap: 15px;
 
     padding:
-        14px 16px;
+        14px
+        16px;
 
     border-right:
         1px solid
@@ -596,7 +598,7 @@ body {
 
 
 /* =========================================================
-   ÍCONE
+   ÍCONES
    ========================================================= */
 
 .pillar-icon {
@@ -647,6 +649,7 @@ body {
 
 }
 
+
 /* =========================================================
    PAINEL DIREITO
    ========================================================= */
@@ -664,16 +667,30 @@ body {
 }
 
 
+/* =========================================================
+   PAINEL TOP 10
+   ========================================================= */
+
 .ranking-panel {
 
-    flex: 1;
+    /*
+       IMPORTANTE:
+
+       Não usar flex: 1 aqui.
+
+       Isso evita que o painel fique gigantesco
+       preenchendo todo o espaço vazio da tela.
+    */
+
+    flex:
+        0 0 auto;
 
     min-height: 0;
 
     padding:
-        22px
-        22px
-        18px;
+        24px
+        24px
+        20px;
 
     border:
         1px solid
@@ -707,11 +724,11 @@ body {
 
 .panel-header h1 {
 
-    font-size: 38px;
+    font-size: 42px;
 
     font-weight: 900;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -1.8px;
 
 }
 
@@ -720,18 +737,18 @@ body {
 
     color: #ff0000;
 
-    font-size: 55px;
+    font-size: 60px;
 
-    vertical-align: -5px;
+    vertical-align: -6px;
 
-    margin-right: 7px;
+    margin-right: 8px;
 
 }
 
 
 .panel-header p {
 
-    margin-top: 3px;
+    margin-top: 4px;
 
     color: #999;
 
@@ -754,9 +771,9 @@ body {
         1fr
         1fr;
 
-    gap: 16px;
+    gap: 18px;
 
-    margin-top: 14px;
+    margin-top: 16px;
 
 }
 
@@ -765,17 +782,17 @@ body {
 
     position: relative;
 
-    height: 70px;
+    height: 78px;
 
     padding:
-        14px
-        16px;
+        15px
+        18px;
 
     border:
         1px solid
         #292929;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     background:
         rgba(
@@ -794,7 +811,7 @@ body {
 
     color: #bbb;
 
-    font-size: 11px;
+    font-size: 12px;
 
     font-weight: 600;
 
@@ -809,7 +826,7 @@ body {
 
     color: #ff0000;
 
-    font-size: 22px;
+    font-size: 24px;
 
     font-weight: 900;
 
@@ -820,13 +837,13 @@ body {
 
     position: absolute;
 
-    right: 15px;
+    right: 17px;
 
-    bottom: 13px;
+    bottom: 15px;
 
     color: #ff0000;
 
-    font-size: 20px;
+    font-size: 22px;
 
     font-weight: 900;
 
@@ -845,7 +862,7 @@ body {
 
     text-align: right;
 
-    font-size: 21px;
+    font-size: 23px;
 
     line-height: 1;
 
@@ -858,9 +875,9 @@ body {
 
 .monthly-progress {
 
-    margin-top: 15px;
+    margin-top: 16px;
 
-    height: 45px;
+    height: 50px;
 
     padding:
         10px
@@ -870,7 +887,7 @@ body {
         1px solid
         #292929;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
 }
 
@@ -883,18 +900,20 @@ body {
 
     align-items: center;
 
-    gap: 12px;
+    gap: 14px;
 
 }
 
 
 .progress-info > strong {
 
-    min-width: 55px;
+    min-width: 58px;
 
     color: #ff0000;
 
-    font-size: 16px;
+    font-size: 17px;
+
+    font-weight: 900;
 
 }
 
@@ -903,7 +922,7 @@ body {
 
     flex: 1;
 
-    height: 11px;
+    height: 13px;
 
     background: #252525;
 
@@ -969,9 +988,9 @@ body {
             1fr
         );
 
-    gap: 14px;
+    gap: 16px;
 
-    margin-top: 15px;
+    margin-top: 17px;
 
 }
 
@@ -980,10 +999,10 @@ body {
 
     min-width: 0;
 
-    height: 105px;
+    height: 118px;
 
     padding:
-        13px;
+        15px;
 
     display: flex;
 
@@ -995,7 +1014,7 @@ body {
         1px solid
         #292929;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     background:
         rgba(
@@ -1021,7 +1040,7 @@ body {
 
     color: #bbb;
 
-    font-size: 10px;
+    font-size: 11px;
 
     font-weight: 600;
 
@@ -1032,9 +1051,11 @@ body {
 
     display: block;
 
-    margin-top: 5px;
+    margin-top: 6px;
 
-    font-size: 17px;
+    font-size: 19px;
+
+    font-weight: 800;
 
 }
 
@@ -1060,7 +1081,7 @@ body {
 
     color: #ff0000;
 
-    font-size: 12px;
+    font-size: 13px;
 
 }
 
@@ -1071,20 +1092,11 @@ body {
 
 .circle-progress {
 
-    /*
-       O JS atualiza esta variável dinamicamente.
-
-       Exemplo:
-
-       15.4% =
-       15.4% do círculo em vermelho.
-    */
-
     --progress: 0%;
 
-    width: 72px;
+    width: 82px;
 
-    height: 72px;
+    height: 82px;
 
     flex-shrink: 0;
 
@@ -1109,10 +1121,6 @@ body {
             100%
         );
 
-    /*
-       Transição suave do gráfico.
-    */
-
     transition:
         background
         .8s ease;
@@ -1120,9 +1128,9 @@ body {
 }
 
 
-/*
-   Brilho sutil na parte vermelha
-*/
+/* =========================================================
+   BRILHO DO CÍRCULO
+   ========================================================= */
 
 .circle-progress::after {
 
@@ -1135,12 +1143,12 @@ body {
     border-radius: 50%;
 
     box-shadow:
-        0 0 12px
+        0 0 14px
         rgba(
             255,
             0,
             0,
-            .12
+            .14
         );
 
     pointer-events: none;
@@ -1158,9 +1166,9 @@ body {
 
     z-index: 2;
 
-    width: 58px;
+    width: 66px;
 
-    height: 58px;
+    height: 66px;
 
     border-radius: 50%;
 
@@ -1179,9 +1187,9 @@ body {
 
     color: #fff;
 
-    font-size: 14px;
+    font-size: 15px;
 
-    font-weight: 800;
+    font-weight: 900;
 
 }
 
@@ -1192,18 +1200,22 @@ body {
 
 .ranking {
 
-    margin-top: 15px;
+    margin-top: 17px;
 
     border:
         1px solid
         #222;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     overflow: hidden;
 
 }
 
+
+/* =========================================================
+   GRID DA TABELA
+   ========================================================= */
 
 .ranking-header,
 .ranking-row {
@@ -1213,20 +1225,24 @@ body {
     grid-template-columns:
         65px
         1fr
-        130px;
+        145px;
 
     align-items: center;
 
 }
 
 
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
 .ranking-header {
 
-    height: 42px;
+    height: 48px;
 
     padding:
         0
-        15px;
+        16px;
 
     background:
         linear-gradient(
@@ -1237,20 +1253,24 @@ body {
 
     color: #fff;
 
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 900;
 
 }
 
 
+/* =========================================================
+   LINHAS
+   ========================================================= */
+
 .ranking-row {
 
-    height: 33px;
+    height: 40px;
 
     padding:
         0
-        15px;
+        16px;
 
     border-bottom:
         1px solid
@@ -1274,16 +1294,24 @@ body {
 }
 
 
+/* =========================================================
+   POSIÇÃO
+   ========================================================= */
+
 .ranking-row .position {
 
     color: #fff;
 
-    font-size: 12px;
+    font-size: 13px;
 
-    font-weight: 700;
+    font-weight: 800;
 
 }
 
+
+/* =========================================================
+   NOME
+   ========================================================= */
 
 .ranking-name {
 
@@ -1295,12 +1323,16 @@ body {
 
     color: #eee;
 
-    font-size: 11px;
+    font-size: 12px;
 
     font-weight: 600;
 
 }
 
+
+/* =========================================================
+   VOLUME
+   ========================================================= */
 
 .ranking-value {
 
@@ -1308,7 +1340,7 @@ body {
 
     color: #ff0000;
 
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 900;
 
@@ -1365,11 +1397,6 @@ body {
    ========================================================= */
 
 .left-panel .podium {
-
-    /*
-       Mantém o pódio visualmente mais alto
-       sem alterar o posicionamento das caixas.
-    */
 
     position: relative;
 
@@ -1469,6 +1496,45 @@ body {
     .pillar span {
 
         font-size: 8px;
+
+    }
+
+
+    .summary-card strong {
+
+        font-size: 20px;
+
+    }
+
+
+    .goal-card {
+
+        padding: 10px;
+
+    }
+
+
+    .circle-progress {
+
+        width: 68px;
+
+        height: 68px;
+
+    }
+
+
+    .circle-inner {
+
+        width: 54px;
+
+        height: 54px;
+
+    }
+
+
+    .ranking-row {
+
+        height: 36px;
 
     }
 
