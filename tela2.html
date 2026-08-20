@@ -113,11 +113,9 @@
                 </div>
 
 
-
                 <div class="position">
                     1º
                 </div>
-
 
 
                 <div class="photo-wrapper">
@@ -131,11 +129,9 @@
                 </div>
 
 
-
                 <h3 id="nomeSemana">
                     -
                 </h3>
-
 
 
                 <div
@@ -146,11 +142,9 @@
                 </div>
 
 
-
                 <div class="congratulations">
                     PARABÉNS!
                 </div>
-
 
 
                 <div class="description">
@@ -182,11 +176,9 @@
                 </div>
 
 
-
                 <div class="position">
                     1º
                 </div>
-
 
 
                 <div class="photo-wrapper">
@@ -200,11 +192,9 @@
                 </div>
 
 
-
                 <h3 id="nomeContratos">
                     -
                 </h3>
-
 
 
                 <div
@@ -215,11 +205,9 @@
                 </div>
 
 
-
                 <div class="congratulations">
                     PARABÉNS!
                 </div>
-
 
 
                 <div class="description">
@@ -256,7 +244,57 @@
 
 
 
+    <!-- =====================================================
+         NAVEGAÇÃO — VOLTAR PARA TELA 1
+         ===================================================== -->
+
+    <a
+        href="index.html"
+        class="screen-navigation screen-navigation-back"
+        aria-label="Voltar para Tela 1"
+    >
+
+        <b>
+            ←
+        </b>
+
+        <span>
+            TELA 1
+        </span>
+
+    </a>
+
+
+
     <script src="tela2.js"></script>
+
+
+    <!-- =====================================================
+         TROCA AUTOMÁTICA DE TELA
+         ===================================================== -->
+
+    <script>
+
+        /*
+         * Tempo de permanência nesta tela:
+         * 15 segundos
+         */
+
+        const TEMPO_TELA_2 = 15000;
+
+
+        setTimeout(
+            function () {
+
+                window.location.href =
+                    "index.html";
+
+            },
+            TEMPO_TELA_2
+        );
+
+    </script>
+
 
 </body>
 
