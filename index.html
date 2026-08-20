@@ -177,6 +177,7 @@
                 </div>
 
                 <div>
+
                     <strong>
                         FOCO
                     </strong>
@@ -184,6 +185,7 @@
                     <span>
                         NO OBJETIVO
                     </span>
+
                 </div>
 
             </div>
@@ -196,6 +198,7 @@
                 </div>
 
                 <div>
+
                     <strong>
                         DISCIPLINA
                     </strong>
@@ -203,6 +206,7 @@
                     <span>
                         TODO DIA
                     </span>
+
                 </div>
 
             </div>
@@ -215,6 +219,7 @@
                 </div>
 
                 <div>
+
                     <strong>
                         ESTRATÉGIA
                     </strong>
@@ -222,6 +227,7 @@
                     <span>
                         COM INTELIGÊNCIA
                     </span>
+
                 </div>
 
             </div>
@@ -234,6 +240,7 @@
                 </div>
 
                 <div>
+
                     <strong>
                         RESULTADOS
                     </strong>
@@ -241,6 +248,7 @@
                     <span>
                         EXTRAORDINÁRIOS
                     </span>
+
                 </div>
 
             </div>
@@ -383,7 +391,10 @@
 
                     </div>
 
-                    <div class="circle-progress">
+                    <div
+                        class="circle-progress"
+                        id="circleDia"
+                    >
 
                         <div class="circle-inner">
 
@@ -422,7 +433,10 @@
 
                     </div>
 
-                    <div class="circle-progress">
+                    <div
+                        class="circle-progress"
+                        id="circleSemana"
+                    >
 
                         <div class="circle-inner">
 
@@ -461,7 +475,10 @@
 
                     </div>
 
-                    <div class="circle-progress">
+                    <div
+                        class="circle-progress"
+                        id="circleMes"
+                    >
 
                         <div class="circle-inner">
 
@@ -536,7 +553,9 @@
 </main>
 
 
-<!-- STATUS -->
+<!-- =====================================================
+     STATUS
+     ===================================================== -->
 
 <div class="connection-status">
 
@@ -549,7 +568,56 @@
 </div>
 
 
+<!-- =====================================================
+     NAVEGAÇÃO — TELA 2
+     ===================================================== -->
+
+<a
+    href="tela2.html"
+    class="screen-navigation screen-navigation-next"
+    aria-label="Ir para Tela 2"
+>
+
+    <span>
+        TELA 2
+    </span>
+
+    <b>
+        →
+    </b>
+
+</a>
+
+
 <script src="app.js"></script>
+
+
+<!-- =====================================================
+     TROCA AUTOMÁTICA DE TELA
+     ===================================================== -->
+
+<script>
+
+    /*
+     * Tempo de permanência nesta tela:
+     * 15 segundos
+     */
+
+    const TEMPO_TELA_1 = 15000;
+
+
+    setTimeout(
+        function () {
+
+            window.location.href =
+                "tela2.html";
+
+        },
+        TEMPO_TELA_1
+    );
+
+</script>
+
 
 </body>
 
