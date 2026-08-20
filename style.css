@@ -1,14 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+}
+
 body {
     background:
-        radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.08), transparent 30%),
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 0, 0, 0.08),
+            transparent 30%
+        ),
         #050505;
 
     color: #fff;
@@ -18,79 +37,123 @@ body {
     min-height: 100vh;
 }
 
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
 .dashboard {
-    width: 100%;
-    max-width: 1600px;
 
-    margin: auto;
+    width: min(1200px, 94vw);
 
-    padding: 35px;
+    height: 100vh;
+    max-height: 100vh;
 
-    min-height: 100vh;
+    margin: 0 auto;
+
+    padding: 14px 0 8px;
+
+    display: grid;
+
+    grid-template-rows:
+        55px
+        105px
+        220px
+        minmax(0, 1fr)
+        20px;
+
+    row-gap: 10px;
+
+    overflow: hidden;
 }
 
 
-/* HEADER */
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .header {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    margin-bottom: 30px;
+    min-height: 0;
 }
 
 .header h1 {
-    font-size: 42px;
+
+    font-size: 30px;
+
+    line-height: 1;
+
     font-weight: 900;
 
-    letter-spacing: -2px;
+    letter-spacing: -1.5px;
 }
 
 .header p {
+
     color: #aaa;
 
     margin-top: 5px;
 
-    font-size: 14px;
+    font-size: 11px;
 }
 
 .status {
+
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 
     color: #aaa;
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+
+    width: 7px;
+    height: 7px;
 
     background: #00ff66;
 
     border-radius: 50%;
 
-    box-shadow: 0 0 10px #00ff66;
+    box-shadow:
+        0 0 10px #00ff66;
 }
 
 
-/* METRICS */
+/* =========================================================
+   MÉTRICAS
+   ========================================================= */
 
 .metrics {
+
     display: grid;
 
     grid-template-columns:
         repeat(5, 1fr);
 
-    gap: 15px;
+    gap: 10px;
 
-    margin-bottom: 30px;
+    min-height: 0;
 }
 
 .metric {
+
+    min-height: 0;
+
+    height: 105px;
+
+    padding: 13px 15px;
+
     background:
         linear-gradient(
             145deg,
@@ -100,54 +163,63 @@ body {
 
     border: 1px solid rgba(255,255,255,.10);
 
-    border-radius: 12px;
+    border-radius: 11px;
 
-    padding: 20px;
-
-    min-height: 150px;
+    overflow: hidden;
 }
 
 .metric span {
+
     display: block;
 
     color: #aaa;
 
-    font-size: 11px;
+    font-size: 9px;
 
     font-weight: 600;
 
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .metric strong {
+
     display: block;
 
     color: #ff0000;
 
-    font-size: 23px;
+    font-size: 18px;
+
+    line-height: 1.1;
 
     font-weight: 800;
 }
 
 .metric small {
+
     display: block;
 
     color: #888;
 
-    margin-top: 10px;
+    margin-top: 6px;
 
-    font-size: 11px;
+    font-size: 9px;
+
+    line-height: 1.1;
 }
 
 .metric small b {
+
     color: #fff;
 }
 
 
-/* PROGRESS */
+/* =========================================================
+   BARRA DE PROGRESSO
+   ========================================================= */
 
 .progress {
-    height: 6px;
+
+    height: 5px;
 
     background: #222;
 
@@ -155,10 +227,11 @@ body {
 
     overflow: hidden;
 
-    margin-top: 15px;
+    margin-top: 7px;
 }
 
 .progress div {
+
     height: 100%;
 
     width: 0%;
@@ -174,25 +247,40 @@ body {
 }
 
 
-/* PODIUM */
+/* =========================================================
+   PÓDIO
+   ========================================================= */
 
 .podium {
+
+    height: 220px;
+
+    min-height: 220px;
+
     display: flex;
 
-    align-items: end;
+    align-items: flex-end;
+
     justify-content: center;
 
-    gap: 20px;
+    gap: 10px;
 
-    margin: 40px 0;
+    margin: 0;
+
+    min-width: 0;
 }
 
 .podium-card {
-    width: 250px;
+
+    width: 210px;
+
+    height: 190px;
+
+    min-height: 190px;
 
     text-align: center;
 
-    padding: 25px 15px;
+    padding: 10px 8px 8px;
 
     background:
         linear-gradient(
@@ -203,11 +291,18 @@ body {
 
     border: 1px solid #252525;
 
-    border-radius: 15px;
+    border-radius: 14px;
+
+    overflow: hidden;
 }
 
 .podium-card.first {
-    min-height: 360px;
+
+    width: 220px;
+
+    height: 220px;
+
+    min-height: 220px;
 
     border-color: #ff0000;
 
@@ -215,32 +310,31 @@ body {
         0 0 30px rgba(255,0,0,.15);
 }
 
-.podium-card.second,
-.podium-card.third {
-    min-height: 300px;
-}
-
 .position {
+
     display: inline-block;
 
     background: #ff0000;
 
-    padding: 6px 14px;
+    padding: 5px 10px;
 
-    border-radius: 8px;
+    border-radius: 7px;
+
+    font-size: 11px;
 
     font-weight: 800;
 
-    margin-bottom: 15px;
+    margin-bottom: 7px;
 }
 
 .podium-card img {
+
     display: block;
 
-    width: 130px;
-    height: 130px;
+    width: 76px;
+    height: 76px;
 
-    margin: auto;
+    margin: 4px auto 5px;
 
     object-fit: cover;
 
@@ -252,6 +346,10 @@ body {
 }
 
 .podium-card.first img {
+
+    width: 88px;
+    height: 88px;
+
     border-color: #ff0000;
 
     box-shadow:
@@ -259,290 +357,27 @@ body {
 }
 
 .podium-card h2 {
-    font-size: 18px;
 
-    margin-top: 15px;
+    font-size: 12px;
+
+    line-height: 1.12;
+
+    margin-top: 6px;
+
+    max-height: 42px;
+
+    overflow: hidden;
 }
 
 .podium-card strong {
+
     display: block;
 
     color: #ff0000;
 
-    font-size: 20px;
-
-    margin-top: 8px;
-}
-
-
-/* RANKING */
-
-.ranking {
-    border: 1px solid #222;
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    background: #080808;
-}
-
-.ranking-header,
-.ranking-row {
-    display: grid;
-
-    grid-template-columns:
-        80px 1fr 220px;
-
-    align-items: center;
-}
-
-.ranking-header {
-    background: #e60000;
-
-    padding: 15px 20px;
-
-    font-size: 13px;
-
-    font-weight: 800;
-}
-
-.ranking-row {
-    padding: 13px 20px;
-
-    border-bottom: 1px solid #1d1d1d;
-}
-
-.ranking-row:last-child {
-    border-bottom: none;
-}
-
-.ranking-row .position {
-    background: none;
-
-    padding: 0;
-
-    color: #fff;
-
-    margin: 0;
-}
-
-.ranking-name {
-    font-weight: 600;
-}
-
-.ranking-value {
-    text-align: right;
-
-    color: #ff0000;
-
-    font-weight: 800;
-}
-
-
-/* FOOTER */
-
-footer {
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-top: 25px;
-
-    color: #666;
-
-    font-size: 10px;
-}
-
-footer span:last-child {
-    color: #888;
-}
-
-
-/* RESPONSIVE */
-
-@media(max-width: 1100px) {
-
-    .metrics {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-}
-
-@media(max-width: 700px) {
-
-    .dashboard {
-        padding: 20px;
-    }
-
-    .metrics {
-        grid-template-columns: 1fr;
-    }
-
-    .podium {
-        flex-direction: column;
-
-        align-items: center;
-    }
-
-    .podium-card {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .ranking-header,
-    .ranking-row {
-        grid-template-columns:
-            50px 1fr 130px;
-    }
-
-}
-/* =========================================================
-   AJUSTE FINAL — TELA TV 16:9
-   ========================================================= */
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-
-body {
-    min-height: 100vh;
-}
-
-
-.dashboard {
-    width: min(1180px, 94vw);
-    height: 100vh;
-    max-height: 100vh;
-
-    margin: 0 auto;
-    padding: 24px 0 12px;
-
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* =========================================================
-   CABEÇALHO
-   ========================================================= */
-
-.header {
-    flex-shrink: 0;
-    margin-bottom: 18px;
-}
-
-
-.header h1 {
-    margin: 0;
-}
-
-
-.header p {
-    margin: 4px 0 0;
-}
-
-
-/* =========================================================
-   INDICADORES
-   ========================================================= */
-
-.metrics {
-    flex-shrink: 0;
-
-    gap: 10px;
-
-    margin-bottom: 18px;
-}
-
-
-.metric {
-    min-height: 0;
-    padding: 14px 16px;
-    box-sizing: border-box;
-}
-
-
-.metric strong {
-    margin-top: 8px;
-    font-size: 20px;
-}
-
-
-.metric small {
-    margin-top: 6px;
-    font-size: 10px;
-}
-
-
-.progress {
-    height: 5px;
-    margin-top: 7px;
-}
-
-
-/* =========================================================
-   PÓDIO
-   ========================================================= */
-
-.podium {
-    flex: 0 0 275px;
-
-    height: 275px;
-
-    margin-bottom: 16px;
-
-    align-items: flex-end;
-}
-
-
-.podium-card {
-    height: 235px;
-
-    padding: 16px 10px 12px;
-
-    box-sizing: border-box;
-}
-
-
-.podium-card.first {
-    height: 275px;
-}
-
-
-.podium-card img {
-    width: 92px;
-    height: 92px;
-
-    margin: 12px auto 8px;
-}
-
-
-.podium-card.first img {
-    width: 108px;
-    height: 108px;
-}
-
-
-.podium-card h2 {
     font-size: 14px;
-    line-height: 1.15;
 
-    margin: 8px 4px 6px;
-}
-
-
-.podium-card strong {
-    font-size: 15px;
+    margin-top: 5px;
 }
 
 
@@ -551,6 +386,48 @@ body {
    ========================================================= */
 
 .ranking {
+
+    min-height: 0;
+
+    height: 100%;
+
+    border: 1px solid #222;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    background: #080808;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.ranking-header {
+
+    flex: 0 0 32px;
+
+    height: 32px;
+
+    display: grid;
+
+    grid-template-columns:
+        55px 1fr 160px;
+
+    align-items: center;
+
+    background: #e60000;
+
+    padding: 0 16px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+}
+
+#rankingList {
+
     flex: 1;
 
     min-height: 0;
@@ -558,44 +435,195 @@ body {
     overflow: hidden;
 }
 
+.ranking-row {
 
-.ranking-header {
-    height: 36px;
+    height: 27px;
 
-    box-sizing: border-box;
+    min-height: 27px;
 
-    flex-shrink: 0;
+    display: grid;
+
+    grid-template-columns:
+        55px 1fr 160px;
+
+    align-items: center;
+
+    padding: 0 16px;
+
+    border-bottom: 1px solid #1d1d1d;
+
+    font-size: 11px;
 }
 
+.ranking-row:last-child {
 
-#rankingList {
-    height: calc(100% - 36px);
+    border-bottom: none;
+}
+
+.ranking-row .position {
+
+    background: none;
+
+    padding: 0;
+
+    color: #fff;
+
+    margin: 0;
+
+    font-size: 11px;
+}
+
+.ranking-name {
+
+    font-weight: 600;
+
+    white-space: nowrap;
 
     overflow: hidden;
+
+    text-overflow: ellipsis;
 }
 
+.ranking-value {
 
-.ranking-row {
-    height: calc(
-        (100% - 36px) / 10
-    );
+    text-align: right;
 
-    min-height: 0;
+    color: #ff0000;
 
-    box-sizing: border-box;
+    font-weight: 800;
 }
 
 
 /* =========================================================
-   RODAPÉ
+   FOOTER
    ========================================================= */
 
 footer {
-    flex-shrink: 0;
 
-    height: 24px;
+    height: 20px;
 
-    margin-top: 8px;
+    min-height: 20px;
 
-    box-sizing: border-box;
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: #666;
+
+    font-size: 8px;
+
+    overflow: hidden;
+}
+
+footer span:last-child {
+
+    color: #888;
+}
+
+
+/* =========================================================
+   TELAS MENORES
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard {
+
+        width: 94vw;
+
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .metric strong {
+
+        font-size: 16px;
+    }
+
+    .podium-card {
+
+        width: 190px;
+    }
+
+    .podium-card.first {
+
+        width: 205px;
+    }
+}
+
+
+/* =========================================================
+   TELAS MUITO BAIXAS
+   ========================================================= */
+
+@media (max-height: 800px) {
+
+    .dashboard {
+
+        padding-top: 8px;
+        padding-bottom: 5px;
+
+        grid-template-rows:
+            48px
+            90px
+            190px
+            minmax(0, 1fr)
+            18px;
+
+        row-gap: 7px;
+    }
+
+    .metric {
+
+        height: 90px;
+
+        padding: 10px 12px;
+    }
+
+    .metric strong {
+
+        font-size: 16px;
+    }
+
+    .podium {
+
+        height: 190px;
+
+        min-height: 190px;
+    }
+
+    .podium-card {
+
+        height: 165px;
+
+        min-height: 165px;
+    }
+
+    .podium-card.first {
+
+        height: 190px;
+
+        min-height: 190px;
+    }
+
+    .podium-card img {
+
+        width: 65px;
+        height: 65px;
+    }
+
+    .podium-card.first img {
+
+        width: 75px;
+        height: 75px;
+    }
+
+    .ranking-row {
+
+        height: 25px;
+
+        min-height: 25px;
+    }
 }
