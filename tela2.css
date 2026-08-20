@@ -921,3 +921,121 @@ footer strong {
     }
 
 }
+
+/* =========================================================
+   NAVEGAÇÃO ENTRE TELAS
+   ========================================================= */
+
+.screen-navigation {
+
+    position: fixed;
+
+    right: 28px;
+
+    bottom: 18px;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    min-width: 115px;
+
+    height: 38px;
+
+    padding:
+        0
+        16px;
+
+    color: #fff;
+
+    background:
+        rgba(
+            8,
+            8,
+            8,
+            .96
+        );
+
+    border:
+        1px solid
+        #444;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: .8px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(
+            0,
+            0,
+            0,
+            .55
+        );
+
+    transition:
+        all .2s ease;
+
+}
+
+
+.screen-navigation b {
+
+    color: #ff0000;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+}
+
+
+.screen-navigation:hover {
+
+    color: #fff;
+
+    border-color:
+        #ff0000;
+
+    background:
+        rgba(
+            255,
+            0,
+            0,
+            .12
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(
+            255,
+            0,
+            0,
+            .25
+        );
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.screen-navigation-back {
+
+    right: 28px;
+
+    bottom: 18px;
+
+}
