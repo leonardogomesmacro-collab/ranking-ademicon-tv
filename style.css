@@ -1,7 +1,7 @@
 /* =========================================================
    RANKING ADEMICON
    DASHBOARD TV 16:9
-   REFINAMENTO V3
+   REFINAMENTO V4
    ========================================================= */
 
 @import url(
@@ -1124,7 +1124,7 @@ body {
 
 
 /* =========================================================
-   RANKING TOP 10
+   RANKING TOP 10 — V4
    ========================================================= */
 
 .ranking {
@@ -1149,7 +1149,7 @@ body {
 
 
 /* =========================================================
-   CABEÇALHO DA TABELA — AUMENTADO
+   ESTRUTURA
    ========================================================= */
 
 .ranking-header,
@@ -1157,16 +1157,20 @@ body {
     display: grid;
 
     grid-template-columns:
-        55px
+        58px
         1fr
-        140px;
+        155px;
 
     align-items: center;
 }
 
 
+/* =========================================================
+   CABEÇALHO DA TABELA
+   ========================================================= */
+
 .ranking-header {
-    height: 44px;
+    height: 46px;
 
     padding:
         0
@@ -1181,7 +1185,7 @@ body {
 
     color: #fff;
 
-    font-size: 14px;
+    font-size: 16px;
 
     font-weight: 900;
 
@@ -1194,7 +1198,7 @@ body {
    ========================================================= */
 
 .ranking-row {
-    height: 37px;
+    height: 40px;
 
     padding:
         0
@@ -1242,13 +1246,13 @@ body {
 
 
 /* =========================================================
-   POSIÇÃO — AUMENTADA
+   POSIÇÃO
    ========================================================= */
 
 .ranking-row .position {
     color: #fff;
 
-    font-size: 14px;
+    font-size: 15px;
 
     font-weight: 800;
 
@@ -1257,7 +1261,7 @@ body {
 
 
 /* =========================================================
-   NOME DO CONSULTOR — AUMENTADO
+   NOME DO CONSULTOR
    ========================================================= */
 
 .ranking-name {
@@ -1269,7 +1273,7 @@ body {
 
     color: #eee;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: 600;
 
@@ -1280,14 +1284,14 @@ body {
 .ranking-row:first-child .ranking-name {
     color: #fff;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: 800;
 }
 
 
 /* =========================================================
-   VALOR — AUMENTADO
+   VOLUME
    ========================================================= */
 
 .ranking-value {
@@ -1295,7 +1299,7 @@ body {
 
     color: #ff0000;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: 900;
 
@@ -1681,8 +1685,44 @@ body {
     }
 
 
+    /* =====================================================
+       TOP 10 — MANTÉM A LEITURA GRANDE
+       ===================================================== */
+
+    .ranking-header,
     .ranking-row {
-        height: 36px;
+        grid-template-columns:
+            55px
+            1fr
+            145px;
+    }
+
+
+    .ranking-header {
+        height: 44px;
+
+        font-size: 15px;
+    }
+
+
+    .ranking-row {
+        height: 39px;
+    }
+
+
+    .ranking-row .position {
+        font-size: 14px;
+    }
+
+
+    .ranking-name,
+    .ranking-row:first-child .ranking-name {
+        font-size: 13px;
+    }
+
+
+    .ranking-value {
+        font-size: 13px;
     }
 
 
@@ -1896,22 +1936,28 @@ body {
     }
 
 
+    /* =====================================================
+       TOP 10 — VERSÃO MENOR PARA TELAS REDUZIDAS
+       ===================================================== */
+
     .ranking-header,
     .ranking-row {
         grid-template-columns:
-            45px
+            48px
             1fr
-            115px;
+            125px;
     }
 
 
     .ranking-header {
-        font-size: 13px;
+        height: 42px;
+
+        font-size: 14px;
     }
 
 
     .ranking-row {
-        height: 33px;
+        height: 37px;
     }
 
 
@@ -1922,12 +1968,12 @@ body {
 
     .ranking-name,
     .ranking-row:first-child .ranking-name {
-        font-size: 11px;
+        font-size: 12px;
     }
 
 
     .ranking-value {
-        font-size: 11px;
+        font-size: 12px;
     }
 
 }
