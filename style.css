@@ -1,7 +1,7 @@
 /* =========================================================
    RANKING ADEMICON
    DASHBOARD TV 16:9
-   REFINAMENTO V1
+   REFINAMENTO V2
    ========================================================= */
 
 @import url(
@@ -32,7 +32,7 @@ body {
     background:
         radial-gradient(
             circle at 15% 50%,
-            rgba(255, 0, 0, .075),
+            rgba(255, 0, 0, .065),
             transparent 34%
         ),
         radial-gradient(
@@ -50,6 +50,7 @@ body {
         sans-serif;
 
     -webkit-font-smoothing: antialiased;
+
     text-rendering: optimizeLegibility;
 }
 
@@ -63,9 +64,9 @@ body {
     height: 100vh;
 
     padding:
-        18px
-        26px
-        12px;
+        16px
+        24px
+        10px;
 
     display: grid;
 
@@ -73,7 +74,7 @@ body {
         38%
         62%;
 
-    gap: 24px;
+    gap: 22px;
 }
 
 
@@ -85,7 +86,7 @@ body {
     position: fixed;
 
     top: 25px;
-    right: 35px;
+    right: 34px;
 
     display: flex;
 
@@ -121,6 +122,8 @@ body {
 .left-panel {
     height: 100%;
 
+    min-width: 0;
+
     display: flex;
 
     flex-direction: column;
@@ -128,11 +131,9 @@ body {
     justify-content: space-between;
 
     padding:
-        10px
+        8px
         0
         0;
-
-    min-width: 0;
 }
 
 
@@ -141,12 +142,12 @@ body {
    ========================================================= */
 
 .brand {
-    padding-left: 58px;
+    padding-left: 48px;
 }
 
 
 .brand img {
-    width: 118px;
+    width: 112px;
 
     height: auto;
 
@@ -170,19 +171,21 @@ body {
 
 
 /* =========================================================
-   TÍTULO PRINCIPAL
+   TÍTULO
    ========================================================= */
 
 .hero-title {
-    margin-top: 2px;
+    margin-top: 1px;
 
-    margin-left: 34px;
+    margin-left: 30px;
+
+    max-width: 500px;
 
     font-size:
         clamp(
             38px,
-            3.25vw,
-            56px
+            3.1vw,
+            54px
         );
 
     line-height: .90;
@@ -190,8 +193,6 @@ body {
     letter-spacing: -2.8px;
 
     font-weight: 900;
-
-    max-width: 520px;
 }
 
 
@@ -237,13 +238,17 @@ body {
 
     gap: 0;
 
+    /*
+       Recupera presença vertical do pódio.
+       Ele sobe sem invadir o título.
+    */
     margin:
-        -58px
+        -35px
         0
-        10px;
+        5px;
 
     transform:
-        translateY(-12px);
+        translateY(-7px);
 }
 
 
@@ -256,13 +261,13 @@ body {
 
     width: 31.5%;
 
-    height: 66%;
+    height: 69%;
 
-    min-height: 245px;
+    min-height: 285px;
 
     padding:
-        30px
-        9px
+        34px
+        10px
         18px;
 
     text-align: center;
@@ -278,15 +283,15 @@ body {
     background:
         linear-gradient(
             145deg,
-            rgba(34,34,34,.88),
-            rgba(8,8,8,.97)
+            rgba(34, 34, 34, .88),
+            rgba(8, 8, 8, .97)
         );
 
     border:
         1px solid
         #303030;
 
-    border-radius: 18px;
+    border-radius: 17px;
 
     box-shadow:
         inset
@@ -304,14 +309,24 @@ body {
 }
 
 
+/* ---------------------------------------------------------
+   SEGUNDO E TERCEIRO
+   --------------------------------------------------------- */
+
 .podium-card.second,
 .podium-card.third {
-    height: 59%;
+    height: 62%;
 }
 
 
+/* ---------------------------------------------------------
+   PRIMEIRO
+   --------------------------------------------------------- */
+
 .podium-card.first {
-    height: 73%;
+    height: 76%;
+
+    min-height: 315px;
 
     z-index: 2;
 
@@ -319,12 +334,12 @@ body {
         #ff0000;
 
     box-shadow:
-        0 0 28px
+        0 0 30px
         rgba(
             255,
             0,
             0,
-            .16
+            .17
         ),
         inset
         0 0 35px
@@ -395,14 +410,16 @@ body {
 
 
 /* =========================================================
-   FOTO DO PÓDIO
+   FOTO
    ========================================================= */
 
 .podium-image {
-    width: 150px;
-    height: 150px;
+    width: 145px;
+    height: 145px;
 
     margin-top: 10px;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 
@@ -422,15 +439,22 @@ body {
 }
 
 
+/* ---------------------------------------------------------
+   FOTO DO PRIMEIRO
+   --------------------------------------------------------- */
+
 .podium-card.first .podium-image {
     width: 178px;
     height: 178px;
 
-    border-color:
+    margin-top: 9px;
+
+    border:
+        2px solid
         #ff0000;
 
     box-shadow:
-        0 0 22px
+        0 0 24px
         rgba(
             255,
             0,
@@ -439,6 +463,10 @@ body {
         );
 }
 
+
+/* ---------------------------------------------------------
+   IMAGEM
+   --------------------------------------------------------- */
 
 .podium-image img {
     width: 100%;
@@ -449,13 +477,13 @@ body {
 
 
 /* =========================================================
-   NOME
+   NOME DO CONSULTOR
    ========================================================= */
 
 .podium-card h2 {
-    max-width: 95%;
+    width: 96%;
 
-    margin-top: 12px;
+    margin-top: 14px;
 
     font-size: 14px;
 
@@ -469,6 +497,8 @@ body {
 
 .podium-card.first h2 {
     font-size: 15px;
+
+    margin-top: 14px;
 }
 
 
@@ -490,7 +520,9 @@ body {
 
 
 .podium-card.first strong {
-    font-size: 18px;
+    font-size: 19px;
+
+    margin-top: 8px;
 }
 
 
@@ -499,7 +531,9 @@ body {
    ========================================================= */
 
 .pillars {
-    height: 100px;
+    height: 92px;
+
+    flex-shrink: 0;
 
     display: grid;
 
@@ -542,11 +576,11 @@ body {
 
     align-items: center;
 
-    gap: 14px;
+    gap: 13px;
 
     padding:
-        14px
-        15px;
+        12px
+        14px;
 
     border-right:
         1px solid
@@ -559,10 +593,14 @@ body {
 }
 
 
+/* =========================================================
+   ÍCONES DOS PILARES
+   ========================================================= */
+
 .pillar-icon {
     color: #ff0000;
 
-    font-size: 44px;
+    font-size: 39px;
 
     line-height: 1;
 
@@ -582,7 +620,7 @@ body {
 .pillar strong {
     display: block;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 900;
 
@@ -593,9 +631,9 @@ body {
 .pillar span {
     display: block;
 
-    margin-top: 6px;
+    margin-top: 5px;
 
-    font-size: 10px;
+    font-size: 9px;
 
     color: #aaa;
 
@@ -625,15 +663,15 @@ body {
     min-height: 0;
 
     padding:
-        24px
-        24px
-        20px;
+        22px
+        22px
+        14px;
 
     border:
         1px solid
         #292929;
 
-    border-radius: 20px;
+    border-radius: 19px;
 
     background:
         linear-gradient(
@@ -655,11 +693,11 @@ body {
 
 
 /* =========================================================
-   CABEÇALHO DO PAINEL
+   CABEÇALHO
    ========================================================= */
 
 .panel-header h1 {
-    font-size: 43px;
+    font-size: 42px;
 
     font-weight: 900;
 
@@ -672,7 +710,7 @@ body {
 .panel-header h1 span {
     color: #ff0000;
 
-    font-size: 61px;
+    font-size: 59px;
 
     vertical-align: -6px;
 
@@ -685,7 +723,7 @@ body {
 
     color: #999;
 
-    font-size: 11px;
+    font-size: 10px;
 
     text-transform: uppercase;
 }
@@ -702,20 +740,20 @@ body {
         1fr
         1fr;
 
-    gap: 18px;
+    gap: 16px;
 
-    margin-top: 16px;
+    margin-top: 15px;
 }
 
 
 .summary-card {
     position: relative;
 
-    height: 80px;
+    height: 74px;
 
     padding:
-        15px
-        18px;
+        14px
+        16px;
 
     border:
         1px solid
@@ -738,7 +776,7 @@ body {
 
     color: #bbb;
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 600;
 }
@@ -747,11 +785,11 @@ body {
 .summary-card strong {
     display: block;
 
-    margin-top: 7px;
+    margin-top: 6px;
 
     color: #ff0000;
 
-    font-size: 25px;
+    font-size: 24px;
 
     font-weight: 900;
 
@@ -762,28 +800,15 @@ body {
 .summary-card b {
     position: absolute;
 
-    right: 17px;
+    right: 16px;
 
-    bottom: 15px;
+    bottom: 13px;
 
     color: #ff0000;
 
-    font-size: 23px;
+    font-size: 22px;
 
     font-weight: 900;
-}
-
-
-.summary-card:nth-child(2) b {
-    display: block;
-
-    min-width: 60px;
-
-    text-align: right;
-
-    font-size: 23px;
-
-    line-height: 1;
 }
 
 
@@ -792,13 +817,13 @@ body {
    ========================================================= */
 
 .monthly-progress {
-    margin-top: 16px;
+    margin-top: 14px;
 
-    height: 50px;
+    height: 45px;
 
     padding:
-        10px
-        16px;
+        9px
+        14px;
 
     border:
         1px solid
@@ -823,16 +848,16 @@ body {
 
     align-items: center;
 
-    gap: 14px;
+    gap: 12px;
 }
 
 
 .progress-info > strong {
-    min-width: 58px;
+    min-width: 52px;
 
     color: #ff0000;
 
-    font-size: 17px;
+    font-size: 16px;
 
     font-weight: 900;
 }
@@ -841,7 +866,7 @@ body {
 .progress-track {
     flex: 1;
 
-    height: 13px;
+    height: 12px;
 
     background: #252525;
 
@@ -871,11 +896,11 @@ body {
 
 
 /* =========================================================
-   TEXTO DA META FALTANTE
+   FALTANTE
    ========================================================= */
 
 .progress-info > span {
-    min-width: 180px;
+    min-width: 175px;
 
     display: flex;
 
@@ -883,13 +908,13 @@ body {
 
     justify-content: flex-end;
 
-    gap: 4px;
+    gap: 3px;
 
     text-align: right;
 
     white-space: nowrap;
 
-    font-size: 11px;
+    font-size: 10px;
 
     color: #bbb;
 }
@@ -922,19 +947,19 @@ body {
             1fr
         );
 
-    gap: 16px;
+    gap: 14px;
 
-    margin-top: 17px;
+    margin-top: 15px;
 }
 
 
 .goal-card {
     min-width: 0;
 
-    height: 120px;
+    height: 112px;
 
     padding:
-        15px;
+        13px;
 
     display: flex;
 
@@ -968,7 +993,7 @@ body {
 
     color: #bbb;
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 600;
 }
@@ -977,9 +1002,9 @@ body {
 .goal-content > strong {
     display: block;
 
-    margin-top: 6px;
+    margin-top: 5px;
 
-    font-size: 20px;
+    font-size: 19px;
 
     font-weight: 800;
 
@@ -990,11 +1015,11 @@ body {
 .goal-content > small {
     display: block;
 
-    margin-top: 15px;
+    margin-top: 12px;
 
     color: #999;
 
-    font-size: 9px;
+    font-size: 8px;
 }
 
 
@@ -1005,22 +1030,22 @@ body {
 
     color: #ff0000;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 900;
 }
 
 
 /* =========================================================
-   CÍRCULOS DAS METAS
+   CÍRCULOS
    ========================================================= */
 
 .circle-progress {
     --progress: 0%;
 
-    width: 84px;
+    width: 82px;
 
-    height: 84px;
+    height: 82px;
 
     flex-shrink: 0;
 
@@ -1046,8 +1071,7 @@ body {
         );
 
     transition:
-        background
-        .8s ease;
+        background .8s ease;
 }
 
 
@@ -1078,9 +1102,9 @@ body {
 
     z-index: 2;
 
-    width: 67px;
+    width: 65px;
 
-    height: 67px;
+    height: 65px;
 
     border-radius: 50%;
 
@@ -1097,18 +1121,18 @@ body {
 .circle-inner span {
     color: #fff;
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: 900;
 }
 
 
 /* =========================================================
-   RANKING
+   RANKING TOP 10
    ========================================================= */
 
 .ranking {
-    margin-top: 17px;
+    margin-top: 15px;
 
     border:
         1px solid
@@ -1133,20 +1157,20 @@ body {
     display: grid;
 
     grid-template-columns:
-        65px
+        55px
         1fr
-        145px;
+        140px;
 
     align-items: center;
 }
 
 
 .ranking-header {
-    height: 48px;
+    height: 44px;
 
     padding:
         0
-        16px;
+        14px;
 
     background:
         linear-gradient(
@@ -1157,18 +1181,18 @@ body {
 
     color: #fff;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 900;
 }
 
 
 .ranking-row {
-    height: 40px;
+    height: 37px;
 
     padding:
         0
-        16px;
+        14px;
 
     border-bottom:
         1px solid
@@ -1193,7 +1217,7 @@ body {
 
 
 /* =========================================================
-   DESTAQUE DO PRIMEIRO COLOCADO
+   PRIMEIRO COLOCADO
    ========================================================= */
 
 .ranking-row:first-child {
@@ -1214,7 +1238,7 @@ body {
 .ranking-row .position {
     color: #fff;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 800;
 }
@@ -1229,7 +1253,7 @@ body {
 
     color: #eee;
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 600;
 }
@@ -1247,7 +1271,7 @@ body {
 
     color: #ff0000;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 900;
 }
@@ -1258,7 +1282,7 @@ body {
    ========================================================= */
 
 .right-panel footer {
-    height: 38px;
+    height: 31px;
 
     flex-shrink: 0;
 
@@ -1266,20 +1290,20 @@ body {
 
     align-items: center;
 
-    padding-left: 5px;
+    padding-left: 4px;
 
-    gap: 10px;
+    gap: 9px;
 
     color: #888;
 
-    font-size: 10px;
+    font-size: 9px;
 }
 
 
 .footer-line {
     width: 2px;
 
-    height: 22px;
+    height: 20px;
 
     background: #ff0000;
 }
@@ -1293,25 +1317,7 @@ body {
 
 
 /* =========================================================
-   AJUSTES DO PÓDIO
-   ========================================================= */
-
-.left-panel .podium {
-    position: relative;
-
-    top: -8px;
-}
-
-
-.left-panel .pillars {
-    position: relative;
-
-    z-index: 5;
-}
-
-
-/* =========================================================
-   NAVEGAÇÃO ENTRE TELAS
+   NAVEGAÇÃO
    ========================================================= */
 
 .screen-navigation {
@@ -1319,7 +1325,7 @@ body {
 
     right: 28px;
 
-    bottom: 18px;
+    bottom: 17px;
 
     z-index: 99999;
 
@@ -1329,15 +1335,15 @@ body {
 
     justify-content: center;
 
-    gap: 10px;
+    gap: 9px;
 
-    min-width: 115px;
+    min-width: 112px;
 
-    height: 38px;
+    height: 36px;
 
     padding:
         0
-        16px;
+        15px;
 
     color: #fff;
 
@@ -1357,11 +1363,11 @@ body {
 
     text-decoration: none;
 
-    font-size: 11px;
+    font-size: 10px;
 
     font-weight: 900;
 
-    letter-spacing: .8px;
+    letter-spacing: .7px;
 
     box-shadow:
         0 5px 20px
@@ -1380,7 +1386,7 @@ body {
 .screen-navigation b {
     color: #ff0000;
 
-    font-size: 20px;
+    font-size: 19px;
 
     line-height: 1;
 }
@@ -1425,15 +1431,15 @@ body {
 
 
 /* =========================================================
-   BOTÃO — RANKING ANUAL
+   RANKING ANUAL
    ========================================================= */
 
 .screen-navigation-annual {
     position: fixed;
 
-    bottom: 18px;
+    bottom: 17px;
 
-    right: 155px;
+    right: 153px;
 
     z-index: 99999;
 
@@ -1443,15 +1449,15 @@ body {
 
     justify-content: center;
 
-    gap: 9px;
+    gap: 8px;
 
-    min-width: 145px;
+    min-width: 143px;
 
-    height: 38px;
+    height: 36px;
 
     padding:
         0
-        14px;
+        13px;
 
     color: #fff;
 
@@ -1471,11 +1477,11 @@ body {
 
     text-decoration: none;
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 900;
 
-    letter-spacing: .8px;
+    letter-spacing: .7px;
 
     box-shadow:
         0 5px 20px
@@ -1494,7 +1500,7 @@ body {
 .screen-navigation-annual b {
     color: #ff0000;
 
-    font-size: 18px;
+    font-size: 17px;
 
     line-height: 1;
 }
@@ -1527,7 +1533,30 @@ body {
 
 
 /* =========================================================
-   RESPONSIVO
+   AJUSTES ESPECÍFICOS DO PÓDIO
+   ========================================================= */
+
+/*
+   Mantém o pódio visualmente dominante,
+   sem aumentar o painel direito.
+*/
+
+.left-panel .podium {
+    position: relative;
+
+    top: -5px;
+}
+
+
+.left-panel .pillars {
+    position: relative;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   RESPONSIVO — 1400PX
    ========================================================= */
 
 @media (max-width: 1400px) {
@@ -1540,51 +1569,63 @@ body {
         gap: 18px;
 
         padding:
-            15px
-            20px
-            10px;
+            14px
+            18px
+            9px;
     }
 
 
     .brand {
-        padding-left: 42px;
+        padding-left: 38px;
     }
 
 
     .hero-title {
-        margin-left: 24px;
+        margin-left: 22px;
 
-        font-size: 48px;
+        font-size: 47px;
     }
 
 
     .podium-image {
-        width: 125px;
+        width: 130px;
 
-        height: 125px;
+        height: 130px;
     }
 
 
     .podium-card.first .podium-image {
-        width: 150px;
+        width: 154px;
 
-        height: 150px;
+        height: 154px;
+    }
+
+
+    .podium-card {
+        min-height: 255px;
+    }
+
+
+    .podium-card.first {
+        min-height: 285px;
     }
 
 
     .pillar {
+        gap: 9px;
+
         padding:
-            10px;
+            9px;
     }
 
 
     .pillar-icon {
-        font-size: 34px;
+        font-size: 33px;
     }
 
 
     .pillar strong {
-        font-size: 11px;
+        font-size: 10px;
     }
 
 
@@ -1618,32 +1659,36 @@ body {
 
 
     .ranking-row {
-        height: 38px;
+        height: 36px;
     }
 
 
     .progress-info > span {
         min-width: 145px;
 
-        font-size: 10px;
+        font-size: 9px;
     }
 
 
     .screen-navigation {
-        right: 16px;
+        right: 15px;
 
-        bottom: 14px;
+        bottom: 13px;
     }
 
 
     .screen-navigation-annual {
-        right: 143px;
+        right: 140px;
 
-        bottom: 14px;
+        bottom: 13px;
     }
 
 }
 
+
+/* =========================================================
+   RESPONSIVO — 1150PX
+   ========================================================= */
 
 @media (max-width: 1150px) {
 
@@ -1652,34 +1697,34 @@ body {
             35%
             65%;
 
-        gap: 12px;
+        gap: 11px;
 
         padding:
-            12px;
+            11px;
     }
 
 
     .brand {
-        padding-left: 25px;
+        padding-left: 22px;
     }
 
 
     .brand img {
-        width: 105px;
+        width: 100px;
     }
 
 
     .hero-title {
-        margin-left: 15px;
+        margin-left: 13px;
 
-        font-size: 42px;
+        font-size: 41px;
 
         letter-spacing: -2px;
     }
 
 
     .hero-title p {
-        font-size: 13px;
+        font-size: 12px;
     }
 
 
@@ -1687,7 +1732,14 @@ body {
         padding:
             28px
             6px
-            14px;
+            13px;
+
+        min-height: 225px;
+    }
+
+
+    .podium-card.first {
+        min-height: 250px;
     }
 
 
@@ -1706,45 +1758,45 @@ body {
 
 
     .podium-card h2 {
-        font-size: 11px;
+        font-size: 10px;
     }
 
 
     .podium-card.first h2 {
-        font-size: 12px;
+        font-size: 11px;
     }
 
 
     .podium-card strong {
-        font-size: 13px;
+        font-size: 12px;
     }
 
 
     .podium-card.first strong {
-        font-size: 14px;
+        font-size: 13px;
     }
 
 
     .pillars {
-        height: 88px;
+        height: 82px;
     }
 
 
     .pillar {
-        gap: 7px;
+        gap: 6px;
 
         padding:
-            7px;
+            6px;
     }
 
 
     .pillar-icon {
-        font-size: 27px;
+        font-size: 26px;
     }
 
 
     .pillar strong {
-        font-size: 9px;
+        font-size: 8px;
     }
 
 
@@ -1754,23 +1806,23 @@ body {
 
 
     .panel-header h1 {
-        font-size: 36px;
+        font-size: 35px;
     }
 
 
     .panel-header h1 span {
-        font-size: 50px;
+        font-size: 48px;
     }
 
 
     .summary {
-        gap: 10px;
+        gap: 9px;
     }
 
 
     .summary-card {
         padding:
-            12px;
+            11px;
     }
 
 
@@ -1780,64 +1832,64 @@ body {
 
 
     .summary-card b {
-        font-size: 18px;
+        font-size: 17px;
     }
 
 
     .goal-grid {
-        gap: 9px;
+        gap: 8px;
     }
 
 
     .goal-card {
-        height: 110px;
+        height: 105px;
 
         padding:
-            9px;
+            8px;
     }
 
 
     .goal-content > strong {
-        font-size: 16px;
+        font-size: 15px;
     }
 
 
     .circle-progress {
-        width: 62px;
+        width: 61px;
 
-        height: 62px;
+        height: 61px;
     }
 
 
     .circle-inner {
-        width: 50px;
+        width: 49px;
 
-        height: 50px;
+        height: 49px;
     }
 
 
     .circle-inner span {
-        font-size: 12px;
+        font-size: 11px;
     }
 
 
     .ranking-header,
     .ranking-row {
         grid-template-columns:
-            48px
+            45px
             1fr
-            120px;
+            115px;
     }
 
 
     .ranking-row {
-        height: 34px;
+        height: 33px;
     }
 
 
     .ranking-name,
     .ranking-value {
-        font-size: 10px;
+        font-size: 9px;
     }
 
 }
