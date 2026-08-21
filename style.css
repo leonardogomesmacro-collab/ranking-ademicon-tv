@@ -1,7 +1,7 @@
 /* =========================================================
    RANKING ADEMICON
    DASHBOARD TV 16:9
-   REFINAMENTO V2
+   REFINAMENTO V3
    ========================================================= */
 
 @import url(
@@ -238,10 +238,6 @@ body {
 
     gap: 0;
 
-    /*
-       Recupera presença vertical do pódio.
-       Ele sobe sem invadir o título.
-    */
     margin:
         -35px
         0
@@ -1152,6 +1148,10 @@ body {
 }
 
 
+/* =========================================================
+   CABEÇALHO DA TABELA — AUMENTADO
+   ========================================================= */
+
 .ranking-header,
 .ranking-row {
     display: grid;
@@ -1181,11 +1181,17 @@ body {
 
     color: #fff;
 
-    font-size: 12px;
+    font-size: 14px;
 
     font-weight: 900;
+
+    letter-spacing: .1px;
 }
 
+
+/* =========================================================
+   LINHAS DO TOP 10
+   ========================================================= */
 
 .ranking-row {
     height: 37px;
@@ -1235,14 +1241,24 @@ body {
 }
 
 
+/* =========================================================
+   POSIÇÃO — AUMENTADA
+   ========================================================= */
+
 .ranking-row .position {
     color: #fff;
 
-    font-size: 12px;
+    font-size: 14px;
 
     font-weight: 800;
+
+    line-height: 1;
 }
 
+
+/* =========================================================
+   NOME DO CONSULTOR — AUMENTADO
+   ========================================================= */
 
 .ranking-name {
     overflow: hidden;
@@ -1253,27 +1269,39 @@ body {
 
     color: #eee;
 
-    font-size: 11px;
+    font-size: 13px;
 
     font-weight: 600;
+
+    line-height: 1.1;
 }
 
 
 .ranking-row:first-child .ranking-name {
     color: #fff;
 
+    font-size: 13px;
+
     font-weight: 800;
 }
 
+
+/* =========================================================
+   VALOR — AUMENTADO
+   ========================================================= */
 
 .ranking-value {
     text-align: right;
 
     color: #ff0000;
 
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 900;
+
+    line-height: 1.1;
+
+    white-space: nowrap;
 }
 
 
@@ -1535,11 +1563,6 @@ body {
 /* =========================================================
    AJUSTES ESPECÍFICOS DO PÓDIO
    ========================================================= */
-
-/*
-   Mantém o pódio visualmente dominante,
-   sem aumentar o painel direito.
-*/
 
 .left-panel .podium {
     position: relative;
@@ -1882,14 +1905,29 @@ body {
     }
 
 
+    .ranking-header {
+        font-size: 13px;
+    }
+
+
     .ranking-row {
         height: 33px;
     }
 
 
+    .ranking-row .position {
+        font-size: 13px;
+    }
+
+
     .ranking-name,
+    .ranking-row:first-child .ranking-name {
+        font-size: 11px;
+    }
+
+
     .ranking-value {
-        font-size: 9px;
+        font-size: 11px;
     }
 
 }
