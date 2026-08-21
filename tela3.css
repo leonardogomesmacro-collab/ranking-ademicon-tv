@@ -114,6 +114,10 @@ body {
 }
 
 
+/* =========================================================
+   MARCA
+   ========================================================= */
+
 .brand {
 
     display: flex;
@@ -247,7 +251,7 @@ body {
 
 
 /* =========================================================
-   DESTAQUE
+   DESTAQUE DO 1º COLOCADO
    ========================================================= */
 
 .annual-highlight {
@@ -256,22 +260,22 @@ body {
 
     width: 70%;
 
-    min-height: 145px;
+    min-height: 115px;
 
     margin:
-        30px
+        22px
         auto
-        20px;
+        14px;
 
     padding:
-        20px
-        30px;
+        15px
+        25px;
 
     display: flex;
 
     align-items: center;
 
-    gap: 25px;
+    gap: 20px;
 
     border:
         1px solid
@@ -313,6 +317,10 @@ body {
 }
 
 
+/* =========================================================
+   LABEL DO DESTAQUE
+   ========================================================= */
+
 .highlight-label {
 
     position: absolute;
@@ -340,11 +348,15 @@ body {
 }
 
 
+/* =========================================================
+   POSIÇÃO DO DESTAQUE
+   ========================================================= */
+
 .highlight-position {
 
-    width: 82px;
+    width: 65px;
 
-    height: 82px;
+    height: 65px;
 
     flex-shrink: 0;
 
@@ -365,7 +377,7 @@ body {
 
     color: #fff;
 
-    font-size: 30px;
+    font-size: 24px;
 
     font-weight: 900;
 
@@ -380,6 +392,10 @@ body {
 
 }
 
+
+/* =========================================================
+   CONTEÚDO DO DESTAQUE
+   ========================================================= */
 
 .highlight-content {
 
@@ -400,7 +416,7 @@ body {
 
     white-space: nowrap;
 
-    font-size: 26px;
+    font-size: 21px;
 
     font-weight: 900;
 
@@ -411,22 +427,26 @@ body {
 
     display: block;
 
-    margin-top: 7px;
+    margin-top: 5px;
 
     color: #ff0000;
 
-    font-size: 28px;
+    font-size: 23px;
 
     font-weight: 900;
 
 }
 
 
+/* =========================================================
+   PARABÉNS
+   ========================================================= */
+
 .highlight-message {
 
     padding:
-        10px
-        18px;
+        8px
+        14px;
 
     border:
         1px solid
@@ -436,7 +456,7 @@ body {
 
     color: #ff0000;
 
-    font-size: 14px;
+    font-size: 12px;
 
     font-weight: 900;
 
@@ -478,28 +498,36 @@ body {
 }
 
 
+/* =========================================================
+   GRID DO RANKING
+   ========================================================= */
+
 .ranking-header,
 .ranking-row {
 
     display: grid;
 
     grid-template-columns:
-        100px
+        90px
         1fr
-        280px;
+        260px;
 
     align-items: center;
 
 }
 
 
+/* =========================================================
+   CABEÇALHO DA TABELA
+   ========================================================= */
+
 .ranking-header {
 
-    height: 52px;
+    height: 40px;
 
     padding:
         0
-        25px;
+        22px;
 
     background:
         linear-gradient(
@@ -510,20 +538,24 @@ body {
 
     color: #fff;
 
-    font-size: 13px;
+    font-size: 11px;
 
     font-weight: 900;
 
 }
 
 
+/* =========================================================
+   LINHAS
+   ========================================================= */
+
 .ranking-row {
 
-    height: 49px;
+    height: 36px;
 
     padding:
         0
-        25px;
+        22px;
 
     border-bottom:
         1px solid
@@ -556,11 +588,15 @@ body {
 }
 
 
+/* =========================================================
+   POSIÇÃO
+   ========================================================= */
+
 .ranking-row .position {
 
     color: #999;
 
-    font-size: 16px;
+    font-size: 13px;
 
     font-weight: 900;
 
@@ -591,6 +627,10 @@ body {
 }
 
 
+/* =========================================================
+   NOME
+   ========================================================= */
+
 .ranking-name {
 
     overflow: hidden;
@@ -601,7 +641,7 @@ body {
 
     color: #eee;
 
-    font-size: 15px;
+    font-size: 12px;
 
     font-weight: 700;
 
@@ -617,13 +657,17 @@ body {
 }
 
 
+/* =========================================================
+   PRODUÇÃO
+   ========================================================= */
+
 .ranking-value {
 
     text-align: right;
 
     color: #ff0000;
 
-    font-size: 16px;
+    font-size: 13px;
 
     font-weight: 900;
 
@@ -764,12 +808,20 @@ footer strong {
 }
 
 
+/* =========================================================
+   BOTÃO VOLTAR
+   ========================================================= */
+
 .screen-navigation-back {
 
     left: 28px;
 
 }
 
+
+/* =========================================================
+   BOTÃO AVANÇAR
+   ========================================================= */
 
 .screen-navigation-next {
 
@@ -832,6 +884,98 @@ footer strong {
             70px
             1fr
             200px;
+
+    }
+
+}
+
+
+/* =========================================================
+   TELAS MENORES
+   ========================================================= */
+
+@media (
+    max-height: 800px
+) {
+
+    .annual-dashboard {
+
+        padding-top: 18px;
+
+        padding-bottom: 12px;
+
+    }
+
+
+    .annual-title {
+
+        font-size: 42px;
+
+    }
+
+
+    .annual-title p {
+
+        margin-top: 9px;
+
+        font-size: 11px;
+
+    }
+
+
+    .annual-highlight {
+
+        min-height: 100px;
+
+        margin-top: 18px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .highlight-position {
+
+        width: 58px;
+
+        height: 58px;
+
+        font-size: 21px;
+
+    }
+
+
+    .highlight-content span {
+
+        font-size: 18px;
+
+    }
+
+
+    .highlight-content strong {
+
+        font-size: 20px;
+
+    }
+
+
+    .ranking-header {
+
+        height: 36px;
+
+    }
+
+
+    .ranking-row {
+
+        height: 34px;
+
+    }
+
+
+    footer {
+
+        height: 30px;
 
     }
 
