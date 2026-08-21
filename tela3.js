@@ -92,7 +92,6 @@ async function carregarRankingAnual() {
             "Dados atualizados"
         );
 
-
     }
 
     catch (erro) {
@@ -119,7 +118,6 @@ async function carregarRankingAnual() {
 function atualizarRankingAnual(
     ranking
 ) {
-
 
     // =====================================================
     // FILTRAR PRODUÇÃO > 0
@@ -207,12 +205,15 @@ function atualizarRankingAnual(
         "";
 
 
+    // =====================================================
+    // CRIAR LINHAS
+    // =====================================================
+
     rankingValido.forEach(
         function (
             item,
             index
         ) {
-
 
             const linha =
                 document.createElement(
@@ -287,7 +288,7 @@ function atualizarRankingAnual(
 
 
             // =================================================
-            // MONTAR
+            // MONTAR LINHA
             // =================================================
 
             linha.appendChild(
@@ -306,7 +307,7 @@ function atualizarRankingAnual(
 
 
             // =================================================
-            // DESTAQUE DO PRIMEIRO
+            // DESTAQUES DO TOP 3
             // =================================================
 
             if (
@@ -314,11 +315,37 @@ function atualizarRankingAnual(
             ) {
 
                 linha.classList.add(
-                    "leader"
+                    "rank-first"
                 );
 
             }
 
+
+            else if (
+                index === 1
+            ) {
+
+                linha.classList.add(
+                    "rank-second"
+                );
+
+            }
+
+
+            else if (
+                index === 2
+            ) {
+
+                linha.classList.add(
+                    "rank-third"
+                );
+
+            }
+
+
+            // =================================================
+            // ADICIONAR À TABELA
+            // =================================================
 
             lista.appendChild(
                 linha
@@ -503,11 +530,12 @@ function colocarTexto(
 
 
 // =========================================================
-// ATUALIZAÇÃO
+// ATUALIZAÇÃO AUTOMÁTICA DOS DADOS
 // =========================================================
 //
-// Atualiza os dados sem trocar de tela.
-// =========================================================
+// Apenas atualiza os dados.
+// Não existe troca automática de tela.
+//
 
 setInterval(
     carregarRankingAnual,
